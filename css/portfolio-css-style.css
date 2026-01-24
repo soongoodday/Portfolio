@@ -1,4 +1,8 @@
 /* Main Styles */
+html {
+  scroll-behavior: smooth;
+}
+
 
 /* General */
 body {
@@ -201,14 +205,6 @@ body {
   max-width: 780px;
   margin: 0 auto;  
   margin-top: 50px;           /* ⭐ 오른쪽 칸 안에서 가운데로 */
-}
-
-.hero_box_line{
-  width: 3px;
-  height: clamp(90px, 12vw, 168px);
-  background: #283F6E;
-  flex-shrink: 0;
-  
 }
 
 .hero_box_intro{
