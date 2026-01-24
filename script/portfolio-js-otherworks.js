@@ -5,12 +5,8 @@
       rights: [],
     },
     {
-      left: { src: "images/_260115-20.png", alt: "누베딜리 상세페이지 시안 2" },
-      rights: [
-        { src: "images/other2_1.png", alt: "모델 컷(세트2) 1" },
-        { src: "images/other2_2.png", alt: "모델 컷(세트2) 2" },
-        { src: "images/other2_3.png", alt: "반지 디테일 컷(세트2)" },
-      ],
+      left: { src: "images/game_banner_260121.png", alt: "누베딜리 상세페이지 시안 2" },
+      rights: [],
     },
   ];
 
