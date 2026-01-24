@@ -392,7 +392,6 @@ body {
 /* AI Skills Section */
 .ai-skills-section {
     padding: var(--spacing-3xl) 0;
-    background-color: var(--color-white);
 }
 
 .ai-content {
@@ -659,8 +658,7 @@ body {
 }
 
 .sub-image-web {
-    aspect-ratio: 16 / 9;
-    background-color: #e5e5e5;
+    aspect-ratio: 4 / 3;
     border-radius: var(--radius-3xl);
     box-shadow: var(--shadow-lg);
     display: flex;
@@ -672,7 +670,6 @@ body {
 .sub-image-mobile {
     width: 15rem;
     aspect-ratio: 9 / 16;
-    background-color: #e5e5e5;
     border-radius: var(--radius-3xl);
     box-shadow: var(--shadow-lg);
     display: flex;
@@ -685,7 +682,6 @@ body {
 /* Footer */
 .footer {
     padding: var(--spacing-3xl) 0;
-    background-color: var(--color-white);
     border-top: 1px solid #ccc;
     text-align: center;
 }
