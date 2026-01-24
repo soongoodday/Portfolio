@@ -741,3 +741,321 @@ body {
     justify-content: center;
   }
 }
+
+
+
+
+/* ================================
+   기타 작업물 섹션 (Other Works)
+================================ */
+.other-works-section{
+  padding: var(--spacing-3xl) 0;
+}
+
+/* 리본 타이틀 */
+.other-works-header{
+  margin-bottom: 60px;
+}
+
+.other-works-ribbon{
+  display: inline-block;
+  background: var(--color-subcolor2);
+  color: var(--color-white);
+  padding: 18px 56px;
+  border-radius: 0 var(--radius-3xl) var(--radius-3xl) 0;
+  font-weight: var(--font-black);
+  font-size: var(--font-3xl);
+}
+
+/* 중앙 소개 */
+.other-works-intro{
+  max-width: 760px;
+  margin: 0 auto 48px;
+  text-align: center;
+}
+
+.other-works-title{
+  font-size: var(--font-3xl);
+  font-weight: var(--font-black);
+  color: var(--color-subcolor);
+  margin-bottom: 20px;
+}
+
+.other-works-meta{
+  display: grid;
+  gap: 12px;
+  margin: 0 auto;
+  text-align: left;
+  max-width: 640px;
+}
+
+.other-works-row{
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.other-works-row dt{
+  font-family: 'pretendard';
+  font-weight: var(--font-extrabold);
+  color: var(--color-subcolor);
+  font-size: var(--font-lg);
+}
+
+.other-works-row dd{
+  margin: 0;
+  font-family: 'pretendard';
+  font-weight: var(--font-medium);
+  color: var(--color-subcolor);
+  font-size: var(--font-lg);
+  line-height: 1.7;
+}
+
+/* 버튼 */
+.other-works-cta{ margin-top: 28px; }
+
+.other-works-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: min(520px, 100%);
+  height: 56px;
+  padding: 0 28px;
+
+  background: var(--color-purple);
+  color: var(--color-white);
+  border-radius: var(--radius-full);
+  font-weight: var(--font-bold);
+  font-size: var(--font-lg);
+  transition: opacity var(--transition-base);
+}
+
+.other-works-btn:hover{ opacity: .92; }
+.other-works-btn:focus-visible{
+  outline: 3px solid #283F6E;
+  outline-offset: 6px;
+}
+
+/* 캐러셀 */
+.other-works-carousel{
+  position: relative;
+  outline: none;
+}
+
+.other-works-carousel:focus-visible{
+  outline: 3px solid #283F6E;
+  outline-offset: 10px;
+  border-radius: 18px;
+}
+
+/* viewport (scroll-snap) */
+.other-works-viewport{
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  gap: 24px;
+
+  scrollbar-width: none;
+}
+.other-works-viewport::-webkit-scrollbar{ display:none; }
+
+.other-works-slide{
+  scroll-snap-align: start;
+}
+
+/* 슬라이드 내부 그리드 */
+.other-works-grid{
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 0.9fr;
+  gap: 24px;
+  align-items: center;
+}
+
+@media (max-width: 900px){
+  .other-works-grid{
+    align-items: start;
+  }
+}
+
+.other-works-figure{
+  background: #fff;
+  border-radius: var(--radius-3xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.other-works-figure img{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.other-works-figure--left{
+  border: 0px solid #4ea7ff;
+}
+
+.other-works-stack{
+  display: grid;
+  gap: 18px;
+}
+
+/* 화살표: 데스크톱은 양옆 가운데 */
+.other-works-arrows{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.other-works-arrow{
+  pointer-events: auto;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+
+  color: var(--color-subcolor2);
+  font-size: 40px;
+  font-weight: 800;
+
+  background: transparent;
+  cursor: pointer;
+  transition: transform var(--transition-base), opacity var(--transition-base);
+  opacity: 0.9;
+}
+
+.other-works-arrow:hover{ transform: scale(1.06); opacity: 1; }
+.other-works-arrow:active{ transform: scale(0.98); }
+.other-works-arrow:focus-visible{
+  outline: 3px solid #283F6E;
+  outline-offset: 6px;
+}
+
+/* 캡션/도트 */
+.other-works-footer{
+  margin-top: 26px;
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+}
+
+.other-works-caption{
+  font-family: 'pretendard';
+  font-weight: var(--font-bold);
+  color: var(--color-subcolor);
+  font-size: var(--font-md);
+}
+
+.other-works-dots{
+  display: flex;
+  gap: 10px;
+}
+
+.other-works-dot{
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  border: 1px solid var(--color-subcolor2);
+  opacity: 0.6;
+  background: transparent;
+  cursor: pointer;
+  transition: transform var(--transition-base), opacity var(--transition-base), background var(--transition-base);
+}
+
+.other-works-dot:hover{ opacity: 1; transform: scale(1.15); }
+.other-works-dot[aria-current="true"]{
+  opacity: 1;
+  background: var(--color-subcolor2);
+  transform: scale(1.15);
+}
+
+/* 반응형 */
+@media (max-width: 900px){
+  .other-works-grid{
+    grid-template-columns: 1fr;
+    width: min(760px, 100%);
+  }
+
+  /* 모바일: 화살표 아래로 */
+  .other-works-arrows{
+    position: static;
+    margin-top: 16px;
+    justify-content: center;
+    gap: 24px;
+    pointer-events: auto;
+  }
+
+  .other-works-carousel{ display: grid; gap: 14px; }
+}
+
+@media (max-width: 520px){
+  .other-works-row{
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .other-works-ribbon{
+    font-size: var(--font-2xl);
+    padding: 16px 28px;
+  }
+
+  .other-works-arrow{
+    width: 44px;
+    height: 44px;
+    font-size: 32px;
+  }
+}
+
+/* ================================
+   기타 작업물 "정가운데" 최종 공식
+   (한 화면 높이 안에서 가운데 정렬)
+================================ */
+
+/* ✅ 슬라이드(한 장) 자체를 '한 화면 높이'로 만들고 가운데 정렬 */
+.other-works-slide{
+  min-height: 80vh;               /* ⭐ 정가운데의 핵심 */
+  display: flex;
+  align-items: center;            /* 세로 가운데 */
+  justify-content: center;        /* 가로 가운데 */
+}
+
+/* ✅ 그리드는 가운데에 놓기 */
+.other-works-grid{
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 0.9fr;
+  gap: 24px;
+  align-items: center;
+}
+
+/* ✅ 왼쪽도 중앙 고정 */
+.other-works-left-wrap{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ✅ 오른쪽이 비어있으면 1컬럼로 */
+.other-works-stack:empty{ display:none; }
+.other-works-grid:has(.other-works-stack:empty){
+  grid-template-columns: 1fr;
+}
+
+/* 모바일에서는 화면 높이 너무 커 보일 수 있어서 살짝 낮추기 */
+@media (max-width: 900px){
+  .other-works-slide{ min-height: 60vh; }
+  .other-works-grid{
+    grid-template-columns: 1fr;
+    width: min(760px, 100%);
+  }
+}
