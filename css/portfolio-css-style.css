@@ -614,7 +614,7 @@ body {
 .preview-web {
     width: 100%;
     max-width: 38rem;
-    aspect-ratio: 9 / 16;
+    aspect-ratio: 3 / 4;
     border-radius: var(--radius-3xl);
     box-shadow: var(--shadow-lg);
     display: flex;
