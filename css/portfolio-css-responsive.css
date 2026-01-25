@@ -48,11 +48,11 @@
     }
 
     .portfolio-info {
-        order: 0; 
+        order: 1; 
     }
     
     .portfolio-preview {
-        order: 1;
+        order: 0;
     }
     
     .sub-images {

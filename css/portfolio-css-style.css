@@ -611,6 +611,7 @@ body {
     border-radius: var(--radius-full);
     font-weight: var(--font-bold);
     transition: all var(--transition-base);
+    font-size: 1.25rem;
 }
 
 .btn-figma:hover {
@@ -623,6 +624,7 @@ body {
     border-radius: var(--radius-full);
     font-weight: var(--font-bold);
     transition: all var(--transition-base);
+    font-size: 1.25rem;
 }
 
 .btn-site:hover {
@@ -643,12 +645,6 @@ body {
     justify-content: center;
     color: #999;
     margin-bottom: var(--spacing-2xl);
-}
-
-.sub-image-web img,
-.sub-image-mobile img{
-    box-shadow: var(--shadow-lg);
-    border-radius: var(--radius-3xl);
 }
 
 .preview-mobile {
@@ -680,9 +676,12 @@ body {
 }
 
 .sub-images {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: var(--spacing-md);
+    display: flex;
+    align-items: center;   /* ⭐ 시작점(윗선) 맞추기 */
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    
 }
 
 .sub-image-web {
