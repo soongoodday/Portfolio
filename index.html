@@ -535,7 +535,9 @@
             </div>
         </section>
 
-<!-- 기타 작업물 섹션 (footer 위에 추가) -->
+<!-- ===============================
+     기타 작업물 섹션 (footer 위)
+================================= -->
 <section id="other-works" class="other-works-section" aria-labelledby="otherWorksTitle">
   <div class="container">
 
@@ -544,31 +546,37 @@
       <h2 class="other-works-ribbon" id="otherWorksTitle">기타 작업물</h2>
     </header>
 
-    <!-- 소개(고정 텍스트) -->
+    <!-- ✅ 상단 텍스트(슬라이드 넘어갈 때 바뀌는 영역) -->
     <article class="other-works-intro" aria-label="기타 작업물 소개">
-      <h3 class="other-works-title">누베딜리 상세 페이지</h3>
+      <h3 class="other-works-title" id="otherWorksTitleText">누베딜리 상세 페이지</h3>
 
       <dl class="other-works-meta">
         <div class="other-works-row">
           <dt>설명</dt>
-          <dd>누베딜리 웹페이지의 제품 썸네일을 클릭하면 나오는 상세 페이지</dd>
+          <dd id="otherWorksDesc">누베딜리 웹페이지의 제품 썸네일을 클릭하면 나오는 상세 페이지</dd>
         </div>
         <div class="other-works-row">
           <dt>주제</dt>
-          <dd>일상에서 부담없이 캐주얼하게 착용 가능한 반지</dd>
+          <dd id="otherWorksTopic">일상에서 부담없이 캐주얼하게 착용 가능한 반지</dd>
         </div>
         <div class="other-works-row">
           <dt>연령대</dt>
-          <dd>30대 ~ 40대 이상</dd>
+          <dd id="otherWorksAge">30대 ~ 40대 이상</dd>
         </div>
       </dl>
 
       <p class="other-works-cta">
-        <a class="other-works-btn" href="#" target="_blank" rel="noreferrer">피그마 작업링크</a>
+        <a
+          class="other-works-btn"
+          id="otherWorksLink"
+          href="#"
+          target="_blank"
+          rel="noreferrer"
+        >피그마 작업링크</a>
       </p>
     </article>
 
-    <!-- 캐러셀 (JS가 슬라이드/도트를 자동 생성) -->
+    <!-- ✅ 캐러셀 -->
     <section class="other-works-gallery" aria-label="기타 작업물 이미지">
       <div
         class="other-works-carousel"
@@ -584,10 +592,10 @@
           <button class="other-works-arrow" type="button" data-dir="next" aria-label="다음 슬라이드">›</button>
         </div>
 
-        <!-- 슬라이드 들어갈 자리 -->
+        <!-- ✅ JS가 슬라이드를 채워 넣는 곳 -->
         <div class="other-works-viewport" id="otherWorksViewport"></div>
 
-        <!-- 캡션 + 도트 -->
+        <!-- ✅ 하단 캡션 + 도트 -->
         <footer class="other-works-footer">
           <p class="other-works-caption" id="otherWorksCaption">상세페이지 디자인</p>
           <nav class="other-works-dots" id="otherWorksDots" aria-label="슬라이드 선택"></nav>
@@ -597,6 +605,7 @@
 
   </div>
 </section>
+
 
 
 

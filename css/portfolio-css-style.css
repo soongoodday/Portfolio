@@ -672,7 +672,6 @@ body {
 
 .sub-title {
     font-size: var(--font-2xl);
-    margin-bottom: var(--spacing-xl);
 }
 
 .sub-images {
