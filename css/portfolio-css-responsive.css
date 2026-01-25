@@ -437,6 +437,7 @@ button:focus {
   font-weight: var(--font-bold);
   font-size: var(--font-lg);
   transition: opacity var(--transition-base);
+  display: none;
 }
 
 .other-works-btn:hover{ opacity: .92; }

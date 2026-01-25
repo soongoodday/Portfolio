@@ -14,10 +14,10 @@
     {
       left: { src: "images/game_banner_260121.png", alt: "게임 배너" },
       rights: [],
-      title: "게임 배너",
-      desc: "마리오 카트 레퍼런스를 참고해 제작한 게임 배너",
+      title: "가상의 카트 게임 배너",
+      desc: "가상의 카트 게임 배너를 chatGPT(챗GPT)를 활용해 이미지 생성 후 제작했습니다.",
       topic: "프로모션/이벤트 배너",
-      age: "전 연령",
+      age: "전 연령(게임 사용자)",
       caption: "배너 디자인",
       link: "#" // ← 여기에 피그마 링크 넣기
     },
