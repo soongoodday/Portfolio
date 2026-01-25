@@ -767,24 +767,29 @@ body {
   .hero_wrap{
     justify-content: center;
   }
+}
 
 
 
 
-  /* =========================
-   Footer (WEB + MOBILE 공통)
+
+/* =========================
+   FOOTER (WEB + MOBILE)
 ========================= */
-
 .footer{
   padding: 96px 0 72px;
   border-top: 1px solid #e2e2e2;
-  text-align: center;
   background: var(--color-bg);
 }
 
-/* =========================
-   감사 문구 카드 (말풍선 X)
-========================= */
+.footer .container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* ✅ 안에 있는 것들 전부 가운데 */
+  text-align: center;
+}
+
+/* ✅ 흰 배경/테두리/그림자 제거 */
 .footer-message{
   font-family: 'InkLiquid';
   font-size: clamp(2rem, 5.2vw, 4.2rem);
@@ -793,62 +798,62 @@ body {
   color: var(--color-subcolor2);
   font-weight: var(--font-medium);
 
-  display: inline-block;
-  max-width: 920px;
-  width: 92%;
-  margin: 0 auto 36px;
-  padding: 26px 28px;
+  margin: 0 0 28px;
+  padding: 0;
 
-  background: #ffffff;
-  border: 1.5px solid #d6d9df;   /* ⭐ 옅은 회색 테두리 */
-  border-radius: 20px;
+  background: transparent; /* ✅ 흰 배경 제거 */
+  border: 0;               /* ✅ 테두리 제거 */
+  border-radius: 0;
+  box-shadow: none;
 
-  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
-  text-align: center;
   word-break: keep-all;
 }
 
-/* 꼬리 완전 제거 */
-.footer-message::before{
-  display: none;
-}
+.footer-message::before{ display:none; }
 
-/* =========================
-   SKE 배지
-========================= */
+/* ✅ “웹디자이너 성경은”도 중앙에 오게: block + 가운데 */
 .footer-badge{
-  display: inline-block;
-  font-size: 1.05rem;
-  font-weight: var(--font-semibold);
-  padding: 10px 22px;
-  border-radius: 14px;
+  display: block;         /* ✅ inline-flex → block */
+  margin: 0 0 26px;
+  padding: 0;
 
-  background: var(--color-subcolor2);
-  color: #fff;
+  background: none;
+  border: none;
 
-  margin-bottom: 28px;
+  color: var(--color-subcolor2);
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
 }
 
-/* =========================
-   연락처
-========================= */
+.footer-badge .font-medium{
+  font-weight: 400;
+  opacity: 0.75;
+}
+
+.footer-badge .font-bold{
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+/* 연락처: 웹에서는 가로 2개, 전체 가운데 */
 .footer-contact{
   display: flex;
   justify-content: center;
   gap: 24px;
-  margin-bottom: 28px;
+  margin: 0 0 24px;
   flex-wrap: wrap;
 }
 
 .contact-item{
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
 
   padding: 12px 18px;
   border-radius: 14px;
 
-  background: #ffffff;
+  background: #fff;
   border: 1px solid #e3e3e3;
   box-shadow: 0 4px 14px rgba(0,0,0,0.04);
 
@@ -856,79 +861,41 @@ body {
   font-weight: var(--font-medium);
 }
 
-/* =========================
-   Copyright
-========================= */
+/* 저작권 */
 .footer-copyright{
   font-size: 0.95rem;
   color: var(--color-subcolor2);
   line-height: 1.7;
 }
 
-.footer-copyright p{
-  margin-bottom: 6px;
-}
+.footer-copyright p{ margin-bottom: 6px; }
 
 /* =========================
-   Mobile 조정
+   MOBILE
 ========================= */
 @media (max-width: 768px){
-
   .footer{
     padding: 72px 0 56px;
   }
 
   .footer-message{
     font-size: clamp(1.9rem, 6.4vw, 2.7rem);
-    padding: 20px 18px;
-    border-radius: 16px;
-    margin-bottom: 28px;
+    margin-bottom: 22px;
   }
 
   .footer-contact{
     flex-direction: column;
+    align-items: center;
     gap: 14px;
   }
 
   .contact-item{
     width: min(420px, 92%);
-    justify-content: center;
-    font-size: 1rem;
   }
 }
 
 @media (max-width: 420px){
   .footer-message{
     font-size: 1.85rem;
-    padding: 18px 16px;
   }
-}
-
-/* =========================
-   Footer 가운데 정렬 (최종)
-========================= */
-
-.footer{
-  text-align: center;
-}
-
-.footer-message{
-  margin: 0 auto 32px;
-}
-
-.footer-badge{
-  margin: 0 auto 24px;
-}
-
-.footer-contact{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 28px;
-}
-
-.contact-item{
-  margin: 0 auto;
-}
 }
