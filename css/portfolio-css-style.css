@@ -311,7 +311,7 @@ body {
     font-family: 'pretendard';
     font-weight: var(--font-semibold);
     color: var(--color-subcolor);
-    font-size: var(--font-lg);
+    font-size: var(--font-xl);
     line-height: 1.6;
 }
 
@@ -379,14 +379,14 @@ body {
 .skill-title {
     font-weight: var(--font-black);
     color: var(--color-subcolor2);
-    font-size: var(--font-xl);
+    font-size: var(--font-2xl);
     line-height: 1.4;
 }
 
 .skill-subtitle {
     font-weight: var(--font-medium);
     color: var(--color-subcolor2);
-    font-size: var(--font-sm);
+    font-size: var(--font-lg);
 }
 
 /* AI Skills Section */
