@@ -284,3 +284,24 @@ document.addEventListener('DOMContentLoaded', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const downBtn = document.querySelector(".hero_box_scrollButton");
+  const bottom = document.querySelector("#page-bottom");
+
+  if (downBtn && bottom) {
+    downBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      bottom.scrollIntoView({ behavior: "smooth" });
+    });
+  }
+
+  const topBtn = document.querySelector(".top-btn");
+  if (topBtn) {
+    topBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+});
+

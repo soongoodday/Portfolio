@@ -222,7 +222,7 @@ body {
   font-weight: 500;
   color: #283F6E;
   margin: 0 0 14px;
-  white-space: nowrap;
+  white-space: wrap;
   text-align: center;
 }
 
