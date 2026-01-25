@@ -180,3 +180,170 @@
     scrollToIndex(idx, "auto");
   });
 })();
+
+
+/* =========================
+   Other Works Mobile UX
+   - 모바일 스와이프
+   - 도트 생성/활성화
+   - 스크롤 멈추면 자동 스냅
+========================= */
+document.addEventListener('DOMContentLoaded', () => {
+  const viewport = document.getElementById('otherWorksViewport');
+  const dotsWrap = document.getElementById('otherWorksDots');
+
+  if (!viewport || !dotsWrap) return;
+
+  // 슬라이드들(직접 자식 기준)
+  const slides = Array.from(viewport.children);
+  if (!slides.length) return;
+
+  // 현재 인덱스
+  let index = 0;
+
+  // === 도트 만들기(이미 있으면 재생성 안 함) ===
+  if (dotsWrap.children.length === 0) {
+    slides.forEach((_, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'other-works-dot';
+      b.setAttribute('aria-label', `${i + 1}번째 슬라이드`);
+      b.addEventListener('click', () => snapTo(i, true));
+      dotsWrap.appendChild(b);
+    });
+  }
+  const dots = Array.from(dotsWrap.children);
+
+  function setActiveDot(i){
+    dots.forEach((d, idx) => d.classList.toggle('is-active', idx === i));
+  }
+
+  // === 스냅(자동 정렬) ===
+  function snapTo(i, smooth = true){
+    index = Math.max(0, Math.min(i, slides.length - 1));
+    const w = viewport.clientWidth;
+    viewport.scrollTo({
+      left: index * w,
+      behavior: smooth ? 'smooth' : 'auto'
+    });
+    setActiveDot(index);
+  }
+
+  // 처음 도트 활성화
+  setActiveDot(0);
+
+  // === 스크롤 멈추면 가장 가까운 슬라이드로 자동 스냅 ===
+  let scrollTimer = null;
+  viewport.addEventListener('scroll', () => {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(() => {
+      const w = viewport.clientWidth || 1;
+      const i = Math.round(viewport.scrollLeft / w);
+      snapTo(i, true);
+    }, 120);
+  }, { passive: true });
+
+  // === 모바일 스와이프(터치) ===
+  let startX = 0;
+  let moved = 0;
+
+  viewport.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+    moved = 0;
+    viewport.classList.add('is-swiping');
+  }, { passive: true });
+
+  viewport.addEventListener('touchmove', (e) => {
+    moved = e.touches[0].clientX - startX; // +면 오른쪽으로 드래그
+  }, { passive: true });
+
+  viewport.addEventListener('touchend', () => {
+    viewport.classList.remove('is-swiping');
+
+    // 현재 위치 기반 index 업데이트
+    const w = viewport.clientWidth || 1;
+    const current = Math.round(viewport.scrollLeft / w);
+
+    // 스와이프 임계값
+    const TH = 50;
+
+    if (Math.abs(moved) < TH) {
+      // 살짝 건드림: 제자리 스냅
+      snapTo(current, true);
+      return;
+    }
+
+    if (moved < 0) {
+      // 왼쪽으로 스와이프(다음)
+      if (current >= slides.length - 1) {
+        // 끝에서 탄성 느낌
+        viewport.style.setProperty('--nudge', '-10px');
+        viewport.classList.remove('edge-nudge'); void viewport.offsetWidth;
+        viewport.classList.add('edge-nudge');
+        snapTo(current, true);
+      } else {
+        snapTo(current + 1, true);
+      }
+    } else {
+      // 오른쪽으로 스와이프(이전)
+      if (current <= 0) {
+        viewport.style.setProperty('--nudge', '10px');
+        viewport.classList.remove('edge-nudge'); void viewport.offsetWidth;
+        viewport.classList.add('edge-nudge');
+        snapTo(current, true);
+      } else {
+        snapTo(current - 1, true);
+      }
+    }
+  }, { passive: true });
+
+  // 화면 리사이즈되면 현재 index 위치 재정렬
+  window.addEventListener('resize', () => snapTo(index, false));
+});
+
+
+/* =========================
+   PC 마우스 드래그 슬라이드
+========================= */
+document.addEventListener('DOMContentLoaded', () => {
+  const viewport = document.getElementById('otherWorksViewport');
+  if (!viewport) return;
+
+  let isDown = false;
+  let startX = 0;
+  let scrollLeft = 0;
+
+  viewport.addEventListener('mousedown', (e) => {
+    isDown = true;
+    viewport.classList.add('is-swiping');
+    startX = e.pageX;
+    scrollLeft = viewport.scrollLeft;
+  });
+
+  viewport.addEventListener('mouseleave', () => {
+    isDown = false;
+    viewport.classList.remove('is-swiping');
+  });
+
+  viewport.addEventListener('mouseup', () => {
+    isDown = false;
+    viewport.classList.remove('is-swiping');
+
+    /* 드래그 끝나면 가장 가까운 슬라이드로 스냅 */
+    const w = viewport.clientWidth || 1;
+    const index = Math.round(viewport.scrollLeft / w);
+    viewport.scrollTo({
+      left: index * w,
+      behavior: 'smooth'
+    });
+  });
+
+  viewport.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+
+    const x = e.pageX;
+    const walk = (x - startX) * 1.1; // 드래그 감도
+    viewport.scrollLeft = scrollLeft - walk;
+  });
+});

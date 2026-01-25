@@ -1147,3 +1147,32 @@ body {
   display: block;
   margin: 24px auto 0;
 }
+
+/* =========================
+   모바일 가로 스크롤 완전 차단
+========================= */
+html, body{
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* 기타작업물 섹션이 원인일 확률 99% */
+.other-works-section{
+  overflow-x: hidden;
+}
+
+/* 뷰포트는 가로 스크롤 허용(슬라이드용) */
+.other-works-viewport{
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* 드래그 UX */
+.other-works-viewport{
+  cursor: grab;
+}
+
+.other-works-viewport.is-swiping{
+  cursor: grabbing;
+}
+

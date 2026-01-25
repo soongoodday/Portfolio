@@ -869,3 +869,64 @@ button:focus {
     display: none;
   }
 }
+
+/* =========================
+   Other Works: 모바일 UX 업그레이드
+   - 모바일 화살표 숨김
+   - 도트 활성 스타일
+   - 스와이프 시 살짝 탄성 느낌
+========================= */
+
+/* 모바일: 화살표 숨기기 */
+@media (max-width: 768px){
+  .other-works-arrows{ display:none !important; }
+}
+
+/* 스와이프 스크롤 느낌 좋게 */
+.other-works-viewport{
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scroll-snap-stop: always;
+}
+
+/* 스와이프 “살짝 탄성” 시각 효과(살짝 눌림) */
+.other-works-viewport.is-swiping{
+  transform: scale(0.995);
+  transition: transform .12s ease;
+}
+.other-works-viewport{
+  transition: transform .12s ease;
+}
+
+/* 끝에서 더 못가면 '톡' 하는 느낌 */
+@keyframes edgeNudge {
+  0%{ transform: translateX(0); }
+  35%{ transform: translateX(var(--nudge, 0)); }
+  70%{ transform: translateX(0); }
+  100%{ transform: translateX(0); }
+}
+.other-works-viewport.edge-nudge{
+  animation: edgeNudge .18s ease;
+}
+
+/* 도트(이미 스타일이 있어도 덮어쓰기 가능) */
+.other-works-dots{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+}
+
+.other-works-dot{
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  border: 1px solid var(--color-subcolor2);
+  opacity: .5;
+  background: transparent;
+  cursor: pointer;
+}
+
+.other-works-dot.is-active{
+  opacity: 1;
+  background: var(--color-subcolor2);
+}
