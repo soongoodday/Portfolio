@@ -362,7 +362,7 @@ button:focus {
 
 /* 리본 타이틀(상단 왼쪽) */
 .other-works-header{
-  margin-bottom: 60px;
+  margin-bottom: 0;
 }
 
 .other-works-ribbon{
@@ -929,4 +929,13 @@ button:focus {
 .other-works-dot.is-active{
   opacity: 1;
   background: var(--color-subcolor2);
+}
+
+
+/* ✅ 기타 작업물 제목(리본) 크기 강제 축소 */
+.other-works-header .other-works-ribbon{
+    font-size: 1.4rem !important;      /* ← 여기 숫자로 크기 조절 */
+    padding: 12px 32px !important;   /* ← 네모(배경) 크기 조절 */
+    line-height: 1.15 !important;    /* ← 두께 얇게 */
+    margin-bottom: 2rem;
 }

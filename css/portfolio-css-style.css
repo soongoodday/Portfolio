@@ -503,20 +503,21 @@ body {
 }
 
 .portfolio-number {
+    padding: 12px 34px;
+    font-size: 1.5rem;
+    line-height: 1.2;
     display: inline-block;
     background-color: var(--color-subcolor2);
     color: var(--color-white);
-    padding: var(--spacing-md) var(--spacing-2xl);
     border-radius: 0 var(--radius-3xl) var(--radius-3xl) 0;
     font-weight: var(--font-black);
-    font-size: var(--font-3xl);
     margin-bottom: var(--spacing-xl);
 }
 
 .portfolio-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-4xl);
+    gap: 32px;
     
 }
 
@@ -609,11 +610,11 @@ body {
 .btn-figma {
     background-color: var(--color-purple);
     color: var(--color-white);
-    padding: var(--spacing-md) var(--spacing-2xl);
+    padding: 12px 28px;          /* ⬅ 크기 줄임 */
     border-radius: var(--radius-full);
     font-weight: var(--font-bold);
     transition: all var(--transition-base);
-    font-size: 1.25rem;
+    font-size: 1.2rem;             /* ⬅ 글자도 살짝 줄임 */
 }
 
 .btn-figma:hover {
@@ -622,11 +623,11 @@ body {
 
 .btn-site {
     color: var(--color-white);
-    padding: var(--spacing-md) var(--spacing-2xl);
+    padding: 12px 28px;          /* ⬅ 크기 줄임 */
     border-radius: var(--radius-full);
     font-weight: var(--font-bold);
     transition: all var(--transition-base);
-    font-size: 1.25rem;
+    font-size: 1.2rem;             /* ⬅ 글자도 살짝 줄임 */
 }
 
 .btn-site:hover {
@@ -1182,5 +1183,12 @@ html, body{
   .btn-site {
     padding: 12px 20px;   /* ⬅ 위아래만 살짝 키움 */
     font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .portfolio-number {
+    padding: 10px 28px;
+    font-size: 1.3rem;
   }
 }
