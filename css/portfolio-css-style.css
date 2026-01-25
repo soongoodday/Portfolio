@@ -1078,3 +1078,9 @@ body {
 .nav-indicator{
   display: none;
 }
+
+/* 히어로 스크롤 버튼 화면 정가운데 */
+.hero_box_scrollButton{
+  display: block;
+  margin: 40px auto 0;   /* 가로 가운데 */
+}
