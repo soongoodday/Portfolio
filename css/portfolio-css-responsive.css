@@ -470,6 +470,7 @@ button:focus {
   scroll-snap-align: start;
 }
 
+
 /* 이미지 레이아웃: 중앙에 크게 */
 .other-works-grid{
   width: min(1100px, 100%);
@@ -482,15 +483,17 @@ button:focus {
 
 /* 왼쪽 긴 이미지 */
 .other-works-figure{
-  background: #fff;
-  border-radius: var(--radius-3xl);
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
+    height: 360px;
+    background: #fff;
+    border-radius: var(--radius-3xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
 }
 
 .other-works-figure img{
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;  
   display: block;
 }
 
@@ -610,3 +613,29 @@ button:focus {
   grid-template-columns: 1fr;   /* 2칸 → 1칸 */
   justify-items: center;        /* 가운데 정렬 */
 }
+
+
+/* =========================
+   ✅ 기타작업물 이미지: 세로 전체 보이게(잘림 방지)
+   붙여넣기 위치: portfolio-css-responsive.css 맨 아래
+========================= */
+
+/* 1) 고정 높이(360px) 제거 */
+.other-works-figure{
+  height: auto !important;
+}
+
+/* 2) 이미지도 "전체 보이기" 모드 */
+.other-works-figure img{
+  height: auto !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  object-fit: contain !important; /* ⭐ 잘리지 않고 전체 보임 */
+}
+
+/* ✅ 가로 2장 유지 */
+.other-works-grid{
+  grid-template-columns: 1fr 1fr !important;
+  justify-items: center;
+}
+

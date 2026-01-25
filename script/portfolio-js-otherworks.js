@@ -2,8 +2,8 @@
   // ✅ 슬라이드별: 이미지 + 상단 텍스트 + 하단 캡션 + 링크
   const OTHER_WORKS_SLIDES = [
     {
-      left: { src: "images/detail_nouvedilie1.png", alt: "누베딜리 상세페이지 시안 1" },
-      rights: [],
+      left: { src: "images/nouvedilie1.png", alt: "누베딜리 상세페이지 시안 1" },
+      rights: [{ src: "images/nouvedilie2.png", alt: "누베딜리 상세페이지 시안 1" }],
       title: "누베딜리 상세 페이지",
       desc: "누베딜리 웹페이지의 제품 썸네일을 클릭하면 나오는 상세 페이지",
       topic: "일상에서 부담없이 캐주얼하게 착용 가능한 반지",
