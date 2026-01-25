@@ -796,3 +796,76 @@ button:focus {
     font-size: 18px;
   }
 }
+
+
+/* 기타 작업물 2장 갭 줄이기 */
+.other-works-grid{
+  /* 화면이 커져도 2장이 너무 벌어지지 않게 “전체 폭” 제한 */
+  width: min(980px, 100%) !important;
+  margin: 0 auto !important;
+
+  /* 2장 각각의 폭도 적당히 고정(너무 커지지 않게) */
+  grid-template-columns: minmax(260px, 460px) minmax(260px, 460px) !important;
+
+  /* ⭐ 여기 숫자만 줄이면 갭이 더 좁아짐 */
+  gap: 8px !important;
+
+  justify-content: center !important;
+  align-items: start;
+}
+
+
+/* =========================
+   기타 작업물 화살표 거리 더 벌리기
+========================= */
+
+.other-works-arrows{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  /* ⭐ 여기 숫자가 핵심 */
+  width: min(1400px, 100%); /* ← 전체 폭 자체를 더 넓힘 */
+  padding: 0 80px;          /* ← 화살표를 바깥으로 확 밀기 */
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  pointer-events: none;
+}
+
+.other-works-arrow{
+  pointer-events: auto;
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+
+  display: grid;
+  place-items: center;
+
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--color-subcolor2);
+
+  background: transparent;
+  border: none;
+
+  opacity: 0.85;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.other-works-arrow:hover{
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+/* =========================
+   모바일에서 화살표 숨기기
+========================= */
+@media (max-width: 768px){
+  .other-works-arrows{
+    display: none;
+  }
+}

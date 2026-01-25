@@ -103,3 +103,37 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+/* =========================
+   모바일 스와이프 슬라이드
+========================= */
+
+const slider = document.querySelector('.other-works-track'); 
+// 👉 실제 슬라이드가 움직이는 영역 클래스
+
+let startX = 0;
+let endX = 0;
+
+if (slider) {
+  slider.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+  });
+
+  slider.addEventListener('touchend', (e) => {
+    endX = e.changedTouches[0].clientX;
+    handleSwipe();
+  });
+}
+
+function handleSwipe(){
+  const diff = startX - endX;
+
+  if (Math.abs(diff) < 50) return; // 살짝 터치는 무시
+
+  if (diff > 0){
+    // 👉 왼쪽으로 스와이프 = 다음
+    document.querySelector('.other-works-arrow.next')?.click();
+  } else {
+    // 👉 오른쪽으로 스와이프 = 이전
+    document.querySelector('.other-works-arrow.prev')?.click();
+  }
+}
