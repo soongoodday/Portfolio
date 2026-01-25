@@ -383,11 +383,13 @@ button:focus {
 }
 
 .other-works-title{
-  font-size: var(--font-3xl);
+  font-size: var(--font-2xl);
   font-weight: var(--font-black);
   color: var(--color-subcolor);
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
 }
+
+
 
 .other-works-meta{
   display: grid;
@@ -938,4 +940,5 @@ button:focus {
     padding: 12px 32px !important;   /* ← 네모(배경) 크기 조절 */
     line-height: 1.15 !important;    /* ← 두께 얇게 */
     margin-bottom: 2rem;
+    border: 1px solid #000;
 }
