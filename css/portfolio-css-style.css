@@ -478,6 +478,7 @@ body {
 
 .ai-summary {
     font-size: var(--font-xl);
+    font-weight: var(--font-medium);
     line-height: 2;
     color: var(--color-subcolor);
     margin-top: var(--spacing-lg);
@@ -644,7 +645,6 @@ body {
     margin-bottom: var(--spacing-2xl);
 }
 
-.preview-web img,
 .sub-image-web img,
 .sub-image-mobile img{
     box-shadow: var(--shadow-lg);
