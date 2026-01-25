@@ -899,3 +899,182 @@ body {
     font-size: 1.85rem;
   }
 }
+
+
+
+
+/* 데스크톱에서만 적용 */
+@media (min-width: 769px){
+
+  /* nav-container를 3칸 그리드로: [왼쪽] [가운데] [오른쪽] */
+  .nav-container{
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+  }
+
+  /* 가운데 칸에서 메뉴를 "진짜 가운데"로 */
+  .nav-menu{
+    justify-self: center;
+    width: fit-content;
+    display: flex;
+    gap: 7rem;
+    justify-content: center;
+  }
+
+  /* mobile 버튼은 데스크톱에서 숨김이니까 영향 없음(안전용) */
+  .mobile-menu-btn{
+    justify-self: start;
+  }
+
+  /* 오른쪽 버튼은 오른쪽에 고정 */
+  .nav-actions{
+    justify-self: end;
+  }
+}
+
+
+
+/* =========================
+   NAVIGATION - UNDERLINE VERSION
+========================= */
+
+/* 헤더 기본 */
+.header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-bg);
+  z-index: 1000;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* 네비 컨테이너 */
+.nav-container{
+  max-width: 1520px;
+  margin: 0 auto;
+  padding: 16px 24px;
+
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+}
+
+/* 메뉴 중앙 정렬 */
+.nav-menu{
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+}
+
+/* 링크 기본 */
+.nav-link{
+  position: relative;
+  padding: 8px 4px;
+  font-weight: var(--font-bold);
+  color: #999;
+  transition: color .25s ease;
+}
+
+/* hover */
+.nav-link:hover{
+  color: var(--color-subcolor2);
+}
+
+/* ✅ ACTIVE 밑줄 */
+.nav-link.active{
+  color: var(--color-subcolor2);
+}
+
+.nav-link.active::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--color-subcolor2);
+}
+
+/* 오른쪽 버튼 */
+.nav-actions{
+  display: flex;
+  gap: 12px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 768px){
+
+  .nav-container{
+    grid-template-columns: auto auto;
+  }
+
+  .nav-menu{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+
+    background: #fff;
+    flex-direction: column;
+    gap: 0;
+
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .3s ease;
+  }
+
+  .nav-menu.active{
+    max-height: 400px;
+  }
+
+  .nav-link{
+    padding: 16px;
+  }
+
+  .nav-link.active::after{
+    left: 16px;
+    right: 16px;
+    bottom: 6px;
+  }
+
+  .nav-actions{
+    display: none;
+  }
+}
+
+/* 밑줄 네비게이션 */
+.nav-link{
+  position: relative;
+  color: #999;
+}
+
+.nav-link::after{
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: var(--color-subcolor2);
+  transition: 0.3s;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after{
+  width: 100%;
+}
+
+.nav-link.active{
+  color: var(--color-subcolor2);
+}
+
+/* 기존 인디케이터 숨김 */
+.nav-indicator{
+  display: none;
+}

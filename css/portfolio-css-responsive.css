@@ -89,6 +89,8 @@
     
     .nav-menu {
         position: absolute;
+        display: flex;
+        justify-content: center;
         top: 100%;
         left: 0;
         right: 0;
