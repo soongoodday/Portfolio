@@ -496,7 +496,6 @@ body {
 }
 
 .portfolio-item {
-    border-top: 2px solid var(--color-subcolor3);
     padding-top: var(--spacing-2xl);
 }
 
@@ -514,7 +513,8 @@ body {
 .portfolio-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-3xl);
+    gap: var(--spacing-4xl);
+    
 }
 
 .portfolio-title {
@@ -531,12 +531,34 @@ body {
     margin-bottom: var(--spacing-lg);
 }
 
-.portfolio-tagline {
+.portfolio-tagline1 {
     font-family: 'ArittaDodum';
     font-size: var(--font-3xl);
     font-weight: var(--font-bold);
     line-height: 1.8;
     margin-bottom: var(--spacing-xl);
+}
+
+.portfolio-tagline2 {
+    font-family: 'Isamanru';
+    font-size: var(--font-3xl);
+    font-weight: var(--font-light);
+    line-height: 1.8;
+    margin-bottom: var(--spacing-xl);
+}
+
+.info-section {
+    font-family: 'pretendard';
+    font-size: 1.25rem;
+    font-weight: var(--font-medium);
+    line-height: 1.8;
+    display: block;
+    margin-bottom: var(--spacing-xl);
+}
+
+.portfolio-tagline2 span {
+    font-weight: var(--font-medium);
+    color: #F0620A;
 }
 
 .portfolio-details {
