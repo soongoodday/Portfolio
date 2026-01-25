@@ -551,6 +551,14 @@ body {
     margin-bottom: var(--spacing-xl);
 }
 
+.portfolio-tagline3 {
+    font-family: 'HsBombaram30';
+    font-size: var(--font-3xl);
+    font-weight: var(--font-light);
+    line-height: 1.8;
+    margin-bottom: var(--spacing-xl);
+}
+
 .info-section {
     font-family: 'pretendard';
     font-size: 1.25rem;

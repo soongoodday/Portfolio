@@ -186,3 +186,21 @@
     font-weight: normal;
     font-display: swap;
 }
+
+
+
+
+/* HS봄바람 */
+@font-face {
+    font-family: 'HsBombaram30';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.1/HSBombaram3_Thin.woff') format('woff');
+    font-weight: 100;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'HsBombaram30';
+    src: url('https://gcore.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.1/HSBombaram3_Regular.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}
