@@ -272,6 +272,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const topBtn = document.querySelector('.top-btn');
   if (!topBtn) return;
 
+  const toggleTopBtn = () => {
+    if (window.scrollY > 400) topBtn.classList.add('show');
+    else topBtn.classList.remove('show');
+  };
+
+  window.addEventListener('scroll', toggleTopBtn);
+  toggleTopBtn(); // 처음 로드 시도 체크
+
   topBtn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });

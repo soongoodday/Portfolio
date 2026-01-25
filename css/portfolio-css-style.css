@@ -222,6 +222,8 @@ body {
   font-weight: 500;
   color: #283F6E;
   margin: 0 0 14px;
+  white-space: nowrap;
+  text-align: center;
 }
 
 /* 스크롤 버튼 예쁘게 */
@@ -1085,7 +1087,9 @@ body {
   margin: 40px auto 0;   /* 가로 가운데 */
 }
 
-/* TOP 버튼 - 무조건 보이게(테스트용) */
+/* =========================
+   TOP 버튼 (최종: 미니멀 + 애니메이션)
+========================= */
 .top-btn{
   position: fixed;
   right: 24px;
@@ -1094,15 +1098,52 @@ body {
   height: 44px;
 
   border-radius: 50%;
-  border: 1px solid var(--color-subcolor2);
-  background: var(--color-bg);
+  border: 1px solid rgba(40,63,110,0.45);
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(6px);
   color: var(--color-subcolor2);
 
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
 
-  z-index: 9999;         /* ✅ 제일 위로 */
-  opacity: 1;            /* ✅ 무조건 보이게 */
-  pointer-events: auto;  /* ✅ 클릭 가능 */
+  z-index: 9999;
+
+  /* ✅ 처음엔 숨김 */
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+
+  transition: opacity .25s ease, transform .25s ease, background .25s ease;
+}
+
+.top-btn.show{
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.top-btn:hover{
+  transform: translateY(-3px);
+  background: #fff;
+}
+
+.top-btn:active{
+  transform: translateY(0);
+}
+
+/* 히어로 소개 영역 전체를 진짜 가운데로 */
+.hero_wrap,
+.hero_box{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* 가로 중앙 */
+  text-align: center;    /* 글자 중앙 */
+}
+
+/* 스크롤 버튼 중앙 고정 */
+.hero_box_scrollButton{
+  display: block;
+  margin: 24px auto 0;
 }

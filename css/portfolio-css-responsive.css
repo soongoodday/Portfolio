@@ -785,3 +785,14 @@ button:focus {
     transform: translate(-50%, -50%) rotate(-45deg);
   }
 }
+
+
+@media (max-width: 768px){
+  .top-btn{
+    right: 16px;
+    bottom: 16px;
+    width: 42px;
+    height: 42px;
+    font-size: 18px;
+  }
+}
