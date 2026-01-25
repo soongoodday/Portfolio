@@ -175,3 +175,14 @@
     font-weight: 700;
     font-display: swap;
 }
+
+
+
+
+/* 잉크립퀴드체 */
+@font-face {
+    font-family: 'InkLiquid';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/InkLipquid.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}

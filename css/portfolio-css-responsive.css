@@ -696,4 +696,32 @@ button:focus {
   */
 }
 
+/* ===== Footer Badge (DESKTOP + MOBILE 공통 기본) ===== */
+.footer .footer-badge{
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+
+  margin: 0 0 28px;
+  padding: 0;
+
+  background: none;
+  border: none;
+  border-radius: 0;
+
+  font-size: 1.15rem;
+  color: var(--color-subcolor2);
+  letter-spacing: 0.02em;
+}
+
+.footer .footer-badge .font-medium{
+  font-weight: 400;
+  opacity: 0.75;
+}
+
+.footer .footer-badge .font-bold{
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
 
