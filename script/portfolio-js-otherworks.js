@@ -1,15 +1,21 @@
+/* ================================
+   portfolio-js-otherworks.js (통째 복붙 버전)
+   ✅ 슬라이드마다 이미지 높이 자동(원본 비율대로)
+   ✅ 도트/화살표/키보드 이동
+   ✅ 상단 텍스트 + 하단 캡션 + 링크 자동 변경
+   ✅ 오른쪽 이미지 없으면 가운데 정렬(is-single)
+================================ */
 (() => {
-  // ✅ 슬라이드별: 이미지 + 상단 텍스트 + 하단 캡션 + 링크
   const OTHER_WORKS_SLIDES = [
     {
       left: { src: "images/nouvedilie1.png", alt: "누베딜리 상세페이지 시안 1" },
-      rights: [{ src: "images/nouvedilie2.png", alt: "누베딜리 상세페이지 시안 1" }],
+      rights: [{ src: "images/nouvedilie2.png", alt: "누베딜리 상세페이지 시안 2" }],
       title: "누베딜리 상세 페이지",
       desc: "누베딜리 웹페이지의 제품 썸네일을 클릭하면 나오는 상세 페이지",
       topic: "일상에서 부담없이 캐주얼하게 착용 가능한 반지",
       age: "30대 ~ 40대 이상",
       caption: "상세페이지 디자인",
-      link: "#" // ← 여기에 피그마 링크 넣기
+      link: "#"
     },
     {
       left: { src: "images/game_banner_260121.png", alt: "게임 배너" },
@@ -19,11 +25,10 @@
       topic: "프로모션/이벤트 배너",
       age: "전 연령(게임 사용자)",
       caption: "배너 디자인",
-      link: "#" // ← 여기에 피그마 링크 넣기
+      link: "#"
     },
   ];
 
-  // ✅ 중복 id 있어도 마지막 것을 잡음
   const last = (sel) => {
     const all = document.querySelectorAll(sel);
     return all.length ? all[all.length - 1] : null;
@@ -32,14 +37,12 @@
   const carousel = last("#otherWorksCarousel");
   const viewport = last("#otherWorksViewport");
   const dotsWrap = last("#otherWorksDots");
-
   if (!carousel || !viewport || !dotsWrap) return;
 
-  // (중복 실행 방지) 이미 초기화했다면 중단
   if (carousel.dataset.owInit === "1") return;
   carousel.dataset.owInit = "1";
 
-  // ✅ 바뀔 텍스트 요소들 (없으면 그냥 무시)
+  // 바뀔 텍스트 요소들
   const titleEl = document.getElementById("otherWorksTitleText");
   const descEl = document.getElementById("otherWorksDesc");
   const topicEl = document.getElementById("otherWorksTopic");
@@ -50,13 +53,12 @@
   const updateText = (index) => {
     const s = OTHER_WORKS_SLIDES[index];
     if (!s) return;
-
     if (titleEl) titleEl.textContent = s.title || "";
     if (descEl) descEl.textContent = s.desc || "";
     if (topicEl) topicEl.textContent = s.topic || "";
     if (ageEl) ageEl.textContent = s.age || "";
     if (captionEl) captionEl.textContent = s.caption || "";
-    if (linkEl && s.link) linkEl.href = s.link;
+    if (linkEl) linkEl.href = s.link || "#";
   };
 
   viewport.innerHTML = "";
@@ -76,10 +78,9 @@
     img.decoding = "async";
 
     figure.appendChild(img);
-    return { figure, img };
+    return figure;
   };
 
-  // 슬라이드 생성
   OTHER_WORKS_SLIDES.forEach((slide, idx) => {
     const article = document.createElement("article");
     article.className = "other-works-slide";
@@ -90,16 +91,18 @@
 
     const leftWrap = document.createElement("div");
     leftWrap.className = "other-works-left-wrap";
-
-    const left = createFigure(slide.left, "other-works-figure--left");
-    leftWrap.appendChild(left.figure);
+    leftWrap.appendChild(createFigure(slide.left, "other-works-figure--left"));
 
     const stack = document.createElement("div");
     stack.className = "other-works-stack";
     (slide.rights || []).forEach((imgObj) => {
-      const item = createFigure(imgObj);
-      stack.appendChild(item.figure);
+      stack.appendChild(createFigure(imgObj));
     });
+
+    // ✅ 오른쪽이 비었으면 한 장만 가운데
+    if (!slide.rights || slide.rights.length === 0) {
+      grid.classList.add("is-single");
+    }
 
     grid.appendChild(leftWrap);
     grid.appendChild(stack);
@@ -108,7 +111,6 @@
     viewport.appendChild(article);
     slideEls.push(article);
 
-    // 도트 생성
     const dot = document.createElement("button");
     dot.type = "button";
     dot.className = "other-works-dot";
@@ -119,78 +121,62 @@
   });
 
   // 유틸
-  const getSlideWidth = () => viewport.clientWidth || 1;
   const clamp = (n, min, max) => Math.max(min, Math.min(n, max));
-
-  const getCurrentIndex = () => {
-    const w = getSlideWidth();
-    return clamp(Math.round(viewport.scrollLeft / w), 0, slideEls.length - 1);
-  };
+  const getSlideWidth = () => viewport.clientWidth || 1;
+  const getCurrentIndex = () => clamp(Math.round(viewport.scrollLeft / getSlideWidth()), 0, slideEls.length - 1);
 
   const scrollToIndex = (index, behavior = "smooth") => {
     viewport.scrollTo({ left: getSlideWidth() * index, behavior });
   };
 
-  // active dot + 텍스트 갱신
   const setActive = (index) => {
-    dotBtns.forEach((btn, i) =>
-      btn.setAttribute("aria-current", i === index ? "true" : "false")
-    );
-    updateText(index); // ✅ 여기서 같이 바꿈
+    dotBtns.forEach((btn, i) => btn.setAttribute("aria-current", i === index ? "true" : "false"));
+    updateText(index);
   };
 
-  // 초기
   setActive(0);
 
-  // 도트 클릭
   dotsWrap.addEventListener("click", (e) => {
     const btn = e.target.closest("button.other-works-dot");
     if (!btn) return;
     const index = Number(btn.dataset.index);
     if (!Number.isFinite(index)) return;
 
-    setActive(index);          // ✅ 클릭 즉시 텍스트 변경
+    setActive(index);
     scrollToIndex(index, "smooth");
   });
 
-  // 스크롤 시 active 보정 (드래그/화살표로 넘어가도 텍스트 변경됨)
   let raf = 0;
   viewport.addEventListener("scroll", () => {
     cancelAnimationFrame(raf);
     raf = requestAnimationFrame(() => setActive(getCurrentIndex()));
   });
 
-  /* ================================
-     ✅ 화살표 클릭 이동
-  ================================= */
   const moveSlide = (dir) => {
     const cur = getCurrentIndex();
-    const next =
-      dir === "next"
-        ? clamp(cur + 1, 0, slideEls.length - 1)
-        : clamp(cur - 1, 0, slideEls.length - 1);
+    const next = dir === "next"
+      ? clamp(cur + 1, 0, slideEls.length - 1)
+      : clamp(cur - 1, 0, slideEls.length - 1);
 
-    setActive(next);            // ✅ 즉시 텍스트 변경
+    setActive(next);
     scrollToIndex(next, "smooth");
   };
 
   carousel.addEventListener("click", (e) => {
     const btn = e.target.closest("button.other-works-arrow");
     if (!btn) return;
-
     const dir = btn.dataset.dir;
     if (dir === "prev" || dir === "next") moveSlide(dir);
   });
 
-  // 키보드(선택): 캐러셀에 포커스 있을 때
   carousel.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowLeft") {
-      e.preventDefault();
-      moveSlide("prev");
-    }
-    if (e.key === "ArrowRight") {
-      e.preventDefault();
-      moveSlide("next");
-    }
+    if (e.key === "ArrowLeft") { e.preventDefault(); moveSlide("prev"); }
+    if (e.key === "ArrowRight") { e.preventDefault(); moveSlide("next"); }
+  });
+
+  // 리사이즈 보정
+  window.addEventListener("resize", () => {
+    const idx = getCurrentIndex();
+    scrollToIndex(idx, "auto");
   });
 })();
