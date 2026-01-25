@@ -139,3 +139,14 @@
     font-weight: normal;
     font-display: swap;
 }
+
+
+
+
+/* 아리따 돋움 */
+@font-face {
+    font-family: 'ArittaDodum';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Arita-dotum-Medium.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}

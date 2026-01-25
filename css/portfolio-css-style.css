@@ -532,8 +532,9 @@ body {
 }
 
 .portfolio-tagline {
+    font-family: 'ArittaDodum';
     font-size: var(--font-3xl);
-    font-weight: var(--font-medium);
+    font-weight: var(--font-bold);
     line-height: 1.8;
     margin-bottom: var(--spacing-xl);
 }
