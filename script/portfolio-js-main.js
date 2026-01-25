@@ -267,3 +267,12 @@ const bottom = document.querySelector("#page-bottom");
 btn.addEventListener("click", () => {
   bottom.scrollIntoView({ behavior: "smooth" });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const topBtn = document.querySelector('.top-btn');
+  if (!topBtn) return;
+
+  topBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});

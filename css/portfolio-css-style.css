@@ -1084,3 +1084,25 @@ body {
   display: block;
   margin: 40px auto 0;   /* 가로 가운데 */
 }
+
+/* TOP 버튼 - 무조건 보이게(테스트용) */
+.top-btn{
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 44px;
+  height: 44px;
+
+  border-radius: 50%;
+  border: 1px solid var(--color-subcolor2);
+  background: var(--color-bg);
+  color: var(--color-subcolor2);
+
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+
+  z-index: 9999;         /* ✅ 제일 위로 */
+  opacity: 1;            /* ✅ 무조건 보이게 */
+  pointer-events: auto;  /* ✅ 클릭 가능 */
+}
