@@ -10,6 +10,9 @@ body {
     color: var(--color-subcolor);
     font-family: 'Escoredream';
 }
+.other-works-grid{
+  grid-template-columns: 1fr;
+}
 
 .container{
   width: min(1520px, 100% - 40px);
@@ -637,12 +640,18 @@ body {
 .preview-web {
     width: min(38rem, 100%);
     aspect-ratio: 1 / 1;
-    border-radius: var(--radius-3xl);
-    box-shadow: var(--shadow-lg);
     display: flex;
     align-items: center;
     justify-content: center;
     color: #999;
+    margin-bottom: var(--spacing-2xl);
+}
+
+.preview-web img,
+.sub-image-web img,
+.sub-image-mobile img{
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--radius-3xl);
 }
 
 .preview-mobile {
@@ -681,8 +690,6 @@ body {
 
 .sub-image-web {
     aspect-ratio: 4 / 3;
-    border-radius: var(--radius-3xl);
-    box-shadow: var(--shadow-lg);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -691,9 +698,7 @@ body {
 
 .sub-image-mobile {
     width: 15rem;
-    aspect-ratio: 9 / 16;
-    border-radius: var(--radius-3xl);
-    box-shadow: var(--shadow-lg);
+    aspect-ratio: 4 / 3;
     display: flex;
     align-items: center;
     justify-content: center;
