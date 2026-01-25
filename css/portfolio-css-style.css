@@ -536,7 +536,7 @@ body {
 
 .portfolio-tagline1 {
     font-family: 'ArittaDodum';
-    font-size: var(--font-3xl);
+    font-size: var(--font-2xl);
     font-weight: var(--font-bold);
     line-height: 1.8;
     margin-bottom: var(--spacing-xl);
@@ -544,7 +544,7 @@ body {
 
 .portfolio-tagline2 {
     font-family: 'Isamanru';
-    font-size: var(--font-3xl);
+    font-size: var(--font-2xl);
     font-weight: var(--font-light);
     line-height: 1.8;
     margin-bottom: var(--spacing-xl);
@@ -1176,3 +1176,11 @@ html, body{
   cursor: grabbing;
 }
 
+/* ✅ 모바일에서 버튼 크기 줄이기 */
+@media (max-width: 768px) {
+  .btn-figma,
+  .btn-site {
+    padding: 12px 20px;   /* ⬅ 위아래만 살짝 키움 */
+    font-size: 0.9rem;
+  }
+}
