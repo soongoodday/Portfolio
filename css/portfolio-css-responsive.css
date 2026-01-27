@@ -82,6 +82,31 @@ button:focus{
     opacity: .55;
     font-size: 0.95rem;
   }
+
+/* 포트폴리오 타이틀 폰트 크기 */
+.portfolio-title {
+  font-size: var(--font-2xl);
+  font-weight: var(--font-black);
+  color: var(--color-subcolor);
+  margin-bottom: var(--spacing-xs);
+}
+
+.portfolio-subtitle{
+  font-size: var(--font-xl);
+  font-weight: var(--font-bold);
+  color: var(--color-subcolor);
+  margin-bottom: var(--spacing-lg);
+}
+
+.portfolio-tagline1,
+.portfolio-tagline2,
+.portfolio-tagline3,
+.portfolio-tagline4,
+.portfolio-tagline5{
+  font-size: var(--font-xl);
+  margin-bottom: var(--spacing-xl);
+  line-height: 1.8;
+}
 }
 
 
