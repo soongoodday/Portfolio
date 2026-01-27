@@ -942,3 +942,128 @@ button:focus {
     margin-bottom: 2rem;
     border: 1px solid #000;
 }
+
+
+/* =========================
+   Portfolio 1 위/아래 간격 줄이기
+   (원하는 만큼 숫자만 조절)
+========================= */
+
+/* 섹션 타이틀 영역과 첫 포폴 사이(위쪽) */
+#portfolio .section-header{
+  margin-bottom: 40px; /* 기존 var(--spacing-2xl)보다 줄임 */
+}
+
+#portfolio .portfolio-items{
+  margin-top: 24px;   /* 기존 var(--spacing-2xl)보다 줄임 */
+  gap: 60px;          /* 포폴끼리 간격(기존 var(--spacing-3xl)) */
+}
+
+/* 포폴 아이템 자체의 윗 여백(라벨 위 공간) */
+#portfolio .portfolio-item{
+  padding-top: 30px;  /* 기존 var(--spacing-2xl)보다 줄임 */
+}
+
+/* Portfolio 1 라벨 아래 여백(라벨↔내용) */
+#portfolio .portfolio-number{
+  margin-bottom: 30px; /* 기존 var(--spacing-xl)보다 줄임 */
+}
+
+/* =========================
+   Portfolio(모바일) - 라벨 ↔ 미리보기 갭 줄이기
+   ✅ 붙여넣기: portfolio-css-responsive.css 맨 아래
+========================= */
+
+/* 태블릿 이하부터 적용(필요하면 768로 내려도 됨) */
+@media (max-width: 1024px){
+
+  /* 1) 라벨 아래 여백 줄이기 */
+  #portfolio .portfolio-number{
+    margin-bottom: 16px !important;
+  }
+
+  /* 2) 미리보기 박스(정사각형) 해제 → 빈 공간 제거 */
+  #portfolio .preview-web{
+    aspect-ratio: auto !important;       /* ✅ 1/1 제거 */
+    align-items: flex-start !important;  /* ✅ 위쪽부터 */
+    justify-content: center;
+    margin-bottom: 16px !important;      /* ✅ 아래 여백도 줄임 */
+  }
+
+  /* 3) 이미지가 박스에 맞게 자연스럽게 보이도록 */
+  #portfolio .preview-web img{
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+    display: block;
+  }
+}
+
+/* 더 작은 모바일에서 추가로 더 타이트하게 */
+@media (max-width: 768px){
+  #portfolio .portfolio-item{
+    padding-top: 18px !important;
+  }
+  #portfolio .portfolio-content{
+    gap: 18px !important;
+  }
+}
+
+
+/* =========================
+   TABLET (769~1024): 메뉴 + 버튼 가운데 정렬 + 버튼 정상 너비
+   ✅ 모바일(<=768)은 그대로 두기 위해 min-width:769 사용
+   ✅ portfolio-css-responsive.css 맨 아래
+========================= */
+@media (min-width: 769px) and (max-width: 1024px){
+
+  /* 1) 네비 컨테이너: 가운데 정렬 레이아웃 */
+  .nav-container{
+    display: flex !important;
+    align-items: center;
+    justify-content: center;   /* ⭐ 전체를 가운데 */
+    gap: 18px;
+  }
+
+  /* 2) 모바일 햄버거 버튼은 태블릿에서 숨김(원상복구 느낌) */
+  .mobile-menu-btn{
+    display: none !important;
+  }
+
+  /* 3) 메뉴: 가운데 정렬 + 너무 넓게 퍼지지 않게 */
+  .nav-menu{
+    position: static !important;
+    max-height: none !important;
+    overflow: visible !important;
+
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    gap: 2.2rem;               /* 태블릿에서 간격 적당히 */
+    width: auto !important;     /* ⭐ 100% 되면 가운데가 깨짐 */
+    flex: 0 0 auto !important;
+  }
+
+  /* 4) 버튼: 정상 너비(내용만큼) + 가운데 라인에 함께 */
+  .nav-actions{
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    width: auto !important;     /* ⭐ 늘어나는 거 방지 */
+    flex: 0 0 auto !important;
+  }
+
+  .nav-actions .btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: auto !important;     /* ⭐ 버튼 “정상 너비” */
+    min-width: 0 !important;
+    padding: 10px 16px;         /* 태블릿에서 보기 좋은 크기 */
+    font-size: 0.95rem;
+    white-space: nowrap;        /* 줄바꿈 방지 */
+  }
+}
