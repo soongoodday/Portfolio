@@ -158,6 +158,31 @@ button:focus{
     font-size: 0.95rem;
     white-space: nowrap;
   }
+
+  /* 포트폴리오 타이틀 폰트 크기 */
+.portfolio-title {
+  font-size: var(--font-2xl);
+  font-weight: var(--font-black);
+  color: var(--color-subcolor);
+  margin-bottom: var(--spacing-xs);
+}
+
+.portfolio-subtitle{
+  font-size: var(--font-xl);
+  font-weight: var(--font-bold);
+  color: var(--color-subcolor);
+  margin-bottom: var(--spacing-lg);
+}
+
+.portfolio-tagline1,
+.portfolio-tagline2,
+.portfolio-tagline3,
+.portfolio-tagline4,
+.portfolio-tagline5{
+  font-size: var(--font-xl);
+  margin-bottom: var(--spacing-xl);
+  line-height: 1.8;
+}
 }
 
 
@@ -227,6 +252,31 @@ button:focus{
     transform: translateX(-50%);
     transition: transform 0.25s ease, opacity 0.2s ease;
   }
+
+  /* 포트폴리오 타이틀 폰트 크기 */
+.portfolio-title {
+  font-size: var(--font-2xl);
+  font-weight: var(--font-black);
+  color: var(--color-subcolor);
+  margin-bottom: var(--spacing-xs);
+}
+
+.portfolio-subtitle{
+  font-size: var(--font-xl);
+  font-weight: var(--font-bold);
+  color: var(--color-subcolor);
+  margin-bottom: var(--spacing-lg);
+}
+
+.portfolio-tagline1,
+.portfolio-tagline2,
+.portfolio-tagline3,
+.portfolio-tagline4,
+.portfolio-tagline5{
+  font-size: var(--font-xl);
+  margin-bottom: var(--spacing-xl);
+  line-height: 1.8;
+}
 
   /* 위/가운데/아래 위치 */
 /* 선 3개: 정확히 중앙 기준으로 배치 */
@@ -379,6 +429,31 @@ button:focus{
 
   .portfolio-item{ padding-top: var(--spacing-xs); }
   .portfolio-number{ font-size: var(--font-xl); }
+
+  /* 포트폴리오 타이틀 폰트 크기 */
+.portfolio-title {
+  font-size: var(--font-2xl);
+  font-weight: var(--font-black);
+  color: var(--color-subcolor);
+  margin-bottom: var(--spacing-xs);
+}
+
+.portfolio-subtitle{
+  font-size: var(--font-xl);
+  font-weight: var(--font-bold);
+  color: var(--color-subcolor);
+  margin-bottom: var(--spacing-lg);
+}
+
+.portfolio-tagline1,
+.portfolio-tagline2,
+.portfolio-tagline3,
+.portfolio-tagline4,
+.portfolio-tagline5{
+  font-size: var(--font-xl);
+  margin-bottom: var(--spacing-xl);
+  line-height: 1.8;
+}
 
   .footer-message br{ display: none; }
 }
