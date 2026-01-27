@@ -16,9 +16,9 @@ body{
 
 /* Layout */
 .container{
-  width: min(1520px, 100% - 40px);
+  max-width: 1520px;
   margin: 0 auto;
-  padding: 0;
+  padding: 0 24px;  
 }
 
 /* Typography helpers */
@@ -252,7 +252,7 @@ body{
 }
 
 .section-title{
-  font-size: var(--font-5xl);
+  font-size: var(--font-4xl);
   font-weight: var(--font-black);
   color: var(--color-subcolor2);
   margin-bottom: var(--spacing-md);
@@ -520,6 +520,7 @@ body{
 .portfolio-tagline3,
 .portfolio-tagline4,
 .portfolio-tagline5{
+  font-size: var(--font-2xl);
   margin-bottom: var(--spacing-xl);
   line-height: 1.8;
 }
@@ -644,6 +645,10 @@ body{
   margin-top: var(--spacing-2xl);
   padding-top: var(--spacing-xl);
   border-top: 1px solid #e5e5e5;
+}
+
+.portfolio-sub span {
+  font-size: 1.3rem;
 }
 
 .sub-images{

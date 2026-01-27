@@ -29,6 +29,14 @@ button:focus{
 .slide-up{ animation: slideUp var(--transition-slow) ease-out; }
 
 
+@media (min-width: 1025px) and (max-width: 1920px){
+  .container{
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+
 /* =========================
    1) Tablet & Mobile (<=1024px)
 ========================= */
@@ -76,6 +84,11 @@ button:focus{
 ========================= */
 @media (min-width: 769px) and (max-width: 1024px){
 
+  .container {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
   .mobile-menu-btn{ display: none; }
 
   .nav-container{
@@ -122,6 +135,10 @@ button:focus{
    ✅ navMenu.active 드롭다운
 ========================= */
 @media (max-width: 768px){
+
+  .container{
+    padding: 0 16px;
+  }
 
   /* 헤더 안쪽 정렬 */
   .nav-container{
