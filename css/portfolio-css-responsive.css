@@ -1,759 +1,164 @@
-/* Responsive Styles */
+/* ===================================
+   portfolio-css-responsive.css
+   ✅ 태블릿(769~1024): 햄버거 숨김 + 메뉴/버튼 가운데
+   ✅ 모바일(<=768): 햄버거 "원래대로" 3줄 + X 애니메이션
+   ✅ navMenu.active 토글 정상 동작
+   ✅ !important 없음
+=================================== */
 
-/* Tablet & Mobile (max-width: 1024px) */
-@media (max-width: 1024px) {
-    .hero-title {
-        font-size: var(--font-5xl);
-    }
-    
-    .hero-content {
-        grid-template-columns: 1fr;
-    }
-    
-    .hero-text {
-        order: 2;
-    }
-    
-    .hero-image {
-        order: 1;
-    }
-    
-    .about-content {
-        grid-template-columns: 1fr;
-    }
-    
-    .profile-image {
-        order: -1;
-    }
-    
-    .skills-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .ai-content {
-        grid-template-columns: 1fr;
-    }
-    
-    .ai-bars {
-        gap: var(--spacing-md);
-    }
-    
-    .ai-bar-container {
-        width: 3rem;
-        height: 16rem;
-    }
-    
-    .portfolio-content {
-        grid-template-columns: 1fr;
-    }
 
-    .portfolio-info {
-        order: 1; 
-    }
-    
-    .portfolio-preview {
-        order: 0;
-    }
-    
-    .sub-images {
-        grid-template-columns: 1fr;
-    }
-    
-    .sub-image-mobile {
-        width: 12rem;
-    }
-}
-
-/* Mobile (max-width: 768px) */
-@media (max-width: 768px) {
-    .container {
-        padding: 0 var(--spacing-sm);
-    }
-    
-    /* Navigation */
-    .mobile-menu-btn {
-        display: flex;
-    }
-    
-    .mobile-menu-btn.active span:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
-    }
-    
-    .mobile-menu-btn.active span:nth-child(2) {
-        opacity: 0;
-    }
-    
-    .mobile-menu-btn.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(7px, -6px);
-    }
-    
-    .nav-menu {
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background-color: var(--color-white);
-        flex-direction: column;
-        gap: 0;
-        box-shadow: var(--shadow-lg);
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height var(--transition-base);
-    }
-    
-    .nav-menu.active {
-        max-height: 500px;
-    }
-    
-    .nav-item {
-        border-bottom: 1px solid #f0f0f0;
-    }
-    
-    .nav-link {
-        padding: var(--spacing-md);
-        width: 100%;
-        align-items: flex-start;
-    }
-    
-    .nav-actions {
-        display: none;
-    }
-    
-    .nav-indicator {
-        display: none;
-    }
-    
-    /* Hero */
-    .hero-section {
-        padding-top: 6rem;
-    }
-    
-    .hero-title {
-        font-size: var(--font-4xl);
-    }
-    
-    .hero-description {
-        font-size: var(--font-lg);
-    }
-    
-    .character-placeholder {
-        width: 12rem;
-        height: 12rem;
-    }
-    
-    /* Sections */
-    .section-title {
-        font-size: var(--font-3xl);
-    }
-    
-    .section-subtitle {
-        font-size: var(--font-xl);
-    }
-    
-    .section-line {
-        width: 0.5rem;
-        height: 6rem;
-    }
-    
-    /* Skills */
-    .skills-grid {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-xl);
-    }
-    
-    /* AI Skills */
-    .ai-bars {
-        flex-wrap: wrap;
-        gap: var(--spacing-sm);
-    }
-    
-    .ai-bar-container {
-        width: 2.5rem;
-        height: 12rem;
-    }
-    
-    .ai-bar-item {
-        gap: var(--spacing-sm);
-    }
-    
-    .ai-desc-item {
-        flex-direction: column;
-        gap: var(--spacing-xs);
-    }
-    
-    .ai-tool {
-        min-width: auto;
-        font-size: var(--font-lg);
-    }
-    
-    .ai-usage {
-        font-size: var(--font-base);
-    }
-    
-    .ai-summary {
-        font-size: var(--font-base);
-    }
-    
-    /* Portfolio */
-    .portfolio-number {
-        font-size: var(--font-2xl);
-        padding: var(--spacing-sm) var(--spacing-lg);
-    }
-    
-    .portfolio-title {
-        font-size: var(--font-2xl);
-    }
-    
-    .portfolio-subtitle {
-        font-size: var(--font-lg);
-    }
-    
-    .portfolio-tagline {
-        font-size: var(--font-xl);
-    }
-    
-    .detail-item {
-        flex-direction: column;
-        gap: var(--spacing-xs);
-    }
-    
-    .detail-label {
-        min-width: auto;
-        font-size: var(--font-base);
-    }
-    
-    .detail-value {
-        font-size: var(--font-base);
-    }
-    
-    .portfolio-actions {
-        flex-direction: column;
-    }
-    
-    .btn-figma,
-    .btn-site {
-        text-align: center;
-    }
-    
-    .preview-mobile {
-        width: 4rem;
-        height: 8rem;
-        bottom: -1rem;
-        right: -1rem;
-    }
-    
-    /* Footer */
-    .footer-message {
-        font-size: var(--font-xl);
-    }
-    
-    .footer-contact {
-        flex-direction: column;
-        gap: var(--spacing-md);
-    }
-}
-
-/* Small Mobile (max-width: 480px) */
-@media (max-width: 480px) {
-    .hero-title {
-        font-size: var(--font-3xl);
-    }
-    
-    .hero-box {
-        padding: var(--spacing-lg);
-    }
-    
-    .hero-description {
-        font-size: var(--font-base);
-    }
-    
-    .scroll-btn {
-        font-size: var(--font-base);
-    }
-    
-    .section-title {
-        font-size: var(--font-2xl);
-    }
-    
-    .section-subtitle {
-        font-size: var(--font-lg);
-    }
-    
-    .about-box {
-        padding: var(--spacing-lg);
-    }
-    
-    .info-label {
-        font-size: var(--font-base);
-    }
-    
-    .info-value {
-        font-size: var(--font-sm);
-    }
-    
-    .portfolio-item {
-        padding-top: var(--spacing-xs);
-    }
-    
-    .portfolio-number {
-        font-size: var(--font-xl);
-    }
-    
-    .footer-message {
-        font-size: var(--font-lg);
-    }
-    
-    .footer-message br {
-        display: none;
-    }
-}
-
-/* Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.fade-in {
-    animation: fadeIn var(--transition-slow) ease-out;
-}
-
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.slide-up {
-    animation: slideUp var(--transition-slow) ease-out;
-}
-
-/* Smooth transitions for all interactive elements */
-a, button {
-    transition: all var(--transition-base);
-}
-
-/* Focus styles for accessibility */
+/* =========================
+   0) 공통(포커스/애니메이션)
+========================= */
 a:focus,
-button:focus {
-    outline: 2px solid var(--color-subcolor2);
-    outline-offset: 2px;
+button:focus{
+  outline: 2px solid var(--color-subcolor2);
+  outline-offset: 2px;
 }
 
-/* ================================
-   기타 작업물 섹션
-================================ */
-.other-works-section{
-  padding: var(--spacing-3xl) 0;
+@keyframes fadeIn{
+  from{ opacity: 0; transform: translateY(20px); }
+  to{ opacity: 1; transform: translateY(0); }
 }
+.fade-in{ animation: fadeIn var(--transition-slow) ease-out; }
 
-/* 리본 타이틀(상단 왼쪽) */
-.other-works-header{
-  margin-bottom: 0;
+@keyframes slideUp{
+  from{ opacity: 0; transform: translateY(30px); }
+  to{ opacity: 1; transform: translateY(0); }
 }
-
-.other-works-ribbon{
-  display: inline-block;
-  background: var(--color-subcolor2);
-  color: var(--color-white);
-  padding: 18px 56px;
-  border-radius: 0 var(--radius-3xl) var(--radius-3xl) 0;
-  font-weight: var(--font-black);
-  font-size: var(--font-3xl);
-}
-
-/* 중앙 소개 영역 */
-.other-works-intro{
-  max-width: 760px;
-  margin: 0 auto 48px;
-  text-align: center;
-}
-
-.other-works-title{
-  font-size: var(--font-2xl);
-  font-weight: var(--font-black);
-  color: var(--color-subcolor);
-  margin-bottom: 1rem;
-}
+.slide-up{ animation: slideUp var(--transition-slow) ease-out; }
 
 
+/* =========================
+   1) Tablet & Mobile (<=1024px)
+========================= */
+@media (max-width: 1024px){
 
-.other-works-meta{
-  display: grid;
-  gap: 12px;
-  margin: 0 auto;
-  text-align: left;
-  max-width: 640px;
-}
-
-.other-works-row{
-  display: grid;
-  grid-template-columns: 72px 1fr;
-  gap: 16px;
-  align-items: start;
-}
-
-.other-works-row dt{
-  font-family: 'pretendard';
-  font-weight: var(--font-extrabold);
-  color: var(--color-subcolor);
-  font-size: var(--font-lg);
-}
-
-.other-works-row dd{
-  margin: 0;
-  font-family: 'pretendard';
-  font-weight: var(--font-medium);
-  color: var(--color-subcolor);
-  font-size: var(--font-lg);
-  line-height: 1.7;
-}
-
-/* 피그마 버튼 */
-.other-works-cta{
-  margin-top: 28px;
-}
-
-.other-works-btn{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: min(520px, 100%);
-  height: 56px;
-  padding: 0 28px;
-
-  background: var(--color-purple);
-  color: var(--color-white);
-  border-radius: var(--radius-full);
-  font-weight: var(--font-bold);
-  font-size: var(--font-lg);
-  transition: opacity var(--transition-base);
-  display: none;
-}
-
-.other-works-btn:hover{ opacity: .92; }
-.other-works-btn:focus-visible{
-  outline: 3px solid #283F6E;
-  outline-offset: 6px;
-}
-
-/* 캐러셀 */
-.other-works-carousel{
-  position: relative;
-}
-
-/* 스크롤 스냅 뷰포트 */
-.other-works-viewport{
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 100%;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  gap: 24px;
-
-  /* 스크롤바 숨김(선택) */
-  scrollbar-width: none;
-}
-.other-works-viewport::-webkit-scrollbar{ display:none; }
-
-.other-works-slide{
-  scroll-snap-align: start;
-}
-
-
-/* 이미지 레이아웃: 중앙에 크게 */
-.other-works-grid{
-  width: min(1100px, 100%);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 0.9fr;
-  gap: 24px;
-  align-items: start;
-}
-
-/* 왼쪽 긴 이미지 */
-.other-works-figure{
-    height: 360px;
-    background: #fff;
-    border-radius: var(--radius-3xl);
-    overflow: hidden;
-    box-shadow: var(--shadow-lg);
-}
-
-.other-works-figure img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;  
-  display: block;
-}
-
-.other-works-figure--left{
-  border: 0px solid #4ea7ff; /* 스크린샷의 파란 테두리 느낌 */
-}
-
-/* 오른쪽 스택 */
-.other-works-stack{
-  display: grid;
-  gap: 18px;
-}
-
-/* 좌우 화살표(섹션 중앙 높이 근처) */
-.other-works-arrows{
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  pointer-events: none;
-}
-
-.other-works-arrow{
-  pointer-events: auto;
-  width: 56px;
-  height: 56px;
-  border-radius: 999px;
-  display: grid;
-  place-items: center;
-
-  color: var(--color-subcolor2);
-  font-size: 40px;
-  font-weight: 800;
-
-  /* 배경 없이 아이콘만 같은 느낌 */
-  transition: transform var(--transition-base), opacity var(--transition-base);
-  opacity: 0.9;
-}
-
-.other-works-arrow:hover{ transform: scale(1.06); opacity: 1; }
-.other-works-arrow:focus-visible{
-  outline: 3px solid #283F6E;
-  outline-offset: 6px;
-}
-
-/* 하단 캡션/도트 */
-.other-works-footer{
-  margin-top: 26px;
-  display: grid;
-  gap: 12px;
-  justify-items: center;
-}
-
-.other-works-caption{
-  font-family: 'pretendard';
-  font-weight: var(--font-bold);
-  color: var(--color-subcolor);
-  font-size: var(--font-md);
-}
-
-.other-works-dots{
-  display: flex;
-  gap: 10px;
-}
-
-.other-works-dot{
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  border: 1px solid var(--color-subcolor2);
-  opacity: 0.7;
-}
-
-.other-works-dot:hover{ opacity: 1; }
-
-/* ================================
-   반응형
-================================ */
-@media (max-width: 900px){
-  .other-works-grid{
-    grid-template-columns: 1fr;
-    width: min(760px, 100%);
+  .container{
+    padding: 0 var(--spacing-sm);
   }
 
-  /* 화살표는 모바일에서 아래로 내려도 되게 */
-  .other-works-arrows{
-    position: static;
-    margin-top: 16px;
+  /* About */
+  .about-content{ grid-template-columns: 1fr; }
+  .profile-image{ order: -1; }
+
+  /* Skills */
+  .skills-grid{ grid-template-columns: repeat(2, 1fr); }
+
+  /* AI */
+  .ai-content{ grid-template-columns: 1fr; }
+  .ai-bars{ gap: var(--spacing-md); }
+  .ai-bar-container{ width: 3rem; height: 16rem; }
+
+  /* Portfolio */
+  .portfolio-content{ grid-template-columns: 1fr; }
+  .portfolio-preview{ order: 0; }
+  .portfolio-info{ order: 1; }
+
+  #portfolio .preview-web{
+    aspect-ratio: auto;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+  #portfolio .preview-web img{
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+  #portfolio .portfolio-number{ margin-bottom: 16px; }
+}
+
+
+/* =========================
+   2) Tablet ONLY (769~1024px)
+   ✅ 햄버거 숨김 + 메뉴/버튼 가운데
+========================= */
+@media (min-width: 769px) and (max-width: 1024px){
+
+  .mobile-menu-btn{ display: none; }
+
+  .nav-container{
+    display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 24px;
-    pointer-events: auto;
+    gap: 18px;
   }
 
-  .other-works-carousel{ display: grid; gap: 14px; }
-}
+  .nav-menu{
+    position: static;
+    max-height: none;
+    overflow: visible;
 
-@media (max-width: 520px){
-  .other-works-row{
-    grid-template-columns: 1fr;
-    gap: 6px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    width: auto;
+    gap: 2.2rem;
   }
 
-  .other-works-ribbon{
-    font-size: var(--font-2xl);
-    padding: 16px 28px;
+  .nav-actions{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: auto;
   }
 
-  .other-works-arrow{
-    width: 44px;
-    height: 44px;
-    font-size: 32px;
+  .nav-actions .btn{
+    width: auto;
+    padding: 10px 16px;
+    font-size: 0.95rem;
+    white-space: nowrap;
   }
-}
-
-.other-works-grid{
-  grid-template-columns: 1fr;   /* 2칸 → 1칸 */
-  justify-items: center;        /* 가운데 정렬 */
 }
 
 
 /* =========================
-   ✅ 기타작업물 이미지: 세로 전체 보이게(잘림 방지)
-   붙여넣기 위치: portfolio-css-responsive.css 맨 아래
-========================= */
-
-/* 1) 고정 높이(360px) 제거 */
-.other-works-figure{
-  height: auto !important;
-}
-
-/* 2) 이미지도 "전체 보이기" 모드 */
-.other-works-figure img{
-  height: auto !important;
-  max-width: 100% !important;
-  width: 100% !important;
-  object-fit: contain !important; /* ⭐ 잘리지 않고 전체 보임 */
-}
-
-/* ✅ 가로 2장 유지 */
-.other-works-grid{
-  grid-template-columns: 1fr 1fr !important;
-  justify-items: center;
-}
-
-/* ✅ 오른쪽 칸이 비어있으면(2번째 슬라이드) 한 장만 가운데로 */
-.other-works-grid.is-single{
-  grid-template-columns: 1fr !important;
-  justify-items: center !important;
-}
-.other-works-grid.is-single .other-works-left-wrap{
-  width: min(1100px, 100%);
-}
-
-/* =========================
-   기타 작업물 - 슬라이드 이미지 "자동 높이" 버전
-   ✅ 슬라이드마다 이미지 원본 비율대로 높이 자동
-========================= */
-
-/* ✅ (핵심) figure 높이 고정 제거 */
-.other-works-figure{
-  height: auto !important;          /* ← 360px 같은 고정값 무력화 */
-  background: #fff;
-  border-radius: var(--radius-3xl);
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
-}
-
-/* ✅ (핵심) img도 자동 높이 + 전체 보이게(contain) */
-.other-works-figure img{
-  width: 100% !important;
-  height: auto !important;          /* ← 100% 고정값 무력화 */
-  display: block;
-  object-fit: contain !important;   /* ← 잘리지 않고 전체 다 보이게 */
-}
-
-/* ✅ 혹시 “너무 길어서 화면을 다 먹는” 이미지가 있으면 안전장치(선택)
-   - 필요 없으면 아래 2줄 삭제해도 됨 */
-.other-works-figure img{
-  max-height: 90vh;                 /* 화면 높이의 70%까지만 */
-}
-
-/* ✅ 오른쪽이 비었을 때(2번째 슬라이드) 가운데 정렬 */
-.other-works-grid.is-single{
-  grid-template-columns: 1fr !important;
-  justify-items: center !important;
-}
-.other-works-grid.is-single .other-works-left-wrap{
-  width: min(1100px, 100%);
-}
-
-/* ✅ 모바일에서 1칸으로 바뀌는 규칙이 있다면(너가 기존에 900px에서 1칸으로 바꿨으니까)
-   - 그래도 OK. "가로 2장"을 계속 유지하고 싶으면 아래를 사용(선택)
-*/
-@media (max-width: 900px){
-  /* 2장 가로 유지하고 싶으면 주석 해제
-  .other-works-grid{
-    grid-template-columns: 1fr 1fr !important;
-  }
-  */
-}
-
-/* ===== Footer Badge (DESKTOP + MOBILE 공통 기본) ===== */
-.footer .footer-badge{
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45em;
-
-  margin: 0 0 28px;
-  padding: 0;
-
-  background: none;
-  border: none;
-  border-radius: 0;
-
-  font-size: 1.15rem;
-  color: var(--color-subcolor2);
-  letter-spacing: 0.02em;
-}
-
-.footer .footer-badge .font-medium{
-  font-weight: 400;
-  opacity: 0.75;
-}
-
-.footer .footer-badge .font-bold{
-  font-weight: 700;
-  letter-spacing: 0.12em;
-}
-
-/* =========================
-   MOBILE NAV FIX (복붙용)
+   3) Mobile (<=768px)
+   ✅ 햄버거 버튼 "원래대로" 3줄 + X 변형
+   ✅ navMenu.active 드롭다운
 ========================= */
 @media (max-width: 768px){
 
-  /* 1️⃣ 모바일 메뉴 글자 가운데 정렬 */
-  .nav-menu{
-    text-align: center;
+  /* 헤더 안쪽 정렬 */
+  /* =========================
+     MOBILE HEADER LAYOUT
+  ========================= */
+  .nav-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
-  .nav-link{
-    align-items: center !important;
-    justify-content: center;
-    text-align: center;
+  /* 모바일에서는 오른쪽 버튼 숨김 */
+  .nav-actions{
+    display: none;
   }
 
-  /* 2️⃣ 햄버거 / X 버튼 박스 */
+  /* =========================
+     HAMBURGER / X BUTTON
+     - 닫기(X) 버튼이 "확실히" 보이게
+  ========================= */
   .mobile-menu-btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
     position: relative;
     width: 52px;
     height: 52px;
-    border: 3px solid var(--color-subcolor2);
+
+    border: 2px solid var(--color-subcolor2);
+    border-radius: 10px;
     background: transparent;
+
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
   }
 
-  /* 3️⃣ 선 3개 중앙에 겹치기 */
   .mobile-menu-btn span{
     position: absolute;
     left: 50%;
@@ -761,11 +166,13 @@ button:focus {
     width: 28px;
     height: 3px;
     background: var(--color-subcolor2);
+    border-radius: 999px;
+
     transform: translate(-50%, -50%);
-    transition: .25s;
+    transition: transform .25s ease, opacity .2s ease;
   }
 
-  /* 기본 햄버거 */
+  /* 3줄 간격 (중앙 기준으로 정확히) */
   .mobile-menu-btn span:nth-child(1){
     transform: translate(-50%, -50%) translateY(-9px);
   }
@@ -776,7 +183,7 @@ button:focus {
     transform: translate(-50%, -50%) translateY(9px);
   }
 
-  /* X 버튼 */
+  /* X로 변형 */
   .mobile-menu-btn.active span:nth-child(1){
     transform: translate(-50%, -50%) rotate(45deg);
   }
@@ -786,10 +193,208 @@ button:focus {
   .mobile-menu-btn.active span:nth-child(3){
     transform: translate(-50%, -50%) rotate(-45deg);
   }
+
+  /* ✅ 메뉴가 열렸을 때 버튼을 화면 위에 고정(닫기 버튼처럼) */
+  .mobile-menu-btn.active{
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 1001; /* 메뉴보다 위 */
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(6px);
+  }
+
+  /* =========================
+     MOBILE MENU OVERLAY
+     - 화면 가운데 정렬
+     - JS 토글: .nav-menu.active
+  ========================= */
+  .nav-menu{
+    position: fixed;
+    inset: 0;                  /* top/left/right/bottom = 0 */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;    /* ✅ 수직 중앙 */
+    align-items: center;        /* ✅ 가로 중앙 */
+
+    background: var(--color-white);
+    gap: 34px;
+
+    /* 닫힘 상태 */
+    transform: translateY(-100%);
+    transition: transform .35s ease;
+    z-index: 1000;
+  }
+
+  /* 열림 상태 */
+  .nav-menu.active{
+    transform: translateY(0);
+  }
+
+  /* 리스트 스타일/구분선 제거(가운데 메뉴 느낌) */
+  .nav-item{
+    border: none;
+  }
+
+  /* =========================
+     MENU LINK + LONG UNDERLINE
+     - 밑선 길게(고정 px)
+  ========================= */
+  .nav-link{
+    position: relative;
+    display: inline-block;
+    padding: 14px 0;
+
+    font-weight: var(--font-bold);
+    color: #999;
+    text-align: center;
+  }
+
+  .nav-link:hover,
+  .nav-link.active{
+    color: var(--color-subcolor2);
+  }
+
+  /* ✅ 밑선(기본은 연하게) */
+  .nav-link::after{
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -8px;
+    transform: translateX(-50%);
+
+    width: 260px;                   /* ⭐ 밑선 길이: 220~300 사이 추천 */
+    height: 2px;
+    background: rgba(40,63,110,0.16);
+    border-radius: 999px;
+  }
+
+  /* ✅ active일 때만 진한 밑선 */
+  .nav-link.active::after{
+    background: var(--color-subcolor2);
+  }
+
+  /* 아주 작은 모바일에서 밑선 너무 길면 줄이기 */
+  @media (max-width: 420px){
+    .nav-link::after{
+      width: 220px;
+    }
+  }
 }
 
 
-@media (max-width: 768px){
+  /* -------------------------
+     ✅ 모바일 드롭다운 메뉴 (JS 토글)
+  -------------------------- */
+   .nav-menu{
+    position: fixed;          /* ⭐ 화면 기준 */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  /* ⭐ 수직 중앙 */
+    align-items: center;      /* ⭐ 가로 중앙 */
+
+    background: var(--color-white);
+    gap: 36px;
+
+    max-height: none;
+    overflow: hidden;
+    transform: translateY(-100%);
+    transition: transform .35s ease;
+    z-index: 999;
+  }
+
+  /* 메뉴 열렸을 때 */
+  .nav-menu.active{
+    transform: translateY(0);
+  }
+
+  .nav-item{
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .nav-item:last-child{
+    border-bottom: none;
+  }
+
+  /* ✅ 간격/정렬 깔끔하게 */
+  .nav-link{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 56px;
+    padding: 0;
+
+    text-align: center;
+  }
+
+  /* 모바일에서는 hover 밑줄을 "항목 전체 폭"으로 */
+.nav-link::after{
+  left: 0;
+  right: 0;
+  bottom: 10px;          /* 밑줄 위치 */
+  transform: none;       /* 가운데 기준 해제 */
+  width: 0;              /* 기본은 0 */
+  height: 2px;
+}
+
+/* 활성/호버 시 전체폭 */
+.nav-link:hover::after,
+.nav-link.active::after{
+  width: 100%;
+}
+
+
+
+
+  /* Sections */
+  .section-title{ font-size: var(--font-3xl); }
+  .section-subtitle{ font-size: var(--font-xl); }
+  .section-line{ width: 0.5rem; height: 6rem; }
+
+  /* Skills: 1열 */
+  .skills-grid{
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+  }
+
+  /* AI */
+  .ai-bars{ flex-wrap: wrap; gap: var(--spacing-sm); }
+  .ai-bar-container{ width: 2.5rem; height: 12rem; }
+  .ai-bar-item{ gap: var(--spacing-sm); }
+  .ai-desc-item{ flex-direction: column; gap: var(--spacing-xs); }
+  .ai-tool{ min-width: auto; font-size: var(--font-lg); }
+  .ai-usage, .ai-summary{ font-size: var(--font-base); }
+
+  /* Portfolio */
+  .portfolio-number{
+    font-size: 1.3rem;
+    padding: 10px 28px;
+  }
+  .detail-item{ flex-direction: column; gap: var(--spacing-xs); }
+  .detail-label{ min-width: auto; font-size: var(--font-base); }
+  .detail-value{ font-size: var(--font-base); }
+  .portfolio-actions{ flex-direction: column; }
+  .btn-figma, .btn-site{
+    text-align: center;
+    padding: 12px 20px;
+    font-size: 0.9rem;
+  }
+
+  /* Footer */
+  .footer-contact{
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  /* Top 버튼 */
   .top-btn{
     right: 16px;
     bottom: 16px;
@@ -800,270 +405,49 @@ button:focus {
 }
 
 
-/* 기타 작업물 2장 갭 줄이기 */
-.other-works-grid{
-  /* 화면이 커져도 2장이 너무 벌어지지 않게 “전체 폭” 제한 */
-  width: min(980px, 100%) !important;
-  margin: 0 auto !important;
+/* =========================
+   4) Small Mobile (<=480px)
+========================= */
+@media (max-width: 480px){
 
-  /* 2장 각각의 폭도 적당히 고정(너무 커지지 않게) */
-  grid-template-columns: minmax(260px, 460px) minmax(260px, 460px) !important;
+  .about-box{ padding: var(--spacing-lg); }
+  .info-label{ font-size: var(--font-base); }
+  .info-value{ font-size: var(--font-sm); }
 
-  /* ⭐ 여기 숫자만 줄이면 갭이 더 좁아짐 */
-  gap: 8px !important;
+  .portfolio-item{ padding-top: var(--spacing-xs); }
+  .portfolio-number{ font-size: var(--font-xl); }
 
-  justify-content: center !important;
-  align-items: start;
+  .footer-message br{ display: none; }
 }
 
 
 /* =========================
-   기타 작업물 화살표 거리 더 벌리기
+   5) Other Works (기타 작업물)
+   ✅ 잘림 방지 최소 보정
 ========================= */
-
-.other-works-arrows{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  /* ⭐ 여기 숫자가 핵심 */
-  width: min(1400px, 100%); /* ← 전체 폭 자체를 더 넓힘 */
-  padding: 0 80px;          /* ← 화살표를 바깥으로 확 밀기 */
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  pointer-events: none;
-}
-
-.other-works-arrow{
-  pointer-events: auto;
-  width: 48px;
-  height: 48px;
-  border-radius: 999px;
-
-  display: grid;
-  place-items: center;
-
-  font-size: 36px;
-  font-weight: 700;
-  color: var(--color-subcolor2);
-
-  background: transparent;
-  border: none;
-
-  opacity: 0.85;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.other-works-arrow:hover{
-  transform: scale(1.1);
-  opacity: 1;
-}
-
-/* =========================
-   모바일에서 화살표 숨기기
-========================= */
-@media (max-width: 768px){
-  .other-works-arrows{
-    display: none;
-  }
-}
-
-/* =========================
-   Other Works: 모바일 UX 업그레이드
-   - 모바일 화살표 숨김
-   - 도트 활성 스타일
-   - 스와이프 시 살짝 탄성 느낌
-========================= */
-
-/* 모바일: 화살표 숨기기 */
-@media (max-width: 768px){
-  .other-works-arrows{ display:none !important; }
-}
-
-/* 스와이프 스크롤 느낌 좋게 */
 .other-works-viewport{
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-x: contain;
-  scroll-snap-stop: always;
 }
 
-/* 스와이프 “살짝 탄성” 시각 효과(살짝 눌림) */
-.other-works-viewport.is-swiping{
-  transform: scale(0.995);
-  transition: transform .12s ease;
-}
-.other-works-viewport{
-  transition: transform .12s ease;
-}
-
-/* 끝에서 더 못가면 '톡' 하는 느낌 */
-@keyframes edgeNudge {
-  0%{ transform: translateX(0); }
-  35%{ transform: translateX(var(--nudge, 0)); }
-  70%{ transform: translateX(0); }
-  100%{ transform: translateX(0); }
-}
-.other-works-viewport.edge-nudge{
-  animation: edgeNudge .18s ease;
+.other-works-figure{ height: auto; }
+.other-works-figure img{
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  max-height: 90vh;
 }
 
-/* 도트(이미 스타일이 있어도 덮어쓰기 가능) */
-.other-works-dots{
-  display:flex;
-  justify-content:center;
-  gap:10px;
-}
-
-.other-works-dot{
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  border: 1px solid var(--color-subcolor2);
-  opacity: .5;
-  background: transparent;
-  cursor: pointer;
-}
-
-.other-works-dot.is-active{
-  opacity: 1;
-  background: var(--color-subcolor2);
-}
-
-
-/* ✅ 기타 작업물 제목(리본) 크기 강제 축소 */
-.other-works-header .other-works-ribbon{
-    font-size: 1.4rem !important;      /* ← 여기 숫자로 크기 조절 */
-    padding: 12px 32px !important;   /* ← 네모(배경) 크기 조절 */
-    line-height: 1.15 !important;    /* ← 두께 얇게 */
-    margin-bottom: 2rem;
-    border: 1px solid #000;
-}
-
-
-/* =========================
-   Portfolio 1 위/아래 간격 줄이기
-   (원하는 만큼 숫자만 조절)
-========================= */
-
-/* 섹션 타이틀 영역과 첫 포폴 사이(위쪽) */
-#portfolio .section-header{
-  margin-bottom: 40px; /* 기존 var(--spacing-2xl)보다 줄임 */
-}
-
-#portfolio .portfolio-items{
-  margin-top: 24px;   /* 기존 var(--spacing-2xl)보다 줄임 */
-  gap: 60px;          /* 포폴끼리 간격(기존 var(--spacing-3xl)) */
-}
-
-/* 포폴 아이템 자체의 윗 여백(라벨 위 공간) */
-#portfolio .portfolio-item{
-  padding-top: 30px;  /* 기존 var(--spacing-2xl)보다 줄임 */
-}
-
-/* Portfolio 1 라벨 아래 여백(라벨↔내용) */
-#portfolio .portfolio-number{
-  margin-bottom: 30px; /* 기존 var(--spacing-xl)보다 줄임 */
-}
-
-/* =========================
-   Portfolio(모바일) - 라벨 ↔ 미리보기 갭 줄이기
-   ✅ 붙여넣기: portfolio-css-responsive.css 맨 아래
-========================= */
-
-/* 태블릿 이하부터 적용(필요하면 768로 내려도 됨) */
-@media (max-width: 1024px){
-
-  /* 1) 라벨 아래 여백 줄이기 */
-  #portfolio .portfolio-number{
-    margin-bottom: 16px !important;
+@media (max-width: 900px){
+  .other-works-grid{
+    grid-template-columns: 1fr;
+    width: min(760px, 100%);
+    justify-items: center;
   }
 
-  /* 2) 미리보기 박스(정사각형) 해제 → 빈 공간 제거 */
-  #portfolio .preview-web{
-    aspect-ratio: auto !important;       /* ✅ 1/1 제거 */
-    align-items: flex-start !important;  /* ✅ 위쪽부터 */
-    justify-content: center;
-    margin-bottom: 16px !important;      /* ✅ 아래 여백도 줄임 */
-  }
-
-  /* 3) 이미지가 박스에 맞게 자연스럽게 보이도록 */
-  #portfolio .preview-web img{
-    width: 100% !important;
-    height: auto !important;
-    object-fit: contain !important;
-    display: block;
-  }
-}
-
-/* 더 작은 모바일에서 추가로 더 타이트하게 */
-@media (max-width: 768px){
-  #portfolio .portfolio-item{
-    padding-top: 18px !important;
-  }
-  #portfolio .portfolio-content{
-    gap: 18px !important;
-  }
-}
-
-
-/* =========================
-   TABLET (769~1024): 메뉴 + 버튼 가운데 정렬 + 버튼 정상 너비
-   ✅ 모바일(<=768)은 그대로 두기 위해 min-width:769 사용
-   ✅ portfolio-css-responsive.css 맨 아래
-========================= */
-@media (min-width: 769px) and (max-width: 1024px){
-
-  /* 1) 네비 컨테이너: 가운데 정렬 레이아웃 */
-  .nav-container{
-    display: flex !important;
-    align-items: center;
-    justify-content: center;   /* ⭐ 전체를 가운데 */
-    gap: 18px;
-  }
-
-  /* 2) 모바일 햄버거 버튼은 태블릿에서 숨김(원상복구 느낌) */
-  .mobile-menu-btn{
-    display: none !important;
-  }
-
-  /* 3) 메뉴: 가운데 정렬 + 너무 넓게 퍼지지 않게 */
-  .nav-menu{
-    position: static !important;
-    max-height: none !important;
-    overflow: visible !important;
-
-    display: flex !important;
-    justify-content: center;
-    align-items: center;
-    gap: 2.2rem;               /* 태블릿에서 간격 적당히 */
-    width: auto !important;     /* ⭐ 100% 되면 가운데가 깨짐 */
-    flex: 0 0 auto !important;
-  }
-
-  /* 4) 버튼: 정상 너비(내용만큼) + 가운데 라인에 함께 */
-  .nav-actions{
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-
-    width: auto !important;     /* ⭐ 늘어나는 거 방지 */
-    flex: 0 0 auto !important;
-  }
-
-  .nav-actions .btn{
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    width: auto !important;     /* ⭐ 버튼 “정상 너비” */
-    min-width: 0 !important;
-    padding: 10px 16px;         /* 태블릿에서 보기 좋은 크기 */
-    font-size: 0.95rem;
-    white-space: nowrap;        /* 줄바꿈 방지 */
+  /* 모바일에서 화살표 숨김(스와이프 중심) */
+  .other-works-arrows{
+    display: none;
   }
 }
