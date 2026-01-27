@@ -559,6 +559,22 @@ body {
     margin-bottom: var(--spacing-xl);
 }
 
+.portfolio-tagline4 {
+    font-family: 'AliceDigitalLearning';
+    font-size: var(--font-3xl);
+    font-weight: var(--font-light);
+    line-height: 1.8;
+    margin-bottom: var(--spacing-xl);
+}
+
+.portfolio-tagline5 {
+    font-family: 'ReperipointSpecial';
+    font-size: var(--font-3xl);
+    font-weight: var(--font-light);
+    line-height: 1.8;
+    margin-bottom: var(--spacing-xl);
+}
+
 .info-section {
     font-family: 'pretendard';
     font-size: 1.25rem;
