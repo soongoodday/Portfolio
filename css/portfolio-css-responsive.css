@@ -75,6 +75,13 @@ button:focus{
     object-fit: contain;
   }
   #portfolio .portfolio-number{ margin-bottom: 16px; }
+
+  .other-works-caption::after{
+    content: "  ·  좌우로 스와이프";
+    font-weight: 500;
+    opacity: .55;
+    font-size: 0.95rem;
+  }
 }
 
 
