@@ -777,7 +777,15 @@ body{
   border-radius: var(--radius-3xl);
   overflow: hidden;
   box-shadow: var(--shadow-lg);
+  display: flex;              /* ⭐ 추가 */
+  justify-content: center;
 }
+
+.other-works-grid.is-single{
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+
 .other-works-figure img{
   width: 100%;
   height: auto;
