@@ -237,7 +237,7 @@ button:focus{
     position: fixed;
     top: 18px;
     left: 18px;
-    z-index: 1001; /* nav-menu보다 위 */
+    z-index: 1003; /* nav-menu보다 위 */
   }
 
   /* 선 3개 */
@@ -319,7 +319,7 @@ button:focus{
     overflow: hidden;
     transform: translateY(-100%);
     transition: transform .35s ease;
-    z-index: 999;
+    z-index: 1002;
   }
 
   /* 메뉴 열렸을 때 */
