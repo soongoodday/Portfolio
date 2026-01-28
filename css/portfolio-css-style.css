@@ -519,10 +519,40 @@ body{
 .portfolio-tagline2,
 .portfolio-tagline3,
 .portfolio-tagline4,
-.portfolio-tagline5{
+.portfolio-tagline5,
+.portfolio-tagline6,
+.portfolio-tagline7 {
   font-size: var(--font-2xl);
   margin-bottom: var(--spacing-xl);
   line-height: 1.8;
+}
+
+.portfolio-tagline1 {
+  font-family: 'ArittaDodum';
+}
+
+.portfolio-tagline2 {
+  font-family: 'Isamanru';
+}
+
+.portfolio-tagline3 {
+  font-family: 'HsBombaram30';
+}
+
+.portfolio-tagline4 {
+  font-family: 'AliceDigitalLearning';
+}
+
+.portfolio-tagline5 {
+  font-family: 'ReperipointSpecial';
+}
+
+.portfolio-tagline6 {
+  font-family: 'GapyeongWave';
+}
+
+.portfolio-tagline7 {
+  font-family: 'SchoolSafetyPoster';
 }
 
 .info-section{

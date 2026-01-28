@@ -143,7 +143,7 @@
 
 
 
-/* 아리따 돋움 */
+/* 포트폴리오 1- 아리따 돋움 */
 @font-face {
     font-family: 'ArittaDodum';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Arita-dotum-Medium.woff') format('woff');
@@ -154,7 +154,7 @@
 
 
 
-/* 이사만루 */
+/* 포트폴리오 2- 이사만루 */
 @font-face {
     font-family: 'Isamanru';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicLight.woff') format('woff');
@@ -179,18 +179,7 @@
 
 
 
-/* 잉크립퀴드체 */
-@font-face {
-    font-family: 'InkLiquid';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/InkLipquid.woff') format('woff');
-    font-weight: normal;
-    font-display: swap;
-}
-
-
-
-
-/* HS봄바람 */
+/* 포트폴리오 3 - HS봄바람 */
 @font-face {
     font-family: 'HsBombaram30';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.1/HSBombaram3_Thin.woff') format('woff');
@@ -208,7 +197,7 @@
 
 
 
-/* 엘리스 디지털 배움 */
+/* 포트폴리오 4 - 엘리스 디지털 배움 */
 @font-face {
     font-family: 'AliceDigitalLearning';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_elice@1.0/EliceDigitalBaeum.woff2') format('woff2');
@@ -226,10 +215,43 @@
 
 
 
-/* 레페리포인트 Special */
+/* 포트폴리오 5 - 레페리포인트 Special */
 @font-face {
     font-family: 'ReperipointSpecial';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiPoint-SpecialA.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}
+
+
+
+
+/* 포트폴리오 6 - 가평물결 */
+@font-face {
+    font-family: 'GapyeongWave';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2312-1@1.1/GapyeongWave.woff2') format('woff2');
+    font-weight: normal;
+    font-display: swap;
+}
+
+
+
+
+/* 포트폴리오 7 - 학교안심 포스터 */
+@font-face {
+    font-family: 'SchoolSafetyPoster';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2511-1@1.0/HakgyoansimPosterB.woff2') format('woff2');
+    font-weight: normal;
+    font-display: swap;
+}
+
+
+
+
+/* 푸터 필기체 - 잉크립퀴드체 */
+@font-face {
+    font-family: 'InkLiquid';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/InkLipquid.woff') format('woff');
     font-weight: normal;
     font-display: swap;
 }
