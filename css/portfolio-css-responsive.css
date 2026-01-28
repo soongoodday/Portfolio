@@ -37,6 +37,56 @@ button:focus{
 }
 
 
+
+
+/* =========================
+   ✅ Mid Desktop (1025~1400px)
+   웹에서 창을 살짝 줄였을 때 깨지는 구간 복구
+========================= */
+@media (min-width: 1025px) and (max-width: 1400px){
+
+  /* 포트폴리오 2열 비율을 더 자연스럽게 */
+  .portfolio-content{
+    grid-template-columns: 1.1fr 0.9fr; /* 텍스트 넓게 / 이미지 살짝 줄임 */
+    gap: 24px;                          /* 간격도 조금 줄여서 압박 완화 */
+    align-items: start;
+  }
+
+  /* 프리뷰 박스가 1:1 고정이면 공간이 어색해질 수 있어서 풀어줌 */
+  #portfolio .preview-web{
+    aspect-ratio: auto;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+
+  #portfolio .preview-web img{
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* 버튼 아래 공간도 살짝 확보(답답함 방지) */
+  .portfolio-actions{
+    margin-bottom: 24px;
+  }
+}
+
+
+
+
+@media (min-width: 1025px) and (max-width: 1200px){
+  .portfolio-content{
+    grid-template-columns: 1fr;  /* ⭐ 1열로 */
+    gap: 22px;
+  }
+  .portfolio-preview{ order: 0; }
+  .portfolio-info{ order: 1; }
+}
+
+
+
+
 /* =========================
    1) Tablet & Mobile (<=1024px)
 ========================= */
