@@ -8,15 +8,60 @@
 (() => {
   const OTHER_WORKS_SLIDES = [
     {
-      left: { src: "images/nouvedilie1.png", alt: "누베딜리 상세페이지 시안 1" },
-      rights: [{ src: "images/nouvedilie2.png", alt: "누베딜리 상세페이지 시안 2" }],
+      left: { src: "images/nouvedilie1.png", alt: "누베딜리 상세페이지1" },
+      rights: [{ src: "images/nouvedilie2.png", alt: "누베딜리 상세페이지2" }],
       title: "누베딜리 상세 페이지",
       desc: "누베딜리 웹페이지의 제품 썸네일을 클릭하면 나오는 상세 페이지",
       topic: "일상에서 부담없이 캐주얼하게 착용 가능한 반지",
       age: "30대 ~ 40대 이상",
-      caption: "상세페이지 디자인",
+      caption: "누베딜리 상세페이지",
       link: "#"
     },
+
+    {
+      left: { src: "images/nouvedeilie_banner.png", alt: "누베딜리 웹 배너" },
+      rights: [],
+      title: "누베딜리 웹페이지 배너",
+      desc: "누베딜리 웹페이지 배너",
+      topic: "일상에서 부담없이 캐주얼하게 착용 가능한 반지",
+      age: "30대 ~ 40대 이상",
+      caption: "누베딜리 웹페이지 배너",
+      link: "#"
+    },
+
+    {
+      left: { src: "images/carrot_banner1.png", alt: "당근마켓 웹 배너1" },
+      rights: [],
+      title: "당근마켓 웹 배너1",
+      desc: "당근마켓의 메인 컬러와 캐릭터를 활용해서 구인 목적으로 띄우는 광고 배너를 작업했습니다.",
+      topic: "프로모션/이벤트 배너",
+      age: "당근마켓을 사용하는 전 연령대 사용자",
+      caption: "배너 디자인",
+      link: "#"
+    },
+
+    {
+      left: { src: "images/carrot_banner2.png", alt: "당근마켓 웹 배너2" },
+      rights: [],
+      title: "당근마켓 웹 배너2",
+      desc: "당근마켓의 메인 컬러와 캐릭터를 활용해서 구인 목적으로 띄우는 광고 배너를 작업했습니다.",
+      topic: "프로모션/이벤트 배너",
+      age: "당근마켓을 사용하는 전 연령대 사용자",
+      caption: "배너 디자인",
+      link: "#"
+    },
+
+    {
+      left: { src: "images/green17_poster.png", alt: "학원 모집 홍보 포스터" },
+      rights: [],
+      title: "학원 모집 홍보 포스터",
+      desc: "Ideogram(이디오그램)을 활용해서 이미지를 생성하고 variation을 도출해 전체적인 색상을 반영했습니다. 빠르고 높은 취업률을 강점으로 내세운 콘셉트입니다.",
+      topic: "학원 모집 홍보 포스터",
+      age: "학원 수강에 관심이 있는 10대 ~ 30대 이상",
+      caption: "학원 모집 홍보 포스터",
+      link: "#"
+    },
+
     {
       left: { src: "images/game_banner_260121.png", alt: "게임 배너" },
       rights: [],
