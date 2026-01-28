@@ -497,9 +497,11 @@ body{
 
 .portfolio-content{
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr; /* ✅ 왼쪽 넓게 */
   gap: 32px;
+  align-items: start;
 }
+
 
 .portfolio-title{
   font-size: var(--font-3xl);
@@ -615,7 +617,7 @@ body{
 .btn-figma{
   background-color: var(--color-purple);
   color: var(--color-white);
-  padding: 12px 28px;
+  padding: 12px 34px;
   border-radius: var(--radius-full);
   font-weight: var(--font-bold);
   transition: opacity .2s ease;
@@ -628,7 +630,7 @@ body{
 
 .btn-site{
   color: var(--color-white);
-  padding: 12px 28px;
+  padding: 12px 34px;
   border-radius: var(--radius-full);
   font-weight: var(--font-bold);
   transition: opacity .2s ease;
