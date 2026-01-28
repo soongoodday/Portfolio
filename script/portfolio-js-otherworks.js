@@ -138,6 +138,7 @@
 
   // 1) 버튼 만들기(돋보기)
   const zoomBtn = document.createElement("button");
+  if (window.innerWidth <= 768) zoomBtn.style.display = "none";
   zoomBtn.type = "button";
   zoomBtn.className = "ow-zoom-btn";
   zoomBtn.textContent = "🔍";
@@ -145,6 +146,11 @@
   modalImg.parentElement.appendChild(zoomBtn);
 
   const figureEl = modalImg.closest(".ow-modal__figure");
+  // ✅ 태블릿(769~1024): 스와이프(좌우)만 허용 느낌으로
+if (window.innerWidth <= 1024 && window.innerWidth > 768) {
+  figureEl.style.touchAction = "pan-x";
+}
+
 
   // 2) 확대 상태 변수들
   let scale = 1;     // 확대 배율
