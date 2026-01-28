@@ -919,7 +919,7 @@
                                 </div>
 
                                 <div class="portfolio-actions">
-                                    <a href="https://www.figma.com/design/NsA1uGG1njB0qcf5WiEbIG/%EB%AF%B8%EB%8C%80%EC%9E%85%EC%8B%9C%EB%8B%B7%EC%BB%B4_%EC%84%B1%EA%B2%BD%EC%9D%80?node-id=31-153&t=Gg85AwsMLXIRDqhh-1" class="btn-figma" target="_blank" rel="noopener noreferrer">피그마 작업링크</a>
+                                    <a href="https://www.figma.com/design/NsA1uGG1njB0qcf5WiEbIG/%EB%AF%B8%EB%8C%80%EC%9E%85%EC%8B%9C%EB%8B%B7%EC%BB%B4_%EC%84%B1%EA%B2%BD%EC%9D%80?node-id=31-153&t=Gg85AwsMLXIRDqhh-1" class="btn-figma" target="_blank" >피그마 작업링크</a>
                                 </div>
                             </div>
 
@@ -958,7 +958,7 @@
         </section>
 
 <!-- ===============================
-     기타 작업물 섹션 (footer 위)
+     기타 작업물 섹션 (3단 갤러리)
 ================================= -->
 <section id="other-works" class="other-works-section" aria-labelledby="otherWorksTitle">
   <div class="container">
@@ -968,65 +968,52 @@
       <h2 class="other-works-ribbon" id="otherWorksTitle">기타 작업물</h2>
     </header>
 
-    <!-- ✅ 상단 텍스트(슬라이드 넘어갈 때 바뀌는 영역) -->
-    <article class="other-works-intro" aria-label="기타 작업물 소개">
-      <h3 class="other-works-title" id="otherWorksTitleText">누베딜리 상세 페이지</h3>
-
-      <dl class="other-works-meta">
-        <div class="other-works-row">
-          <dt>설명</dt>
-          <dd id="otherWorksDesc">누베딜리 웹페이지의 제품 썸네일을 클릭하면 나오는 상세 페이지</dd>
-        </div>
-        <div class="other-works-row">
-          <dt>주제</dt>
-          <dd id="otherWorksTopic">일상에서 부담없이 캐주얼하게 착용 가능한 반지</dd>
-        </div>
-        <div class="other-works-row">
-          <dt>연령대</dt>
-          <dd id="otherWorksAge">30대 ~ 40대 이상</dd>
-        </div>
-      </dl>
-
-      <p class="other-works-cta">
-        <a
-          class="other-works-btn"
-          id="otherWorksLink"
-          href="#"
-          target="_blank"
-          rel="noreferrer"
-        >피그마 작업링크</a>
-      </p>
-    </article>
-
-    <!-- ✅ 캐러셀 -->
-    <section class="other-works-gallery" aria-label="기타 작업물 이미지">
-      <div
-        class="other-works-carousel"
-        id="otherWorksCarousel"
-        role="region"
-        aria-roledescription="carousel"
-        aria-label="기타 작업물 슬라이더"
-        tabindex="0"
-      >
-        <!-- 화살표 버튼 -->
-        <div class="other-works-arrows" aria-label="슬라이드 이동">
-          <button class="other-works-arrow" type="button" data-dir="prev" aria-label="이전 슬라이드">‹</button>
-          <button class="other-works-arrow" type="button" data-dir="next" aria-label="다음 슬라이드">›</button>
-        </div>
-
-        <!-- ✅ JS가 슬라이드를 채워 넣는 곳 -->
-        <div class="other-works-viewport" id="otherWorksViewport"></div>
-
-        <!-- ✅ 하단 캡션 + 도트 -->
-        <footer class="other-works-footer">
-          <p class="other-works-caption" id="otherWorksCaption">상세페이지 디자인</p>
-          <nav class="other-works-dots" id="otherWorksDots" aria-label="슬라이드 선택"></nav>
-        </footer>
-      </div>
-    </section>
+    <!-- ✅ 3단 갤러리 그리드 -->
+    <div class="other-works-grid3" id="otherWorksGrid3" aria-label="기타 작업물 갤러리"></div>
 
   </div>
 </section>
+
+<!-- ✅ 라이트박스(모달) -->
+<div class="ow-modal" id="owModal" aria-hidden="true">
+  <div class="ow-modal__backdrop" data-close="true"></div>
+
+  <div class="ow-modal__panel" role="dialog" aria-modal="true" aria-label="작업물 크게보기">
+    <button class="ow-modal__close" type="button" aria-label="닫기" data-close="true">×</button>
+
+    <figure class="ow-modal__figure">
+  <img id="owModalImg" src="" alt="">
+  <div class="ow-modal__thumbs" id="owModalThumbs" aria-label="이미지 미리보기"></div>
+</figure>
+
+
+    <div class="ow-modal__info">
+      <h3 class="ow-modal__title" id="owModalTitle"></h3>
+
+      <dl class="ow-modal__meta">
+        <div class="ow-modal__row">
+          <dt>설명</dt>
+          <dd id="owModalDesc"></dd>
+        </div>
+        <div class="ow-modal__row">
+          <dt>주제</dt>
+          <dd id="owModalTopic"></dd>
+        </div>
+        <div class="ow-modal__row">
+          <dt>연령대</dt>
+          <dd id="owModalAge"></dd>
+        </div>
+      </dl>
+
+      <a class="ow-modal__link" id="owModalLink" href="#" target="_blank" rel="noreferrer">피그마 작업링크</a>
+    </div>
+
+    <!-- (옵션) 이전/다음 -->
+    <button class="ow-modal__nav ow-modal__nav--prev" type="button" aria-label="이전" id="owPrev">‹</button>
+    <button class="ow-modal__nav ow-modal__nav--next" type="button" aria-label="다음" id="owNext">›</button>
+  </div>
+</div>
+
 
 
 

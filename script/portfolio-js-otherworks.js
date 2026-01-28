@@ -1,13 +1,12 @@
 /* ================================
-   portfolio-js-otherworks.js (통째 복붙 버전)
-   ✅ 슬라이드마다 이미지 높이 자동(원본 비율대로)
-   ✅ 도트/화살표/키보드 이동
-   ✅ 상단 텍스트 + 하단 캡션 + 링크 자동 변경
-   ✅ 오른쪽 이미지 없으면 가운데 정렬(is-single)
+   portfolio-js-otherworks.js
+   ✅ 3단 갤러리: "프로젝트(슬라이드) 1개당 카드 1개"
+   ✅ 모달에서 해당 프로젝트 이미지들(left + rights) 넘기기
+   ✅ 썸네일 클릭으로 이미지 전환
+   ✅ ESC 닫기 / 좌우키 이미지 이동
 ================================ */
 (() => {
   const OTHER_WORKS_SLIDES = [
-    // 기타 작업물1
     {
       left: { src: "images/nouvedilie1.png", alt: "누베딜리 상세페이지1" },
       rights: [{ src: "images/nouvedilie2.png", alt: "누베딜리 상세페이지2" }],
@@ -15,11 +14,9 @@
       desc: "누베딜리 웹페이지의 제품 썸네일을 클릭하면 나오는 상세 페이지",
       topic: "일상에서 부담없이 캐주얼하게 착용 가능한 반지",
       age: "30대 ~ 40대 이상",
-      caption: "누베딜리 상세페이지",
+      caption: "",
       link: "#"
     },
-
-    // 기타 작업물2
     {
       left: { src: "images/nouvedeilie_banner.png", alt: "누베딜리 웹 배너" },
       rights: [],
@@ -27,11 +24,9 @@
       desc: "누베딜리 웹 배너",
       topic: "일상에서 부담없이 캐주얼하게 착용 가능한 반지",
       age: "30대 ~ 40대 이상",
-      caption: "누베딜리 웹 배너",
+      caption: "",
       link: "#"
     },
-
-    // 기타 작업물3
     {
       left: { src: "images/carrot_banner1.png", alt: "당근마켓 웹 배너1" },
       rights: [],
@@ -39,11 +34,9 @@
       desc: "당근마켓의 메인 컬러와 캐릭터를 활용해서 구인 목적으로 띄우는 광고 배너를 작업했습니다.",
       topic: "프로모션/이벤트 배너",
       age: "당근마켓을 사용하는 전 연령대 사용자",
-      caption: "배너 디자인",
+      caption: "",
       link: "#"
     },
-
-    // 기타 작업물4
     {
       left: { src: "images/carrot_banner2.png", alt: "당근마켓 웹 배너2" },
       rights: [],
@@ -51,23 +44,19 @@
       desc: "당근마켓의 메인 컬러와 캐릭터를 활용해서 구인 목적으로 띄우는 광고 배너를 작업했습니다.",
       topic: "프로모션/이벤트 배너",
       age: "당근마켓을 사용하는 전 연령대 사용자",
-      caption: "배너 디자인",
+      caption: "",
       link: "#"
     },
-
-    // 기타 작업물5
     {
       left: { src: "images/green17_poster.png", alt: "학원 모집 홍보 포스터" },
       rights: [],
       title: "학원 모집 홍보 포스터",
-      desc: "Ideogram(이디오그램)을 활용해서 이미지를 생성하고 variation을 도출해 전체적인 색상을 반영했습니다. 빠르고 높은 취업률을 강점으로 내세운 콘셉트입니다.",
+      desc: "Ideogram을 활용해 이미지를 생성하고 variation을 도출해 전체적인 색상을 반영했습니다. 빠르고 높은 취업률을 강점으로 내세운 콘셉트입니다.",
       topic: "학원 모집 홍보 포스터",
       age: "학원 수강에 관심이 있는 10대 ~ 30대 이상",
-      caption: "학원 모집 홍보 포스터",
+      caption: "",
       link: "#"
     },
-
-    // 기타 작업물6
     {
       left: { src: "images/art_banner1.png", alt: "미대입시닷컴 웹페이지 배너1" },
       rights: [],
@@ -75,11 +64,9 @@
       desc: "미대입시닷컴 웹 페이지별 광고 배너입니다. 그라데이션 포인트를 통일해서 작업했습니다.",
       topic: "미대입시닷컴 웹페이지 배너",
       age: "미대 입시생(10대 ~ 20대), 미술 입시 관련 선생님(20대 이상)",
-      caption: "미대입시닷컴 웹페이지 배너1",
+      caption: "",
       link: "#"
     },
-
-    // 기타 작업물7
     {
       left: { src: "images/art_banner2.png", alt: "미대입시닷컴 웹페이지 배너2" },
       rights: [],
@@ -87,11 +74,9 @@
       desc: "미대입시닷컴 웹 페이지별 광고 배너입니다. 그라데이션 포인트를 통일해서 작업했습니다.",
       topic: "미대입시닷컴 웹페이지 배너",
       age: "미대 입시생(10대 ~ 20대), 미술 입시 관련 선생님(20대 이상)",
-      caption: "미대입시닷컴 웹페이지 배너2",
+      caption: "",
       link: "#"
     },
-
-    // 기타 작업물8
     {
       left: { src: "images/art_banner3.png", alt: "미대입시닷컴 웹페이지 배너3" },
       rights: [],
@@ -99,23 +84,19 @@
       desc: "미대입시닷컴 웹 페이지별 광고 배너입니다. 그라데이션 포인트를 통일해서 작업했습니다.",
       topic: "미대입시닷컴 웹페이지 배너",
       age: "미대 입시생(10대 ~ 20대), 미술 입시 관련 선생님(20대 이상)",
-      caption: "미대입시닷컴 웹페이지 배너3",
+      caption: "",
       link: "#"
     },
-
-    // 기타 작업물9
     {
       left: { src: "images/game_banner_260121.png", alt: "게임 배너" },
       rights: [],
       title: "가상의 카트 게임 배너",
-      desc: "가상의 카트 게임 배너를 chatGPT(챗GPT)를 활용해 이미지 생성 후 제작했습니다.",
+      desc: "가상의 카트 게임 배너를 ChatGPT로 이미지 생성 후 제작했습니다.",
       topic: "프로모션/이벤트 배너",
       age: "전 연령(게임 사용자)",
-      caption: "게임 배너 디자인",
+      caption: "",
       link: "#"
     },
-
-    // 기타 작업물10
     {
       left: { src: "images/KartRider_banner.png", alt: "카트라이더 게임 배너" },
       rights: [],
@@ -123,326 +104,258 @@
       desc: "상단 이미지의 카트라이더 게임 배너와 동일하게 포토샵으로 하단 이미지처럼 작업했습니다.",
       topic: "프로모션/게임 배너",
       age: "카트라이더 게임 이용자 및 관심 있는 전 연령대",
-      caption: "게임 배너 디자인",
+      caption: "",
       link: "#"
     },
   ];
 
-  const last = (sel) => {
-    const all = document.querySelectorAll(sel);
-    return all.length ? all[all.length - 1] : null;
-  };
+  const grid = document.getElementById("otherWorksGrid3");
+  if (!grid) return;
 
-  const carousel = last("#otherWorksCarousel");
-  const viewport = last("#otherWorksViewport");
-  const dotsWrap = last("#otherWorksDots");
-  if (!carousel || !viewport || !dotsWrap) return;
+  // ✅ 카드 = 슬라이드 1개
+  grid.innerHTML = OTHER_WORKS_SLIDES.map((s, i) => {
+    const thumb = s.left?.src || "";
+    const alt = s.left?.alt || s.title || "";
+    return `
+      <article class="ow-card" role="button" tabindex="0" data-slide="${i}" aria-label="${s.title} 크게보기">
+        <div class="ow-thumb">
+          <img src="${thumb}" alt="${alt}" loading="lazy" decoding="async">
+        </div>
+        <div class="ow-body">
+          <h3 class="ow-title">${s.title || ""}</h3>
+          <p class="ow-caption">${s.caption || ""}</p>
+        </div>
+      </article>
+    `;
+  }).join("");
 
-  if (carousel.dataset.owInit === "1") return;
-  carousel.dataset.owInit = "1";
+  // ===== 모달 요소 =====
+  const modal = document.getElementById("owModal");
+  const modalImg = document.getElementById("owModalImg");
+    /* =========================
+     ✅ ZOOM(돋보기) + PINCH(모바일 핀치줌)
+  ========================= */
 
-  // 바뀔 텍스트 요소들
-  const titleEl = document.getElementById("otherWorksTitleText");
-  const descEl = document.getElementById("otherWorksDesc");
-  const topicEl = document.getElementById("otherWorksTopic");
-  const ageEl = document.getElementById("otherWorksAge");
-  const captionEl = document.getElementById("otherWorksCaption");
-  const linkEl = document.getElementById("otherWorksLink");
+  // 1) 버튼 만들기(돋보기)
+  const zoomBtn = document.createElement("button");
+  zoomBtn.type = "button";
+  zoomBtn.className = "ow-zoom-btn";
+  zoomBtn.textContent = "🔍";
+  zoomBtn.setAttribute("aria-label", "확대/축소");
+  modalImg.parentElement.appendChild(zoomBtn);
 
-  const updateText = (index) => {
-    const s = OTHER_WORKS_SLIDES[index];
-    if (!s) return;
-    if (titleEl) titleEl.textContent = s.title || "";
-    if (descEl) descEl.textContent = s.desc || "";
-    if (topicEl) topicEl.textContent = s.topic || "";
-    if (ageEl) ageEl.textContent = s.age || "";
-    if (captionEl) captionEl.textContent = s.caption || "";
-    if (linkEl) linkEl.href = s.link || "#";
-  };
+  const figureEl = modalImg.closest(".ow-modal__figure");
 
-  viewport.innerHTML = "";
-  dotsWrap.innerHTML = "";
+  // 2) 확대 상태 변수들
+  let scale = 1;     // 확대 배율
+  let tx = 0;        // x 이동
+  let ty = 0;        // y 이동
 
-  const slideEls = [];
-  const dotBtns = [];
-
-  const createFigure = ({ src, alt }, extraClass = "") => {
-    const figure = document.createElement("figure");
-    figure.className = `other-works-figure ${extraClass}`.trim();
-
-    const img = document.createElement("img");
-    img.src = src;
-    img.alt = alt || "";
-    img.loading = "lazy";
-    img.decoding = "async";
-
-    figure.appendChild(img);
-    return figure;
-  };
-
-  OTHER_WORKS_SLIDES.forEach((slide, idx) => {
-    const article = document.createElement("article");
-    article.className = "other-works-slide";
-    article.setAttribute("aria-label", `슬라이드 ${idx + 1}`);
-
-    const grid = document.createElement("div");
-    grid.className = "other-works-grid";
-
-    const leftWrap = document.createElement("div");
-    leftWrap.className = "other-works-left-wrap";
-    leftWrap.appendChild(createFigure(slide.left, "other-works-figure--left"));
-
-    const stack = document.createElement("div");
-    stack.className = "other-works-stack";
-    (slide.rights || []).forEach((imgObj) => {
-      stack.appendChild(createFigure(imgObj));
-    });
-
-    // ✅ 오른쪽이 비었으면 한 장만 가운데
-    if (!slide.rights || slide.rights.length === 0) {
-      grid.classList.add("is-single");
-    }
-
-    grid.appendChild(leftWrap);
-    grid.appendChild(stack);
-
-    article.appendChild(grid);
-    viewport.appendChild(article);
-    slideEls.push(article);
-
-    const dot = document.createElement("button");
-    dot.type = "button";
-    dot.className = "other-works-dot";
-    dot.dataset.index = String(idx);
-    dot.setAttribute("aria-label", `슬라이드 ${idx + 1}로 이동`);
-    dotsWrap.appendChild(dot);
-    dotBtns.push(dot);
-  });
-
-  // 유틸
   const clamp = (n, min, max) => Math.max(min, Math.min(n, max));
-  const getSlideWidth = () => viewport.clientWidth || 1;
-  const getCurrentIndex = () => clamp(Math.round(viewport.scrollLeft / getSlideWidth()), 0, slideEls.length - 1);
 
-  const scrollToIndex = (index, behavior = "smooth") => {
-    viewport.scrollTo({ left: getSlideWidth() * index, behavior });
+  const apply = () => {
+    modalImg.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
+    figureEl?.classList.toggle("is-zoomed", scale > 1);
   };
 
-  const setActive = (index) => {
-    dotBtns.forEach((btn, i) => btn.setAttribute("aria-current", i === index ? "true" : "false"));
-    updateText(index);
+  const resetZoom = () => {
+    scale = 1; tx = 0; ty = 0;
+    apply();
   };
 
-  setActive(0);
-
-  dotsWrap.addEventListener("click", (e) => {
-    const btn = e.target.closest("button.other-works-dot");
-    if (!btn) return;
-    const index = Number(btn.dataset.index);
-    if (!Number.isFinite(index)) return;
-
-    setActive(index);
-    scrollToIndex(index, "smooth");
+  // 3) 돋보기 버튼 = 확대/원복 토글
+  zoomBtn.addEventListener("click", () => {
+    if (scale === 1) {
+      scale = 2; tx = 0; ty = 0;
+      apply();
+    } else {
+      resetZoom();
+    }
   });
 
-  let raf = 0;
-  viewport.addEventListener("scroll", () => {
-    cancelAnimationFrame(raf);
-    raf = requestAnimationFrame(() => setActive(getCurrentIndex()));
+  // 4) PC: 마우스 휠 확대/축소
+  figureEl?.addEventListener("wheel", (e) => {
+    e.preventDefault();
+    const delta = e.deltaY > 0 ? -0.12 : 0.12;
+    scale = clamp(scale + delta, 1, 4);
+    if (scale === 1) { tx = 0; ty = 0; }
+    apply();
+  }, { passive: false });
+
+  // 5) 공통: 드래그로 이동(확대 상태일 때만)
+  let isDrag = false;
+  let dragStartX = 0;
+  let dragStartY = 0;
+
+  figureEl?.addEventListener("pointerdown", (e) => {
+    if (scale <= 1) return;
+    isDrag = true;
+    dragStartX = e.clientX - tx;
+    dragStartY = e.clientY - ty;
+    figureEl.setPointerCapture?.(e.pointerId);
   });
 
-  const moveSlide = (dir) => {
-    const cur = getCurrentIndex();
-    const next = dir === "next"
-      ? clamp(cur + 1, 0, slideEls.length - 1)
-      : clamp(cur - 1, 0, slideEls.length - 1);
+  figureEl?.addEventListener("pointermove", (e) => {
+    if (!isDrag) return;
+    tx = e.clientX - dragStartX;
+    ty = e.clientY - dragStartY;
+    apply();
+  });
 
-    setActive(next);
-    scrollToIndex(next, "smooth");
+  figureEl?.addEventListener("pointerup", () => {
+    isDrag = false;
+  });
+
+  figureEl?.addEventListener("pointercancel", () => {
+    isDrag = false;
+  });
+
+  // 6) ⭐ 모바일: 두 손가락 핀치 줌
+  // 손가락 두 개의 거리로 확대/축소 계산
+  let pinchStartDist = 0;
+  let pinchStartScale = 1;
+
+  const getDist = (a, b) => {
+    const dx = a.clientX - b.clientX;
+    const dy = a.clientY - b.clientY;
+    return Math.hypot(dx, dy);
   };
 
-  carousel.addEventListener("click", (e) => {
-    const btn = e.target.closest("button.other-works-arrow");
-    if (!btn) return;
-    const dir = btn.dataset.dir;
-    if (dir === "prev" || dir === "next") moveSlide(dir);
+  figureEl?.addEventListener("touchstart", (e) => {
+    if (e.touches.length === 2) {
+      pinchStartDist = getDist(e.touches[0], e.touches[1]);
+      pinchStartScale = scale;
+    }
+  }, { passive: true });
+
+  figureEl?.addEventListener("touchmove", (e) => {
+    if (e.touches.length === 2) {
+      e.preventDefault(); // ⭐ 브라우저 기본 줌 막고 우리가 처리
+      const dist = getDist(e.touches[0], e.touches[1]);
+      const ratio = dist / pinchStartDist;
+      scale = clamp(pinchStartScale * ratio, 1, 4);
+
+      if (scale === 1) { tx = 0; ty = 0; }
+      apply();
+    }
+  }, { passive: false });
+
+  // ✅ 이미지가 바뀌거나 모달 닫힐 때 resetZoom을 호출해야 깔끔해!
+  // 아래 2곳에 resetZoom(); 한 줄씩 추가해줘:
+  // 1) setModalImage() 맨 끝
+  // 2) closeModal() 맨 끝
+
+  const modalThumbs = document.getElementById("owModalThumbs");
+  const modalTitle = document.getElementById("owModalTitle");
+  const modalDesc = document.getElementById("owModalDesc");
+  const modalTopic = document.getElementById("owModalTopic");
+  const modalAge = document.getElementById("owModalAge");
+  const modalLink = document.getElementById("owModalLink");
+  const prevBtn = document.getElementById("owPrev");
+  const nextBtn = document.getElementById("owNext");
+
+  let currentSlide = 0;
+  let currentImg = 0;
+  let currentImages = [];
+
+  const buildImages = (slide) => {
+    const s = OTHER_WORKS_SLIDES[slide];
+    const imgs = [];
+    if (s?.left) imgs.push(s.left);
+    (s?.rights || []).forEach((r) => imgs.push(r));
+    return imgs;
+  };
+
+  const renderThumbs = () => {
+    if (!modalThumbs) return;
+    modalThumbs.innerHTML = currentImages.map((im, idx) => {
+      return `
+        <button class="ow-modal__thumb ${idx === currentImg ? "is-active" : ""}" type="button" data-img="${idx}" aria-label="이미지 ${idx + 1}">
+          <img src="${im.src}" alt="">
+        </button>
+      `;
+    }).join("");
+  };
+
+  const setModalImage = (idx) => {
+    currentImg = Math.max(0, Math.min(idx, currentImages.length - 1));
+    const im = currentImages[currentImg];
+    modalImg.src = im.src;
+    modalImg.alt = im.alt || OTHER_WORKS_SLIDES[currentSlide]?.title || "";
+    renderThumbs();
+    resetZoom();
+  };
+
+  const openModal = (slideIndex) => {
+    currentSlide = Math.max(0, Math.min(slideIndex, OTHER_WORKS_SLIDES.length - 1));
+    const s = OTHER_WORKS_SLIDES[currentSlide];
+
+    currentImages = buildImages(currentSlide);
+    currentImg = 0;
+
+    modalTitle.textContent = s.title || "";
+    modalDesc.textContent = s.desc || "";
+    modalTopic.textContent = s.topic || "";
+    modalAge.textContent = s.age || "";
+    modalLink.href = s.link || "#";
+
+    modal.classList.add("image-only"); // ⭐ 사진만 크게 보기
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+
+    setModalImage(0);
+  };
+
+  const closeModal = () => {
+    modal.classList.remove("is-open");
+    modal.classList.remove("image-only"); // ⭐ 원래 상태로 되돌리기
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    resetZoom();
+  };
+
+  const moveImg = (dir) => {
+    const next = dir === "next" ? currentImg + 1 : currentImg - 1;
+    if (next < 0 || next > currentImages.length - 1) return;
+    setModalImage(next);
+  };
+
+  // 카드 클릭/엔터
+  grid.addEventListener("click", (e) => {
+    const card = e.target.closest(".ow-card");
+    if (!card) return;
+    openModal(Number(card.dataset.slide));
   });
 
-  carousel.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowLeft") { e.preventDefault(); moveSlide("prev"); }
-    if (e.key === "ArrowRight") { e.preventDefault(); moveSlide("next"); }
+  grid.addEventListener("keydown", (e) => {
+    const card = e.target.closest(".ow-card");
+    if (!card) return;
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      openModal(Number(card.dataset.slide));
+    }
   });
 
-  // 리사이즈 보정
-  window.addEventListener("resize", () => {
-    const idx = getCurrentIndex();
-    scrollToIndex(idx, "auto");
+  // 모달 닫기(배경/닫기버튼)
+  modal.addEventListener("click", (e) => {
+    if (e.target?.dataset?.close === "true") closeModal();
+
+    // 썸네일 클릭
+    const t = e.target.closest(".ow-modal__thumb");
+    if (t && t.dataset.img) setModalImage(Number(t.dataset.img));
+  });
+
+  // 이전/다음(이미지용으로 사용)
+  prevBtn?.addEventListener("click", () => moveImg("prev"));
+  nextBtn?.addEventListener("click", () => moveImg("next"));
+
+  // ESC / 좌우키(이미지 이동)
+  window.addEventListener("keydown", (e) => {
+    if (!modal.classList.contains("is-open")) return;
+    if (e.key === "Escape") closeModal();
+    if (e.key === "ArrowLeft") moveImg("prev");
+    if (e.key === "ArrowRight") moveImg("next");
   });
 })();
 
-
-/* =========================
-   Other Works Mobile UX
-   - 모바일 스와이프
-   - 도트 생성/활성화
-   - 스크롤 멈추면 자동 스냅
-========================= */
-document.addEventListener('DOMContentLoaded', () => {
-  const viewport = document.getElementById('otherWorksViewport');
-  const dotsWrap = document.getElementById('otherWorksDots');
-
-  if (!viewport || !dotsWrap) return;
-
-  // 슬라이드들(직접 자식 기준)
-  const slides = Array.from(viewport.children);
-  if (!slides.length) return;
-
-  // 현재 인덱스
-  let index = 0;
-
-  // === 도트 만들기(이미 있으면 재생성 안 함) ===
-  if (dotsWrap.children.length === 0) {
-    slides.forEach((_, i) => {
-      const b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'other-works-dot';
-      b.setAttribute('aria-label', `${i + 1}번째 슬라이드`);
-      b.addEventListener('click', () => snapTo(i, true));
-      dotsWrap.appendChild(b);
-    });
-  }
-  const dots = Array.from(dotsWrap.children);
-
-  function setActiveDot(i){
-    dots.forEach((d, idx) => d.classList.toggle('is-active', idx === i));
-  }
-
-  // === 스냅(자동 정렬) ===
-  function snapTo(i, smooth = true){
-    index = Math.max(0, Math.min(i, slides.length - 1));
-    const w = viewport.clientWidth;
-    viewport.scrollTo({
-      left: index * w,
-      behavior: smooth ? 'smooth' : 'auto'
-    });
-    setActiveDot(index);
-  }
-
-  // 처음 도트 활성화
-  setActiveDot(0);
-
-  // === 스크롤 멈추면 가장 가까운 슬라이드로 자동 스냅 ===
-  let scrollTimer = null;
-  viewport.addEventListener('scroll', () => {
-    clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(() => {
-      const w = viewport.clientWidth || 1;
-      const i = Math.round(viewport.scrollLeft / w);
-      snapTo(i, true);
-    }, 120);
-  }, { passive: true });
-
-  // === 모바일 스와이프(터치) ===
-  let startX = 0;
-  let moved = 0;
-
-  viewport.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX;
-    moved = 0;
-    viewport.classList.add('is-swiping');
-  }, { passive: true });
-
-  viewport.addEventListener('touchmove', (e) => {
-    moved = e.touches[0].clientX - startX; // +면 오른쪽으로 드래그
-  }, { passive: true });
-
-  viewport.addEventListener('touchend', () => {
-    viewport.classList.remove('is-swiping');
-
-    // 현재 위치 기반 index 업데이트
-    const w = viewport.clientWidth || 1;
-    const current = Math.round(viewport.scrollLeft / w);
-
-    // 스와이프 임계값
-    const TH = 50;
-
-    if (Math.abs(moved) < TH) {
-      // 살짝 건드림: 제자리 스냅
-      snapTo(current, true);
-      return;
-    }
-
-    if (moved < 0) {
-      // 왼쪽으로 스와이프(다음)
-      if (current >= slides.length - 1) {
-        // 끝에서 탄성 느낌
-        viewport.style.setProperty('--nudge', '-10px');
-        viewport.classList.remove('edge-nudge'); void viewport.offsetWidth;
-        viewport.classList.add('edge-nudge');
-        snapTo(current, true);
-      } else {
-        snapTo(current + 1, true);
-      }
-    } else {
-      // 오른쪽으로 스와이프(이전)
-      if (current <= 0) {
-        viewport.style.setProperty('--nudge', '10px');
-        viewport.classList.remove('edge-nudge'); void viewport.offsetWidth;
-        viewport.classList.add('edge-nudge');
-        snapTo(current, true);
-      } else {
-        snapTo(current - 1, true);
-      }
-    }
-  }, { passive: true });
-
-  // 화면 리사이즈되면 현재 index 위치 재정렬
-  window.addEventListener('resize', () => snapTo(index, false));
-});
-
-
-/* =========================
-   PC 마우스 드래그 슬라이드
-========================= */
-document.addEventListener('DOMContentLoaded', () => {
-  const viewport = document.getElementById('otherWorksViewport');
-  if (!viewport) return;
-
-  let isDown = false;
-  let startX = 0;
-  let scrollLeft = 0;
-
-  viewport.addEventListener('mousedown', (e) => {
-    isDown = true;
-    viewport.classList.add('is-swiping');
-    startX = e.pageX;
-    scrollLeft = viewport.scrollLeft;
-  });
-
-  viewport.addEventListener('mouseleave', () => {
-    isDown = false;
-    viewport.classList.remove('is-swiping');
-  });
-
-  viewport.addEventListener('mouseup', () => {
-    isDown = false;
-    viewport.classList.remove('is-swiping');
-
-    /* 드래그 끝나면 가장 가까운 슬라이드로 스냅 */
-    const w = viewport.clientWidth || 1;
-    const index = Math.round(viewport.scrollLeft / w);
-    viewport.scrollTo({
-      left: index * w,
-      behavior: 'smooth'
-    });
-  });
-
-  viewport.addEventListener('mousemove', (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-
-    const x = e.pageX;
-    const walk = (x - startX) * 1.1; // 드래그 감도
-    viewport.scrollLeft = scrollLeft - walk;
-  });
-});

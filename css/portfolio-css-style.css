@@ -1012,3 +1012,362 @@ html, body{
   max-width: 100%;
   overflow-x: hidden;
 }
+
+
+
+
+/* ===================================
+   Other Works (3단 갤러리) - NEW
+=================================== */
+.other-works-header{
+  margin-bottom: 22px;
+}
+.other-works-sub{
+  margin: 10px 0 0;
+  font-family: 'pretendard';
+  font-size: 1rem;
+  opacity: .7;
+}
+
+/* 3단 그리드 */
+.other-works-grid3{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 10px;
+}
+
+/* 카드 */
+.ow-card{
+  border-radius: var(--radius-3xl);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.ow-card:hover{
+  transform: translateY(-4px);
+}
+
+/* 썸네일 */
+.ow-thumb{
+  aspect-ratio: 4 / 3;       /* ⭐ 보기 좋은 비율(원하면 바꿔도 됨) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.ow-thumb img{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 카드 텍스트 */
+.ow-body{
+  padding: 16px 16px 18px;
+}
+.ow-title{
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--color-subcolor);
+  margin: 0 0 6px;
+}
+.ow-caption{
+  font-family: 'pretendard';
+  font-size: 0.95rem;
+  opacity: .75;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* 반응형: 태블릿 2단 / 모바일 1단 */
+@media (max-width: 1024px){
+  .other-works-grid3{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px){
+  .other-works-grid3{ grid-template-columns: 1fr; }
+}
+
+/* ===================================
+   라이트박스(모달)
+=================================== */
+.ow-modal{
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: none;
+}
+.ow-modal.is-open{ display: block; }
+
+.ow-modal__backdrop{
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+}
+
+.ow-modal__panel{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  width: min(1100px, 92vw);
+  max-height: 88vh;
+  background: #fff;
+  border-radius: 28px;
+  overflow: hidden;
+
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+}
+
+.ow-modal__close{
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(255,255,255,0.9);
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.ow-modal__figure{
+  position: relative;
+  margin: 0;
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ow-modal__figure img{
+  width: 100%;
+  height: 100%;
+  max-height: 88vh;
+  object-fit: contain; /* 모달은 원본 비율 유지 */
+  display: block;
+}
+
+.ow-modal__info{
+  padding: 22px 22px 20px;
+  overflow: auto;
+}
+.ow-modal__title{
+  margin: 0 0 12px;
+  font-size: 1.4rem;
+  font-weight: 900;
+}
+.ow-modal__meta{
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+.ow-modal__row{
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+.ow-modal__row dt{
+  font-family: 'pretendard';
+  font-weight: 800;
+  opacity: .85;
+}
+.ow-modal__row dd{
+  margin: 0;
+  font-family: 'pretendard';
+  line-height: 1.6;
+  opacity: .9;
+}
+
+.ow-modal__link{
+  margin-top: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  padding: 0 18px;
+  border-radius: 999px;
+  background: var(--color-purple);
+  color: #fff;
+  font-weight: 800;
+  width: 100%;
+}
+
+/* 모달 이전/다음 */
+.ow-modal__nav{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  border: 0;
+  background: rgba(255,255,255,0.9);
+  font-size: 34px;
+  cursor: pointer;
+}
+.ow-modal__nav--prev{ left: 12px; }
+.ow-modal__nav--next{ right: 12px; }
+
+/* 모바일에서는 모달을 1열로 */
+@media (max-width: 900px){
+  .ow-modal__panel{
+    grid-template-columns: 1fr;
+    width: min(760px, 92vw);
+  }
+  .ow-modal__figure img{
+    max-height: 52vh;
+  }
+}
+
+/* 모달 썸네일 줄 */
+.ow-modal__thumbs{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 10px;
+  display: flex;
+  gap: 10px;
+  padding: 0 12px;
+  justify-content: center;
+  z-index: 2;
+}
+
+.ow-modal__thumb{
+  width: 54px;
+  height: 40px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid rgba(255,255,255,0.55);
+  opacity: 0.8;
+  cursor: pointer;
+  background: rgba(0,0,0,0.25);
+}
+
+.ow-modal__thumb img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ow-modal__thumb.is-active{
+  opacity: 1;
+  border-color: rgba(255,255,255,0.95);
+}
+
+.ow-thumb{
+  position: relative;
+}
+
+.ow-thumb::after{
+  content: "자세히 보기";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: white;
+  font-weight: 800;
+  background: rgba(0,0,0,0.5);
+  opacity: 0;
+}
+
+.ow-card:hover .ow-thumb::after{
+  opacity: 1;
+}
+
+.ow-modal.image-only .ow-modal__info{
+  display: none;
+}
+
+.ow-modal.image-only .ow-modal__figure img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* =========================
+   모달을 "이미지 전용"으로
+========================= */
+
+/* 모달 전체를 이미지 하나처럼 */
+.ow-modal.image-only .ow-modal__panel{
+  display: block;          /* grid 없애기 */
+  width: 90vw;
+  max-width: 1200px;
+  height: auto;
+  padding: 0;
+}
+
+/* 오른쪽 정보 영역 완전 제거 */
+.ow-modal.image-only .ow-modal__info{
+  display: none;
+}
+
+/* 이미지 감싸는 영역 */
+.ow-modal.image-only .ow-modal__figure{
+  width: 100%;
+  height: auto;
+  background: #000;
+}
+
+/* ⭐ 핵심: 이미지만 100% */
+.ow-modal.image-only .ow-modal__figure img{
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* 좌우 버튼도 필요 없으면 숨기기 */
+.ow-modal.image-only .ow-modal__nav{
+  display: none;
+}
+
+/* =========================
+   모달 확대(줌) 버튼 + 핀치줌용 스타일
+========================= */
+
+/* 돋보기 버튼 */
+.ow-zoom-btn{
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 0;
+  background: rgba(255,255,255,0.92);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  z-index: 10;
+  font-size: 20px;
+}
+
+/* figure가 버튼/드래그를 품게 */
+.ow-modal__figure{
+  position: relative;
+  overflow: hidden;      /* 확대했을 때 밖으로 튀어나가는 거 숨김 */
+  touch-action: none;    /* ⭐ 모바일에서 핀치/드래그를 우리가 받기 */
+}
+
+.ow-modal__figure.is-zoomed{
+  cursor: grab;
+}
+.ow-modal__figure.is-zoomed:active{
+  cursor: grabbing;
+}
+
+/* 이미지: 확대/이동 적용 */
+.ow-modal__figure img{
+  transform-origin: center center;
+  user-select: none;
+  -webkit-user-drag: none;
+  display: block;
+}
