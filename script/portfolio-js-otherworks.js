@@ -7,6 +7,7 @@
 ================================ */
 (() => {
   const OTHER_WORKS_SLIDES = [
+    // 기타 작업물1
     {
       left: { src: "images/nouvedilie1.png", alt: "누베딜리 상세페이지1" },
       rights: [{ src: "images/nouvedilie2.png", alt: "누베딜리 상세페이지2" }],
@@ -18,17 +19,19 @@
       link: "#"
     },
 
+    // 기타 작업물2
     {
       left: { src: "images/nouvedeilie_banner.png", alt: "누베딜리 웹 배너" },
       rights: [],
-      title: "누베딜리 웹페이지 배너",
-      desc: "누베딜리 웹페이지 배너",
+      title: "누베딜리 웹 배너",
+      desc: "누베딜리 웹 배너",
       topic: "일상에서 부담없이 캐주얼하게 착용 가능한 반지",
       age: "30대 ~ 40대 이상",
-      caption: "누베딜리 웹페이지 배너",
+      caption: "누베딜리 웹 배너",
       link: "#"
     },
 
+    // 기타 작업물3
     {
       left: { src: "images/carrot_banner1.png", alt: "당근마켓 웹 배너1" },
       rights: [],
@@ -40,6 +43,7 @@
       link: "#"
     },
 
+    // 기타 작업물4
     {
       left: { src: "images/carrot_banner2.png", alt: "당근마켓 웹 배너2" },
       rights: [],
@@ -51,6 +55,7 @@
       link: "#"
     },
 
+    // 기타 작업물5
     {
       left: { src: "images/green17_poster.png", alt: "학원 모집 홍보 포스터" },
       rights: [],
@@ -62,6 +67,43 @@
       link: "#"
     },
 
+    // 기타 작업물6
+    {
+      left: { src: "images/art_banner1.png", alt: "미대입시닷컴 웹페이지 배너1" },
+      rights: [],
+      title: "미대입시닷컴 웹페이지 배너1",
+      desc: "미대입시닷컴 웹 페이지별 광고 배너입니다. 그라데이션 포인트를 통일해서 작업했습니다.",
+      topic: "미대입시닷컴 웹페이지 배너",
+      age: "미대 입시생(10대 ~ 20대), 미술 입시 관련 선생님(20대 이상)",
+      caption: "미대입시닷컴 웹페이지 배너1",
+      link: "#"
+    },
+
+    // 기타 작업물7
+    {
+      left: { src: "images/art_banner2.png", alt: "미대입시닷컴 웹페이지 배너2" },
+      rights: [],
+      title: "미대입시닷컴 웹페이지 배너2",
+      desc: "미대입시닷컴 웹 페이지별 광고 배너입니다. 그라데이션 포인트를 통일해서 작업했습니다.",
+      topic: "미대입시닷컴 웹페이지 배너",
+      age: "미대 입시생(10대 ~ 20대), 미술 입시 관련 선생님(20대 이상)",
+      caption: "미대입시닷컴 웹페이지 배너2",
+      link: "#"
+    },
+
+    // 기타 작업물8
+    {
+      left: { src: "images/art_banner3.png", alt: "미대입시닷컴 웹페이지 배너3" },
+      rights: [],
+      title: "미대입시닷컴 웹페이지 배너3",
+      desc: "미대입시닷컴 웹 페이지별 광고 배너입니다. 그라데이션 포인트를 통일해서 작업했습니다.",
+      topic: "미대입시닷컴 웹페이지 배너",
+      age: "미대 입시생(10대 ~ 20대), 미술 입시 관련 선생님(20대 이상)",
+      caption: "미대입시닷컴 웹페이지 배너3",
+      link: "#"
+    },
+
+    // 기타 작업물9
     {
       left: { src: "images/game_banner_260121.png", alt: "게임 배너" },
       rights: [],
@@ -69,7 +111,19 @@
       desc: "가상의 카트 게임 배너를 chatGPT(챗GPT)를 활용해 이미지 생성 후 제작했습니다.",
       topic: "프로모션/이벤트 배너",
       age: "전 연령(게임 사용자)",
-      caption: "배너 디자인",
+      caption: "게임 배너 디자인",
+      link: "#"
+    },
+
+    // 기타 작업물10
+    {
+      left: { src: "images/KartRider_banner.png", alt: "카트라이더 게임 배너" },
+      rights: [],
+      title: "카트라이더 게임 배너",
+      desc: "상단 이미지의 카트라이더 게임 배너와 동일하게 포토샵으로 하단 이미지처럼 작업했습니다.",
+      topic: "프로모션/게임 배너",
+      age: "카트라이더 게임 이용자 및 관심 있는 전 연령대",
+      caption: "게임 배너 디자인",
       link: "#"
     },
   ];
