@@ -305,3 +305,219 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+/* ===================================
+   footer 연락처: 복사 + 앱 열기 + 모달 팝업
+   ✅ 클릭 -> 모달 뜸 -> [복사하고 열기] 누르면
+      1) 클립보드 복사
+      2) 전화앱/메일앱 열기
+=================================== */
+(() => {
+  // 1) 대상 찾기
+  const items = Array.from(document.querySelectorAll(".footer-contact .contact-item"));
+
+  // 2) 복사 함수 (실패 대비 포함)
+  const copyText = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.left = "-9999px";
+      document.body.appendChild(ta);
+      ta.select();
+      const ok = document.execCommand("copy");
+      document.body.removeChild(ta);
+      return ok;
+    }
+  };
+
+  // 3) 모달 HTML 생성
+  const modal = document.createElement("div");
+  modal.id = "copyModal";
+  modal.style.cssText = `
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  `;
+  modal.innerHTML = `
+    <div class="copy-modal__backdrop" style="
+      position:absolute; inset:0;
+      background: rgba(0,0,0,0.55);
+    "></div>
+
+    <div class="copy-modal__panel" role="dialog" aria-modal="true" style="
+      position: relative;
+      width: min(420px, 100%);
+      background: #fff;
+      border-radius: 18px;
+      padding: 18px 18px 14px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+      transform: translateY(8px);
+    ">
+      <button type="button" class="copy-modal__close" aria-label="닫기" style="
+        position:absolute; top:10px; right:10px;
+        width: 36px; height: 36px;
+        border-radius: 999px;
+        border: 1px solid #e8e8e8;
+        background: #fff;
+        font-size: 18px;
+        cursor: pointer;
+      ">×</button>
+
+      <div class="copy-modal__title" style="
+        font-weight: 800;
+        font-size: 16px;
+        margin: 6px 0 8px;
+        color: #111;
+      ">복사할까요?</div>
+
+      <div class="copy-modal__desc" style="
+        font-size: 14px;
+        color: #333;
+        line-height: 1.4;
+        margin-bottom: 12px;
+      "></div>
+
+      <div class="copy-modal__value" style="
+        font-size: 14px;
+        color: #111;
+        background: #f6f6f6;
+        border: 1px solid #ededed;
+        border-radius: 12px;
+        padding: 10px 12px;
+        margin-bottom: 12px;
+        word-break: break-all;
+      "></div>
+
+      <div class="copy-modal__actions" style="
+        display:flex;
+        gap: 10px;
+        justify-content: flex-end;
+      ">
+        <button type="button" class="copy-modal__cancel" style="
+          padding: 10px 12px;
+          border-radius: 12px;
+          border: 1px solid #e6e6e6;
+          background: #fff;
+          cursor: pointer;
+          font-weight: 700;
+        ">취소</button>
+
+        <button type="button" class="copy-modal__ok" style="
+          padding: 10px 12px;
+          border-radius: 12px;
+          border: 0;
+          background: #111;
+          color: #fff;
+          cursor: pointer;
+          font-weight: 800;
+        ">복사하고 열기</button>
+      </div>
+
+      <div class="copy-modal__hint" style="
+        margin-top: 10px;
+        font-size: 12px;
+        color: #666;
+      ">* 버튼을 누르면 복사 후 앱이 열려요.</div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+
+  const backdrop = modal.querySelector(".copy-modal__backdrop");
+  const closeBtn = modal.querySelector(".copy-modal__close");
+  const cancelBtn = modal.querySelector(".copy-modal__cancel");
+  const okBtn = modal.querySelector(".copy-modal__ok");
+  const descEl = modal.querySelector(".copy-modal__desc");
+  const valueEl = modal.querySelector(".copy-modal__value");
+
+  // 4) 토스트(하단 팝업)도 같이 만들기
+  const toast = document.createElement("div");
+  toast.id = "copyToast";
+  toast.style.cssText = `
+    position: fixed;
+    left: 50%;
+    bottom: 26px;
+    transform: translateX(-50%);
+    background: rgba(20,20,20,0.92);
+    color: #fff;
+    padding: 12px 16px;
+    border-radius: 14px;
+    font-size: 14px;
+    z-index: 10000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s ease, transform .25s ease;
+  `;
+  document.body.appendChild(toast);
+
+  let toastTimer = null;
+  const showToast = (msg) => {
+    toast.textContent = msg;
+    toast.style.opacity = "1";
+    toast.style.transform = "translateX(-50%) translateY(-6px)";
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      toast.style.opacity = "0";
+      toast.style.transform = "translateX(-50%) translateY(0)";
+    }, 1200);
+  };
+
+  // 5) 모달 열고 닫기
+  let pending = { copy: "", action: "", label: "" };
+
+  const openModal = ({ copy, action, label }) => {
+    pending = { copy, action, label };
+    descEl.textContent = label === "전화번호"
+      ? "전화번호를 클립보드에 복사하고, 전화 앱을 열까요?"
+      : "이메일을 클립보드에 복사하고, 메일 앱을 열까요?";
+    valueEl.textContent = copy;
+
+    modal.style.display = "flex";
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeModal = () => {
+    modal.style.display = "none";
+    document.body.style.overflow = "";
+  };
+
+  backdrop.addEventListener("click", closeModal);
+  closeBtn.addEventListener("click", closeModal);
+  cancelBtn.addEventListener("click", closeModal);
+
+  // 6) 핵심: [복사하고 열기]
+  okBtn.addEventListener("click", async () => {
+    const ok = await copyText(pending.copy);
+    showToast(ok ? `${pending.label} 복사 완료! 📋` : `복사 실패 😢`);
+
+    // ✅ 앱 열기: 새 탭 느낌으로 막히는 경우가 있어 "동일 탭"으로 호출
+    // - 모바일은 보통 바로 열림
+    // - PC는 tel: 은 앱이 없으면 반응이 없을 수도 있음(정상)
+    if (pending.action) {
+      // 약간의 딜레이를 주면 복사 후 열기가 안정적
+      setTimeout(() => {
+        window.location.href = pending.action;
+      }, 150);
+    }
+
+    closeModal();
+  });
+
+  // 7) 각 contact-item에 클릭 이벤트 걸기
+  const bind = (el) => {
+    const copy = el.dataset.copy || el.textContent.trim();
+    const action = el.dataset.action || "";
+    const label = el.id === "copyPhone" ? "전화번호" : "이메일";
+
+    el.style.cursor = "pointer";
+    el.addEventListener("click", () => openModal({ copy, action, label }));
+  };
+
+  items.forEach(bind);
+})();

@@ -1529,3 +1529,10 @@ html, body{
   border-radius: 18px; /* 둥근거 싫으면 0 */
 }
 
+.footer-contact .contact-item{
+  cursor: pointer;
+}
+
+.footer-contact .contact-item:hover{
+  opacity: 0.75;
+}
