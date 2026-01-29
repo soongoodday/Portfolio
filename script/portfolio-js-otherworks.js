@@ -30,7 +30,7 @@
     {
       left: { src: "images/university_brochure1.jpg", alt: "중앙대학교 리플렛" },
       rights: [{src: "images/university_brochure2.jpg", alt: "중앙대학교 리플렛" }],
-      title: "중앙대학교 리플렛",
+      title: "중앙대학교 리플렛(2장)",
       desc: "중앙대학교 리플렛",
       topic: "",
       age: "",
@@ -39,18 +39,8 @@
     },
     {
       left: { src: "images/carrot_banner1.png", alt: "당근마켓 웹 배너1" },
-      rights: [],
-      title: "당근마켓 웹 배너1",
-      desc: "당근마켓의 메인 컬러와 캐릭터를 활용해서 구인 목적으로 띄우는 광고 배너를 작업했습니다.",
-      topic: "프로모션/이벤트 배너",
-      age: "당근마켓을 사용하는 전 연령대 사용자",
-      caption: "",
-      link: "#"
-    },
-    {
-      left: { src: "images/carrot_banner2.png", alt: "당근마켓 웹 배너2" },
-      rights: [],
-      title: "당근마켓 웹 배너2",
+      rights: [{ src: "images/carrot_banner2.png", alt: "당근마켓 웹 배너2" }],
+      title: "당근마켓 웹 배너(2개)",
       desc: "당근마켓의 메인 컬러와 캐릭터를 활용해서 구인 목적으로 띄우는 광고 배너를 작업했습니다.",
       topic: "프로모션/이벤트 배너",
       age: "당근마켓을 사용하는 전 연령대 사용자",
@@ -69,28 +59,10 @@
     },
     {
       left: { src: "images/art_banner1.png", alt: "미대입시닷컴 웹페이지 배너1" },
-      rights: [],
-      title: "미대입시닷컴 웹페이지 배너1",
-      desc: "미대입시닷컴 웹 페이지별 광고 배너입니다. 그라데이션 포인트를 통일해서 작업했습니다.",
-      topic: "미대입시닷컴 웹페이지 배너",
-      age: "미대 입시생(10대 ~ 20대), 미술 입시 관련 선생님(20대 이상)",
-      caption: "",
-      link: "#"
-    },
-    {
-      left: { src: "images/art_banner2.png", alt: "미대입시닷컴 웹페이지 배너2" },
-      rights: [],
-      title: "미대입시닷컴 웹페이지 배너2",
-      desc: "미대입시닷컴 웹 페이지별 광고 배너입니다. 그라데이션 포인트를 통일해서 작업했습니다.",
-      topic: "미대입시닷컴 웹페이지 배너",
-      age: "미대 입시생(10대 ~ 20대), 미술 입시 관련 선생님(20대 이상)",
-      caption: "",
-      link: "#"
-    },
-    {
-      left: { src: "images/art_banner3.png", alt: "미대입시닷컴 웹페이지 배너3" },
-      rights: [],
-      title: "미대입시닷컴 웹페이지 배너3",
+      rights: [{ src: "images/art_banner2.png", alt: "미대입시닷컴 웹페이지 배너2" },
+                { src: "images/art_banner3.png", alt: "미대입시닷컴 웹페이지 배너3" }
+      ],  
+      title: "미대입시닷컴 웹페이지 배너(3개)",
       desc: "미대입시닷컴 웹 페이지별 광고 배너입니다. 그라데이션 포인트를 통일해서 작업했습니다.",
       topic: "미대입시닷컴 웹페이지 배너",
       age: "미대 입시생(10대 ~ 20대), 미술 입시 관련 선생님(20대 이상)",
