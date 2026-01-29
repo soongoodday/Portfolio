@@ -270,7 +270,7 @@ body{
 .section-line{
   width: 0.75rem;
   height: 13rem;
-  background-color: var(--color-subcolor2);
+  background-color: #3b82f6;
   border-radius: var(--radius-full);
   flex-shrink: 0;
 }
@@ -278,8 +278,9 @@ body{
 .section-title{
   font-size: var(--font-4xl);
   font-weight: var(--font-black);
-  color: var(--color-subcolor2);
+  color: #3b82f6;
   margin-bottom: var(--spacing-md);
+  
 }
 
 .section-subtitle{
@@ -984,7 +985,7 @@ body{
   border-radius: 14px;
   background: #fff;
   border: 1px solid #e3e3e3;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+  /* box-shadow: 0 4px 14px rgba(0,0,0,0.04); */
   font-size: 1.05rem;
   font-weight: var(--font-medium);
 }
