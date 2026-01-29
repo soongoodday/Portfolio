@@ -1094,11 +1094,12 @@ html, body{
   justify-content: center;
   overflow: hidden;
 }
+
 .ow-thumb img{
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 /* 카드 텍스트 */
