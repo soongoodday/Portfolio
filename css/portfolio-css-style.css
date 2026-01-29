@@ -12,6 +12,7 @@ body{
   background-color: var(--color-bg);
   color: var(--color-subcolor);
   font-family: 'Escoredream';
+  padding-top: 80px;
 }
 
 /* Layout */
@@ -138,49 +139,57 @@ body{
    Hero
 =================================== */
 .hero{
-  margin-top: 150px; /* fixed header 보정 */
+  margin-top: 0; /* fixed header 보정 */
 }
 
 .hero__inner{
-  padding: 40px 0 80px;
+  padding: 0 80px;
 }
 
 .hero_text{
   font-family: 'BagelFat';
-  font-size: clamp(4.5rem, 10vw, 15rem);
+  font-size: clamp(3.8rem, 8vw, 12rem);
   text-align: center;
-  letter-spacing: -0.05em;
-  line-height: 0.9;
-  color: #283F6E;
-
-  text-shadow:
-    -0.10em 0 0 #fff,
-     0.10em 0 0 #fff,
-     0 -0.10em 0 #fff,
-     0 0.10em 0 #fff,
-    -0.07em -0.07em 0 #fff,
-     0.07em -0.07em 0 #fff,
-    -0.07em  0.07em 0 #fff,
-     0.07em  0.07em 0 #fff,
-     0.09em 0.13em 0.25em rgba(85,119,174,0.45);
+  line-height: 1.05;
+  padding: 0.3em 0 0.15em; /* ⬅️ 위 여백 늘림 */
 }
 
-.hero_text span{ color: #5577ae; }
+
+.hero_text span{
+  display: block;
+}
+
+/* Web Designer */
+.hero_en{
+  font-family: 'LaundryGothic';
+  font-size: clamp(2.2rem, 5vw, 5.2rem);
+  margin-bottom: 0.1em; /* 살짝만 띄우기 */
+  font-weight: 700;
+}
+
+/* 성경은 */
+.hero_kr{
+  font-family: 'LaundryGothic';
+  font-size: clamp(2.2rem, 5vw, 5.2rem);
+  font-weight: 700;
+  margin-top: 0.15em;
+}
 
 .hero__content{
-  margin-top: 10px;
   width: 100%;
 }
 
 .hero_img{
   display: flex;
   justify-content: center;
-  margin-top: 50px;
-}
-.hero_img img{
   width: 100%;
-  max-width: 420px;
+}
+
+.hero_img img{
+  width: clamp(280px, 38vw, 560px); /* ⭐ 모바일~웹 자동 */
+  max-width: 100%;
   height: auto;
+  display: block;
 }
 
 /* 소개 영역(가운데 정렬) */
@@ -188,9 +197,8 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 24px;
   max-width: 780px;
-  margin: 50px auto 0;
+  margin: 0 auto;
 }
 
 .hero_box,
@@ -203,8 +211,8 @@ body{
 }
 
 .hero_box_intro{
-  font-size: clamp(1.1rem, 1.8vw, 2rem);
-  line-height: 1.8;
+  font-size: clamp(1.05rem, 1.6vw, 1.6rem);
+  line-height: 1.75;
   font-weight: 500;
   color: #283F6E;
   margin: 0 0 14px;
@@ -216,14 +224,31 @@ body{
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  border: 2px solid #283F6E;
+  /* border: 2px solid #283F6E; */
   border-radius: 999px;
-  padding: 10px 16px;
+  padding: 10px 40px;
   background: transparent;
   cursor: pointer;
-  font-weight: 700;
-  color: #283F6E;
-  font-size: 1.5rem;
+  font-weight: 400;
+  color: #fff;
+  font-size: 1.4rem;
+  background: linear-gradient(
+    90deg,
+    #6a5cff,
+    #3b82f6
+    /* #22c1c3 */
+  );
+}
+
+.hero_text{
+  background: linear-gradient(
+    90deg,
+    #6a5cff,
+    #3b82f6,
+    #22c1c3
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* ===================================
@@ -1153,7 +1178,6 @@ html, body{
 
 
 .ow-modal__figure{
-  position: relative;
   margin: 0;
   background: #111;
   display: flex;
@@ -1165,7 +1189,6 @@ html, body{
   height: 100%;
   max-height: 88vh;
   object-fit: contain; /* 모달은 원본 비율 유지 */
-  display: block;
 }
 
 .ow-modal__info{
@@ -1365,7 +1388,6 @@ html, body{
 
 /* figure가 버튼/드래그를 품게 */
 .ow-modal__figure{
-  position: relative;
   overflow: hidden;      /* 확대했을 때 밖으로 튀어나가는 거 숨김 */
   touch-action: none;    /* ⭐ 모바일에서 핀치/드래그를 우리가 받기 */
 }
@@ -1382,7 +1404,6 @@ html, body{
   transform-origin: center center;
   user-select: none;
   -webkit-user-drag: none;
-  display: block;
 }
 
 /* =========================
@@ -1390,44 +1411,20 @@ html, body{
 ========================= */
 @media (max-width: 768px){
 
-  /* 돋보기 버튼 숨기기 */
-  .ow-zoom-btn{
-    display: none;
+  .hero_text {
+    padding-top: 0.5em;
   }
 
-  /* 모달 패널 둥근 모서리 제거 */
-  .ow-modal__panel{
-    border-radius: 0;
-    width: 100vw;
-    height: 100vh;
-    max-height: 100vh;
+  .hero_box_scrollButton{
+    font-size: 1.0rem;     /* ⬇️ 글자 줄이기 */
+    padding: 10px 18px;     /* ⬇️ 버튼 크기 줄이기 */
+    gap: 6px;
   }
 
-  /* 이미지 감싸는 영역도 꽉 */
-  .ow-modal__figure{
-    width: 100vw;
-    height: 100vh;
-    border-radius: 0;
-  }
-
-  /* ⭐ 이미지 진짜 크게 */
-  .ow-modal__figure img{
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* 잘리지 않게 */
-    border-radius: 0;
-  }
-
-  .ow-modal__close{
-    width: 48px;
-    height: 48px;
-    font-size: 30px;
-  }
-
-  .ow-thumb{
-    aspect-ratio: auto; /* 모바일 */
-  }
+  .hero_en{ font-size: 2.6rem; }
+  .hero_kr{ font-size: 2.1rem; }
 }
+
 
 /* =========================
    태블릿 이하: 이미지 전용 풀스크린 모달
@@ -1465,7 +1462,6 @@ html, body{
   }
 
   /* 불필요한 UI */
-  .ow-modal__thumbs{ display: none; }
   .ow-zoom-btn{ display: none; }
 }
 
@@ -1495,11 +1491,6 @@ html, body{
 .ow-modal__thumb.is-active{
   opacity: 1;
   border-color: rgba(255,255,255,0.95);
-}
-
-/* ✅ (중요) 너 CSS에 모바일에서 thumbs를 숨기는 코드가 있었음 → 해제 */
-@media (max-width: 1024px){
-  .ow-modal__thumbs{ display: flex; }
 }
 
 /* =========================

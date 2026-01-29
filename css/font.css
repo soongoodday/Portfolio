@@ -255,3 +255,18 @@
     font-weight: normal;
     font-display: swap;
 }
+
+/* 런드리고딕 */
+@font-face {
+    font-family: 'LaundryGothic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicR.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'LaundryGothic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2') format('woff2');
+    font-weight: 700;
+    font-display: swap;
+}
