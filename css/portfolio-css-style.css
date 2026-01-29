@@ -1041,7 +1041,6 @@ html, body{
 
 /* 카드 */
 .ow-card{
-  border-radius: var(--radius-3xl);
   overflow: hidden;
   cursor: pointer;
   transition: transform .2s ease, box-shadow .2s ease;
@@ -1090,6 +1089,7 @@ html, body{
 @media (max-width: 768px){
   .other-works-grid3{ grid-template-columns: 1fr; }
 }
+
 
 /* ===================================
    라이트박스(모달)
@@ -1359,6 +1359,7 @@ html, body{
   cursor: pointer;
   z-index: 10;
   font-size: 20px;
+  display: none;
 }
 
 /* figure가 버튼/드래그를 품게 */
@@ -1421,6 +1422,10 @@ html, body{
     height: 48px;
     font-size: 30px;
   }
+
+  .ow-thumb{
+    aspect-ratio: auto; /* 모바일 */
+  }
 }
 
 /* =========================
@@ -1461,4 +1466,37 @@ html, body{
   /* 불필요한 UI */
   .ow-modal__thumbs{ display: none; }
   .ow-zoom-btn{ display: none; }
+}
+
+/* ✅ 모바일에서도 하단 썸네일 UI 보이게 */
+.ow-modal__thumbs{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 12px;
+  display: flex;
+  gap: 10px;
+  padding: 0 12px;
+  justify-content: center;
+  z-index: 20;
+}
+
+.ow-modal__thumb{
+  width: 56px;
+  height: 42px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid rgba(255,255,255,0.55);
+  opacity: .8;
+  background: rgba(0,0,0,0.25);
+}
+
+.ow-modal__thumb.is-active{
+  opacity: 1;
+  border-color: rgba(255,255,255,0.95);
+}
+
+/* ✅ (중요) 너 CSS에 모바일에서 thumbs를 숨기는 코드가 있었음 → 해제 */
+@media (max-width: 1024px){
+  .ow-modal__thumbs{ display: flex; }
 }

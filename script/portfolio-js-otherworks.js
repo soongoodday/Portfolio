@@ -28,6 +28,16 @@
       link: "#"
     },
     {
+      left: { src: "images/university_brochure1.jpg", alt: "중앙대학교 리플렛" },
+      rights: [{src: "images/university_brochure2.jpg", alt: "중앙대학교 리플렛" }],
+      title: "중앙대학교 리플렛",
+      desc: "중앙대학교 리플렛",
+      topic: "",
+      age: "",
+      caption: "",
+      link: "#"
+    },
+    {
       left: { src: "images/carrot_banner1.png", alt: "당근마켓 웹 배너1" },
       rights: [],
       title: "당근마켓 웹 배너1",
@@ -132,6 +142,8 @@
   // ===== 모달 요소 =====
   const modal = document.getElementById("owModal");
   const modalImg = document.getElementById("owModalImg");
+  
+
     /* =========================
      ✅ ZOOM(돋보기) + PINCH(모바일 핀치줌)
   ========================= */
@@ -273,15 +285,36 @@ if (window.innerWidth <= 1024 && window.innerWidth > 768) {
   };
 
   const renderThumbs = () => {
-    if (!modalThumbs) return;
-    modalThumbs.innerHTML = currentImages.map((im, idx) => {
-      return `
-        <button class="ow-modal__thumb ${idx === currentImg ? "is-active" : ""}" type="button" data-img="${idx}" aria-label="이미지 ${idx + 1}">
-          <img src="${im.src}" alt="">
-        </button>
-      `;
-    }).join("");
-  };
+  if (!modalThumbs) return;
+
+  // ✅ 이미지가 1장이면 thumbs 숨김
+  if (!currentImages || currentImages.length <= 1) {
+    modalThumbs.style.display = "none";
+    modalThumbs.innerHTML = "";
+    return;
+  }
+
+  modal.addEventListener("click", (e) => {
+  const t = e.target.closest(".ow-modal__thumb");
+  if (t && t.dataset.img) setModalImage(Number(t.dataset.img));
+});
+
+
+  // ✅ 2장 이상이면 thumbs 보이기
+  modalThumbs.style.display = "flex";
+
+  modalThumbs.innerHTML = currentImages.map((im, idx) => {
+    return `
+      <button class="ow-modal__thumb ${idx === currentImg ? "is-active" : ""}"
+              type="button"
+              data-img="${idx}"
+              aria-label="이미지 ${idx + 1}">
+        <img src="${im.src}" alt="">
+      </button>
+    `;
+  }).join("");
+};
+
 
   const setModalImage = (idx) => {
     currentImg = Math.max(0, Math.min(idx, currentImages.length - 1));
@@ -343,25 +376,41 @@ if (window.innerWidth <= 1024 && window.innerWidth > 768) {
     }
   });
 
-  // 모달 닫기(배경/닫기버튼)
-  modal.addEventListener("click", (e) => {
-    if (e.target?.dataset?.close === "true") closeModal();
+/* ===================================
+   ✅ 모달 닫기: "이미지 제외한 어디든" 누르면 닫기 (100% 동작)
+   - pointerdown + capture(캡처링)이라 이벤트가 막혀도 무조건 잡힘
+=================================== */
 
-    // 썸네일 클릭
-    const t = e.target.closest(".ow-modal__thumb");
-    if (t && t.dataset.img) setModalImage(Number(t.dataset.img));
-  });
+// (주의) 닫기 버튼이 modal 밖에 있을 수도 있어서 document에서 찾기
+const closeBtn = document.querySelector(".ow-modal__close");
 
-  // 이전/다음(이미지용으로 사용)
-  prevBtn?.addEventListener("click", () => moveImg("prev"));
-  nextBtn?.addEventListener("click", () => moveImg("next"));
+// 닫기 버튼 클릭 -> 닫기 (가장 확실)
+closeBtn?.addEventListener("click", (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  closeModal();
+});
 
-  // ESC / 좌우키(이미지 이동)
-  window.addEventListener("keydown", (e) => {
-    if (!modal.classList.contains("is-open")) return;
-    if (e.key === "Escape") closeModal();
-    if (e.key === "ArrowLeft") moveImg("prev");
-    if (e.key === "ArrowRight") moveImg("next");
-  });
+// ✅ 핵심: 캡처링으로 "어디를 누르든" 먼저 감지
+document.addEventListener("pointerdown", (e) => {
+  // 모달 열려있을 때만 동작
+  if (!modal.classList.contains("is-open")) return;
+
+  // 1) 이미지 클릭이면 닫지 않기
+  if (e.target.closest("#owModalImg")) return;
+
+  // 2) 조작 UI 클릭이면 닫지 않기 (썸네일/이전다음/줌/닫기)
+  if (
+    e.target.closest(".ow-modal__thumb") ||
+    e.target.closest(".ow-modal__nav") ||
+    e.target.closest(".ow-zoom-btn") ||
+    e.target.closest(".ow-modal__close")
+  ) return;
+
+  // ✅ 3) 그 외는 전부 닫기 (패널 여백 포함)
+  closeModal();
+}, true); // ⭐ true = 캡처링(중요)
+
+
 })();
 
