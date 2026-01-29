@@ -939,11 +939,22 @@ body{
   font-size: clamp(2rem, 5.2vw, 4.2rem);
   line-height: 1.9;
   letter-spacing: 0.02em;
-  color: var(--color-subcolor2);
+  color: linear-gradient(
+    90deg,
+    #6a5cff,
+    #3b82f6
+    /* #22c1c3 */
+  );
   font-weight: var(--font-medium);
   margin: 0 0 28px;
   padding: 0;
-  background: transparent;
+  background: linear-gradient(90deg, #6a5cff, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* 크로스 브라우징 대비 */
+  background-clip: text;
+  color: transparent;
   border: 0;
   border-radius: 0;
   box-shadow: none;
