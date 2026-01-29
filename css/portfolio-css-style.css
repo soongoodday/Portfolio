@@ -1500,3 +1500,32 @@ html, body{
 @media (max-width: 1024px){
   .ow-modal__thumbs{ display: flex; }
 }
+
+/* =========================
+   ✅ Portfolio sub-images: 3장씩 가로 스크롤
+========================= */
+.sub-images--scroll3{
+  display: flex;
+  gap: 22px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 10px 0;
+}
+
+/* sub-images 안에 있는 모든 아이템(웹/모바일 div)을 "카드"로 취급 */
+.sub-images--scroll3 > div{
+  flex: 0 0 calc((100% - 44px) / 3); /* ⭐ 한 화면에 3장 (간격 22px * 2 = 44) */
+  scroll-snap-align: start;
+}
+
+/* 이미지 꽉 차게 */
+.sub-images--scroll3 img{
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: 18px; /* 둥근거 싫으면 0 */
+}
+
