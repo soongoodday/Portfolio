@@ -348,8 +348,8 @@ body{
 }
 
 .skill-rating{
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.8rem;
+  height: 2.8rem;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -362,6 +362,7 @@ body{
 .rating-5 { background-color: var(--color-purple); }
 .rating-4 { background-color: #31a8ff; }
 .rating-3 { background-color: #ff4c1e; }
+.rating-2 { background-color: #FF9A00; }
 
 .skill-title{
   font-weight: var(--font-black);
