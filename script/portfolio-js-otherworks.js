@@ -8,6 +8,7 @@
 (() => {
   const OTHER_WORKS_SLIDES = [
     {
+      thumb: { src: "images/nouvedilie_thumb.png", alt: "누베딜리 상세페이지 썸네일" },
       left: { src: "images/nouvedilie1.png", alt: "누베딜리 상세페이지1" },
       rights: [{ src: "images/nouvedilie2.png", alt: "누베딜리 상세페이지2" }],
       title: "누베딜리 상세 페이지",
@@ -15,9 +16,11 @@
       topic: "일상에서 부담없이 캐주얼하게 착용 가능한 반지",
       age: "30대 ~ 40대 이상",
       caption: "",
-      link: "#"
+      link: "#",
+      thumbFit: "contain"
     },
     {
+      thumb: { src: "images/nouvedilie_banner_thumb.png", alt: "누베딜리 웹 배너 썸네일" },
       left: { src: "images/nouvedeilie_banner.png", alt: "누베딜리 웹 배너" },
       rights: [],
       title: "누베딜리 웹 배너",
@@ -25,7 +28,8 @@
       topic: "일상에서 부담없이 캐주얼하게 착용 가능한 반지",
       age: "30대 ~ 40대 이상",
       caption: "",
-      link: "#"
+      link: "#",
+      thumbFit: "contain"
     },
     {
       left: { src: "images/university_brochure1.jpg", alt: "중앙대학교 리플렛" },
@@ -35,9 +39,11 @@
       topic: "",
       age: "",
       caption: "",
-      link: "#"
+      link: "#",
+      thumbFit: "cover"
     },
     {
+      thumb: { src: "images/carrot_thumb1.png", alt: "당근마켓 웹 배너 썸네일" },
       left: { src: "images/carrot_banner1.png", alt: "당근마켓 웹 배너1" },
       rights: [{ src: "images/carrot_banner2.png", alt: "당근마켓 웹 배너2" }],
       title: "당근마켓 웹 배너(2개)",
@@ -45,9 +51,11 @@
       topic: "프로모션/이벤트 배너",
       age: "당근마켓을 사용하는 전 연령대 사용자",
       caption: "",
-      link: "#"
+      link: "#",
+      thumbFit: "contain"
     },
     {
+      thumb: { src: "images/green_thumb.png", alt: "학원 모집 홍보 포스터 썸네일" },
       left: { src: "images/green17_poster.png", alt: "학원 모집 홍보 포스터" },
       rights: [],
       title: "학원 모집 홍보 포스터",
@@ -55,9 +63,11 @@
       topic: "학원 모집 홍보 포스터",
       age: "학원 수강에 관심이 있는 10대 ~ 30대 이상",
       caption: "",
-      link: "#"
+      link: "#",
+      thumbFit: "contain"
     },
     {
+      thumb: { src: "images/art_thumb.png", alt: "미대입시닷컴 웹페이지 배너 썸네일" },
       left: { src: "images/art_banner1.png", alt: "미대입시닷컴 웹페이지 배너1" },
       rights: [{ src: "images/art_banner2.png", alt: "미대입시닷컴 웹페이지 배너2" },
                 { src: "images/art_banner3.png", alt: "미대입시닷컴 웹페이지 배너3" }
@@ -67,7 +77,8 @@
       topic: "미대입시닷컴 웹페이지 배너",
       age: "미대 입시생(10대 ~ 20대), 미술 입시 관련 선생님(20대 이상)",
       caption: "",
-      link: "#"
+      link: "#",
+      thumbFit: "contain"
     },
     {
       left: { src: "images/game_banner_260121.png", alt: "게임 배너" },
@@ -77,9 +88,11 @@
       topic: "프로모션/이벤트 배너",
       age: "전 연령(게임 사용자)",
       caption: "",
-      link: "#"
+      link: "#",
+      thumbFit: "cover"
     },
     {
+      thumb: { src: "images/KartRider_thumb.png", alt: "카트라이더 게임 배너 썸네일" },
       left: { src: "images/KartRider_banner.png", alt: "카트라이더 게임 배너" },
       rights: [],
       title: "카트라이더 게임 배너",
@@ -87,7 +100,8 @@
       topic: "프로모션/게임 배너",
       age: "카트라이더 게임 이용자 및 관심 있는 전 연령대",
       caption: "",
-      link: "#"
+      link: "#",
+      thumbFit: "contain"
     },
   ];
 
@@ -96,12 +110,12 @@
 
   // ✅ 카드 = 슬라이드 1개
   grid.innerHTML = OTHER_WORKS_SLIDES.map((s, i) => {
-    const thumb = s.left?.src || "";
-    const alt = s.left?.alt || s.title || "";
+    const thumb = s.thumb?.src || s.left?.src || "";
+    const alt = s.thumb?.alt || s.left?.alt || s.title || "";
     return `
       <article class="ow-card" role="button" tabindex="0" data-slide="${i}" aria-label="${s.title} 크게보기">
         <div class="ow-thumb">
-          <img src="${thumb}" alt="${alt}" loading="lazy" decoding="async">
+          <img src="${thumb}" alt="${alt}" style="object-fit:${s.thumbFit || 'cover'};">
         </div>
         <div class="ow-body">
           <h3 class="ow-title">${s.title || ""}</h3>
