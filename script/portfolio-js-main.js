@@ -521,3 +521,48 @@ document.addEventListener("DOMContentLoaded", () => {
 
   items.forEach(bind);
 })();
+
+(() => {
+  const sliders = document.querySelectorAll("[data-subslider]");
+  if (!sliders.length) return;
+
+  sliders.forEach((wrap) => {
+    const track = wrap.querySelector(".sub-slider__track");
+    const dotsWrap = wrap.querySelector(".sub-slider__dots");
+    if (!track || !dotsWrap) return;
+
+    const items = Array.from(track.children);
+
+    // dots 만들기
+    dotsWrap.innerHTML = items.map((_, i) =>
+      `<button class="sub-slider__dot" type="button" aria-label="${i+1}"></button>`
+    ).join("");
+    const dots = Array.from(dotsWrap.querySelectorAll(".sub-slider__dot"));
+
+    const getStep = () => {
+      const first = items[0];
+      if (!first) return track.clientWidth;
+      const gap = parseFloat(getComputedStyle(track).gap || "0");
+      return first.getBoundingClientRect().width + gap;
+    };
+
+    const setActiveDot = () => {
+      const step = getStep();
+      const idx = Math.round(track.scrollLeft / step);
+      dots.forEach((d, i) => d.classList.toggle("is-active", i === idx));
+    };
+
+    // dot 클릭하면 해당 슬라이드로 이동
+    dots.forEach((dot, i) => {
+      dot.addEventListener("click", () => {
+        track.scrollTo({ left: getStep() * i, behavior: "smooth" });
+      });
+    });
+
+    track.addEventListener("scroll", () => {
+      window.requestAnimationFrame(setActiveDot);
+    });
+
+    setActiveDot();
+  });
+})();
