@@ -567,3 +567,29 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 })();
 
+/* =========================
+   휠을 가로 스크롤로 변환
+========================= */
+(function(){
+  const selectors = [
+    ".other-works-viewport",
+    ".sub-slider__track",
+    ".sub-images--scroll3"
+  ];
+
+  selectors.forEach(sel => {
+    document.querySelectorAll(sel).forEach(el => {
+      el.addEventListener("wheel", (e) => {
+        // shift+휠은 원래 가로스크롤이니까 그대로 두고,
+        // 일반 휠은 가로로 바꿔줌
+        if(e.shiftKey) return;
+
+        // 세로 스크롤을 가로로 이동
+        if(Math.abs(e.deltaY) > Math.abs(e.deltaX)){
+          e.preventDefault();
+          el.scrollLeft += e.deltaY;
+        }
+      }, { passive: false });
+    });
+  });
+})();

@@ -1691,3 +1691,13 @@ html, body{
 .ow-modal.image-only.no-thumbs .ow-modal__thumbs{
   display: none;
 }
+
+/* 데스크탑 드래그 스와이프 느낌 */
+.other-works-viewport,
+.sub-slider__track{
+  cursor: grab;
+}
+.other-works-viewport.is-dragging,
+.sub-slider__track.is-dragging{
+  cursor: grabbing;
+}
