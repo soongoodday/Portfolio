@@ -1701,3 +1701,80 @@ html, body{
 .sub-slider__track.is-dragging{
   cursor: grabbing;
 }
+
+
+
+
+/* =========================
+   ✅ BG Gradient (최종 1개만)
+========================= */
+.bg-gradient{
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: #FBFBFB;
+  overflow: hidden;
+
+  /* ⭐ JS가 1 -> 0 으로 바꿀 값 */
+  --blob-alpha: 1;
+}
+
+/* ✅ 큰 빛 번짐 1 */
+.bg-gradient::before{
+  content:"";
+  position:absolute;
+  width: 900px;
+  height: 900px;
+  left: -260px;
+  top: -240px;
+
+  background: radial-gradient(circle, rgba(59,130,246,0.18), transparent 60%);
+  filter: blur(40px);
+
+  /* ⭐ 핵심: JS 변수랑 연결 */
+  opacity: var(--blob-alpha);
+
+  animation: blob1 12s ease-in-out infinite alternate;
+}
+
+/* ✅ 큰 빛 번짐 2 */
+.bg-gradient::after{
+  content:"";
+  position:absolute;
+  width: 900px;
+  height: 900px;
+  right: -280px;
+  bottom: -260px;
+
+  background: radial-gradient(circle, rgba(106,92,255,0.16), transparent 60%);
+  filter: blur(46px);
+
+  /* ⭐ 핵심: JS 변수랑 연결 */
+  opacity: var(--blob-alpha);
+
+  animation: blob2 14s ease-in-out infinite alternate;
+}
+
+@keyframes blob1{
+  0%{
+    transform: translate(0, 0) scale(1);
+  }
+  50%{
+    transform: translate(180px, 120px) scale(1.12);
+  }
+  100%{
+    transform: translate(80px, 260px) scale(1.05);
+  }
+}
+
+@keyframes blob2{
+  0%{
+    transform: translate(0, 0) scale(1);
+  }
+  50%{
+    transform: translate(-200px, -140px) scale(1.1);
+  }
+  100%{
+    transform: translate(-60px, -280px) scale(1.04);
+  }
+}

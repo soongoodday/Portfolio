@@ -13,6 +13,7 @@
     </head>
 
     <body>
+        <div class="bg-gradient"></div>
         <!-- 헤더 네비게이션 -->
         <header class="header">
             <nav class="nav">
@@ -1871,5 +1872,40 @@
         <script src="script/portfolio-js-otherworks.js"></script>
 
         <button class="top-btn" type="button" aria-label="맨 위로">↑</button>
+<script>
+(() => {
+  const bg = document.querySelector('.bg-gradient');
+  if (!bg) return;
+
+  const clamp = (n, min, max) => Math.min(max, Math.max(min, n));
+  let ticking = false;
+
+  function update() {
+    ticking = false;
+
+    const y = window.scrollY || window.pageYOffset;
+    const vh = window.innerHeight;
+
+    // ✅ 0px ~ (0.9 화면 높이) 스크롤 하는 동안 1 -> 0으로 사라짐
+    const fadeDistance = vh * 0.9;
+
+    const alpha = clamp(1 - (y / fadeDistance), 0, 1);
+    bg.style.setProperty('--blob-alpha', alpha.toFixed(3));
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  update();
+})();
+</script>
+
+
     </body>
 </html>
