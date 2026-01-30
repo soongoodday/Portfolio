@@ -82,9 +82,9 @@
     },
     {
       left: { src: "images/game_banner_260121.png", alt: "게임 배너" },
-      rights: [],
-      title: "가상의 카트 게임 배너",
-      desc: "가상의 카트 게임 배너를 ChatGPT로 이미지 생성 후 제작했습니다.",
+      rights: [ {src: "images/KartRider_banner.png"} ],
+      title: "카트 게임 배너",
+      desc: "카트 게임 배너를 ChatGPT로 이미지 생성 후 제작했습니다.",
       topic: "프로모션/이벤트 배너",
       age: "전 연령(게임 사용자)",
       caption: "",
@@ -92,13 +92,23 @@
       thumbFit: "cover"
     },
     {
-      thumb: { src: "images/KartRider_thumb.png", alt: "카트라이더 게임 배너 썸네일" },
-      left: { src: "images/KartRider_banner.png", alt: "카트라이더 게임 배너" },
+      left: { src: "images/mcs1.jpg", alt: "한전MCS 플로깅 계획안" },
+      rights: [{ src: "images/mcs2.jpg", alt: "한전MCS 플로깅 계획안" }],
+      title: "한전MCS 플로깅 판넬 및 계획안",
+      desc: "",
+      topic: "",
+      age: "",
+      caption: "",
+      link: "#",
+      thumbFit: "contain"
+    },
+    {
+      left: { src: "images/top.jpg", alt: "티오피월드 행정사사무소 명함" },
       rights: [],
-      title: "카트라이더 게임 배너",
-      desc: "상단 이미지의 카트라이더 게임 배너와 동일하게 포토샵으로 하단 이미지처럼 작업했습니다.",
-      topic: "프로모션/게임 배너",
-      age: "카트라이더 게임 이용자 및 관심 있는 전 연령대",
+      title: "티오피월드 행정사사무소 명함",
+      desc: "",
+      topic: "",
+      age: "",
       caption: "",
       link: "#",
       thumbFit: "contain"
