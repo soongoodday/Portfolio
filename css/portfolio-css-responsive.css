@@ -541,3 +541,15 @@ button:focus{
   }
 }
 
+/* ✅ 태블릿 이하: sub-slider 잘림 방지 (부모 overflow 풀기) */
+@media (max-width: 1024px){
+  .portfolio-sub,
+  .sub-slider{
+    overflow: visible;   /* ⭐ 여기 핵심 */
+  }
+
+  .sub-slider__track{
+    overflow-x: auto;    /* 가로 스크롤은 track이 담당 */
+    overflow-y: hidden;
+  }
+}

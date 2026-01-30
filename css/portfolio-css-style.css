@@ -1276,17 +1276,10 @@ html, body{
   }
 }
 
-/* 모달 썸네일 줄 */
+/* ✅ 하단 썸네일: 이미지 영역 밖으로 */
 .ow-modal__thumbs{
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 10px;
-  display: flex;
-  gap: 10px;
-  padding: 0 12px;
-  justify-content: center;
-  z-index: 2;
+  background: transparent;
+  padding-top: 10px;
 }
 
 .ow-modal__thumb{
@@ -1326,6 +1319,7 @@ html, body{
   font-weight: 800;
   background: rgba(0,0,0,0.5);
   opacity: 0;
+  pointer-events: none;   /* ⭐ 이거 추가 */
 }
 
 .ow-card:hover .ow-thumb::after{
@@ -1342,13 +1336,12 @@ html, body{
    모달을 "이미지 전용"으로
 ========================= */
 
-/* 모달 전체를 이미지 하나처럼 */
 .ow-modal.image-only .ow-modal__panel{
-  display: block;          /* grid 없애기 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 90vw;
   max-width: 1200px;
-  height: auto;
-  padding: 0;
 }
 
 /* 오른쪽 정보 영역 완전 제거 */
@@ -1359,8 +1352,10 @@ html, body{
 /* 이미지 감싸는 영역 */
 .ow-modal.image-only .ow-modal__figure{
   width: 100%;
-  height: auto;
   background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ⭐ 핵심: 이미지만 100% */
@@ -1560,7 +1555,7 @@ html, body{
 
 @media (max-width: 1024px){
   .sub-slider__track > div{
-    flex: 0 0 calc((100% - 16px) / 2);
+    flex: 0 0 86%;     /* ⭐ 한 장 크게 + 다음 장 살짝 */
   }
 }
 
@@ -1568,4 +1563,131 @@ html, body{
   .sub-slider__track > div{
     flex: 0 0 88%;
   }
+}
+
+/* =========================
+   ✅ 모달 썸네일을 "우측 사이드바"로 (이미지 영역 밖)
+========================= */
+
+/* figure(이미지) 영역 */
+.ow-modal.image-only .ow-modal__figure{
+  position: relative;
+  margin: 0;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* 썸네일 크기 */
+.ow-modal.image-only .ow-modal__thumb{
+  width: 72px;
+  height: 54px;
+  border-radius: 12px;
+}
+
+/* ✅ image-only 모드: 검은 배경 제거 */
+.ow-modal.image-only .ow-modal__panel{
+  background: transparent;      /* 패널 배경 */
+}
+
+.ow-modal.image-only .ow-modal__figure{
+  background: transparent;      /* 기존 #000 제거 */
+}
+
+/* ✅ 썸네일이 숨겨진 상태(=1장)면 패널을 1열로 */
+.ow-modal.image-only .ow-modal__thumbs[style*="display: none"]{
+  display: none !important;
+}
+
+/* 2열 → 1열로 강제 */
+.ow-modal.image-only .ow-modal__panel:has(.ow-modal__thumbs[style*="display: none"]){
+  grid-template-columns: 1fr !important;
+}
+
+/* ✅ thumbs 없으면(=1장) 사이드바 컬럼 제거 */
+.ow-modal.image-only.no-thumbs .ow-modal__panel{
+  grid-template-columns: 1fr !important;
+}
+.ow-modal.image-only.no-thumbs .ow-modal__thumbs{
+  display: none !important;
+}
+
+/* ✅ image-only 모달: 라운드 제거 */
+.ow-modal.image-only .ow-modal__panel{
+  border-radius: 0 !important;
+}
+
+.ow-modal.image-only .ow-modal__figure{
+  border-radius: 0 !important;
+}
+
+.ow-modal.image-only .ow-modal__figure img{
+  border-radius: 0 !important;
+}
+
+@media (max-width: 768px){
+  .ow-modal.image-only:not(.no-thumbs) .ow-modal__thumbs{
+    display: flex;
+  }
+}
+
+/* ✅ 최종: image-only 모달 썸네일은 "항상 하단" */
+.ow-modal.image-only .ow-modal__panel{
+  display: block;
+  width: min(1100px, 92vw);
+  max-height: 88vh;
+  overflow: hidden;
+  background: transparent;
+  border-radius: 0;
+}
+
+.ow-modal.image-only .ow-modal__figure{
+  position: relative;
+  width: 100%;
+  height: 88vh;
+  background: #000;
+  overflow: hidden;
+}
+
+/* 메인 이미지 */
+.ow-modal.image-only .ow-modal__figure img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* ✅ 썸네일 바(하단) */
+.ow-modal.image-only .ow-modal__thumbs{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 14px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 12px;
+  z-index: 50;
+}
+
+/* 썸네일 버튼 */
+.ow-modal.image-only .ow-modal__thumb{
+  width: 56px;
+  height: 42px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid rgba(255,255,255,0.55);
+  background: rgba(0,0,0,0.25);
+  opacity: .85;
+}
+.ow-modal.image-only .ow-modal__thumb.is-active{
+  opacity: 1;
+  border-color: rgba(255,255,255,0.95);
+}
+
+/* ✅ 1장일 때(no-thumbs) 썸네일 숨김 */
+.ow-modal.image-only.no-thumbs .ow-modal__thumbs{
+  display: none;
 }

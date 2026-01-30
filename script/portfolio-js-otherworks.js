@@ -21,7 +21,7 @@
     },
     {
       thumb: { src: "images/nouvedilie_banner_thumb.png", alt: "누베딜리 웹 배너 썸네일" },
-      left: { src: "images/nouvedeilie_banner.png", alt: "누베딜리 웹 배너" },
+      left: { src: "images/nouvedilie_banner.png", alt: "누베딜리 웹 배너" },
       rights: [],
       title: "누베딜리 웹 배너",
       desc: "누베딜리 웹 배너",
@@ -34,7 +34,7 @@
     {
       left: { src: "images/university_brochure1.jpg", alt: "중앙대학교 리플렛" },
       rights: [{src: "images/university_brochure2.jpg", alt: "중앙대학교 리플렛" }],
-      title: "중앙대학교 리플렛(2장)",
+      title: "중앙대학교 리플렛",
       desc: "중앙대학교 리플렛",
       topic: "",
       age: "",
@@ -46,7 +46,7 @@
       thumb: { src: "images/carrot_thumb1.png", alt: "당근마켓 웹 배너 썸네일" },
       left: { src: "images/carrot_banner1.png", alt: "당근마켓 웹 배너1" },
       rights: [{ src: "images/carrot_banner2.png", alt: "당근마켓 웹 배너2" }],
-      title: "당근마켓 웹 배너(2개)",
+      title: "당근마켓 웹 배너",
       desc: "당근마켓의 메인 컬러와 캐릭터를 활용해서 구인 목적으로 띄우는 광고 배너를 작업했습니다.",
       topic: "프로모션/이벤트 배너",
       age: "당근마켓을 사용하는 전 연령대 사용자",
@@ -72,7 +72,7 @@
       rights: [{ src: "images/art_banner2.png", alt: "미대입시닷컴 웹페이지 배너2" },
                 { src: "images/art_banner3.png", alt: "미대입시닷컴 웹페이지 배너3" }
       ],  
-      title: "미대입시닷컴 웹페이지 배너(3개)",
+      title: "미대입시닷컴 웹페이지 배너",
       desc: "미대입시닷컴 웹 페이지별 광고 배너입니다. 그라데이션 포인트를 통일해서 작업했습니다.",
       topic: "미대입시닷컴 웹페이지 배너",
       age: "미대 입시생(10대 ~ 20대), 미술 입시 관련 선생님(20대 이상)",
@@ -128,7 +128,6 @@
   // ===== 모달 요소 =====
   const modal = document.getElementById("owModal");
   const modalImg = document.getElementById("owModalImg");
-  
 
     /* =========================
      ✅ ZOOM(돋보기) + PINCH(모바일 핀치줌)
@@ -261,6 +260,8 @@ if (window.innerWidth <= 1024 && window.innerWidth > 768) {
   let currentSlide = 0;
   let currentImg = 0;
   let currentImages = [];
+  let justOpened = false; // ⭐ 방금 열렸는지
+  let opening = false; // ⭐ 열기 중(같은 클릭으로 닫히는 것 방지)
 
   const buildImages = (slide) => {
     const s = OTHER_WORKS_SLIDES[slide];
@@ -274,17 +275,13 @@ if (window.innerWidth <= 1024 && window.innerWidth > 768) {
   if (!modalThumbs) return;
 
   // ✅ 이미지가 1장이면 thumbs 숨김
-  if (!currentImages || currentImages.length <= 1) {
-    modalThumbs.style.display = "none";
-    modalThumbs.innerHTML = "";
-    return;
-  }
-
-  modal.addEventListener("click", (e) => {
-  const t = e.target.closest(".ow-modal__thumb");
-  if (t && t.dataset.img) setModalImage(Number(t.dataset.img));
-});
-
+if (!currentImages || currentImages.length <= 1) {
+  modal.classList.add("no-thumbs");   // ⭐ 추가
+  modalThumbs.style.display = "none";
+  modalThumbs.innerHTML = "";
+  return;
+}
+modal.classList.remove("no-thumbs"); // ⭐ 추가(2장 이상이면 복구)
 
   // ✅ 2장 이상이면 thumbs 보이기
   modalThumbs.style.display = "flex";
@@ -302,14 +299,34 @@ if (window.innerWidth <= 1024 && window.innerWidth > 768) {
 };
 
 
-  const setModalImage = (idx) => {
-    currentImg = Math.max(0, Math.min(idx, currentImages.length - 1));
-    const im = currentImages[currentImg];
-    modalImg.src = im.src;
-    modalImg.alt = im.alt || OTHER_WORKS_SLIDES[currentSlide]?.title || "";
-    renderThumbs();
-    resetZoom();
-  };
+const setModalImage = (idx) => {
+  currentImg = Math.max(0, Math.min(idx, currentImages.length - 1));
+  const im = currentImages[currentImg];
+
+  // ⭐ 1. 먼저 무조건 초기화
+  resetZoom();
+
+  // ⭐ 2. 이미지가 "완전히 로드된 후" 다시 한 번 초기화
+  modalImg.onload = () => resetZoom();
+
+  modalImg.onerror = () => {
+  console.warn("❌ 이미지 로드 실패:", im.src);
+};
+
+  modalImg.src = im.src;
+  modalImg.alt = im.alt || OTHER_WORKS_SLIDES[currentSlide]?.title || "";
+
+  renderThumbs();
+};
+
+modalThumbs?.addEventListener("click", (e) => {
+  e.preventDefault();
+  e.stopPropagation();  // ⭐ 캡처/버블 꼬임 방지
+  const t = e.target.closest(".ow-modal__thumb");
+  if (!t) return;
+  const idx = Number(t.dataset.img);
+  if (!Number.isNaN(idx)) setModalImage(idx);
+});
 
   const openModal = (slideIndex) => {
     currentSlide = Math.max(0, Math.min(slideIndex, OTHER_WORKS_SLIDES.length - 1));
@@ -324,21 +341,47 @@ if (window.innerWidth <= 1024 && window.innerWidth > 768) {
     modalAge.textContent = s.age || "";
     modalLink.href = s.link || "#";
 
-    modal.classList.add("image-only"); // ⭐ 사진만 크게 보기
+    modal.classList.add("image-only");
     modal.classList.add("is-open");
+
+    opening = true;
+    setTimeout(() => { opening = false; }, 0);
+
+    justOpened = true;
+    setTimeout(() => { justOpened = false; }, 150);
+
     modal.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
 
     setModalImage(0);
+    console.log("✅ OPEN", currentSlide);
   };
 
   const closeModal = () => {
+    console.trace("❌ CLOSE called by:");
     modal.classList.remove("is-open");
     modal.classList.remove("image-only"); // ⭐ 원래 상태로 되돌리기
     modal.setAttribute("aria-hidden", "true");
+
     document.body.style.overflow = "";
     resetZoom();
+    console.log("❌ CLOSE");
   };
+
+  // ⭐ 모달 안 클릭은 전파 막기 (열렸다가 바로 닫히는 현상 방지)
+const panel = modal.querySelector(".ow-modal__panel");
+panel?.addEventListener("click", (e) => {
+  e.stopPropagation();
+});
+
+modal.querySelector(".ow-modal__backdrop")
+  ?.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (opening) return;     // ⭐ 추가: 열기 직후 click로 닫히는 것 방지
+    if (justOpened) return; // ⭐ 방금 열린 직후 클릭은 무시
+    closeModal();
+  });
 
   const moveImg = (dir) => {
     const next = dir === "next" ? currentImg + 1 : currentImg - 1;
@@ -346,19 +389,25 @@ if (window.innerWidth <= 1024 && window.innerWidth > 768) {
     setModalImage(next);
   };
 
-  // 카드 클릭/엔터
-  grid.addEventListener("click", (e) => {
-    const card = e.target.closest(".ow-card");
-    if (!card) return;
-    openModal(Number(card.dataset.slide));
-  });
+grid.addEventListener("pointerdown", (e) => {
+  const card = e.target.closest(".ow-card");
+  if (!card) return;
+
+  e.preventDefault();
+  e.stopPropagation();
+
+  const idx = Number(card.dataset.slide);
+  setTimeout(() => openModal(idx), 0); // ⭐ 핵심: 클릭 이벤트 끝난 다음에 열기
+}, true);
 
   grid.addEventListener("keydown", (e) => {
     const card = e.target.closest(".ow-card");
     if (!card) return;
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
-      openModal(Number(card.dataset.slide));
+      const idx = Number(card.dataset.slide);
+      setTimeout(() => openModal(idx), 0); // ⭐ click 이벤트 끝난 다음에 열기
+
     }
   });
 
@@ -377,26 +426,23 @@ closeBtn?.addEventListener("click", (e) => {
   closeModal();
 });
 
-// ✅ 핵심: 캡처링으로 "어디를 누르든" 먼저 감지
-document.addEventListener("pointerdown", (e) => {
-  // 모달 열려있을 때만 동작
-  if (!modal.classList.contains("is-open")) return;
+// ✅ (디버그) carrot만 성공/실패 확인
+(() => {
+  const list = [
+    "images/carrot_thumb1.png",
+    "images/carrot_banner1.png",
+    "images/carrot_banner2.png"
+  ];
 
-  // 1) 이미지 클릭이면 닫지 않기
-  if (e.target.closest("#owModalImg")) return;
-
-  // 2) 조작 UI 클릭이면 닫지 않기 (썸네일/이전다음/줌/닫기)
-  if (
-    e.target.closest(".ow-modal__thumb") ||
-    e.target.closest(".ow-modal__nav") ||
-    e.target.closest(".ow-zoom-btn") ||
-    e.target.closest(".ow-modal__close")
-  ) return;
-
-  // ✅ 3) 그 외는 전부 닫기 (패널 여백 포함)
-  closeModal();
-}, true); // ⭐ true = 캡처링(중요)
+  list.forEach((src) => {
+    const img = new Image();
+    img.onload = () => console.log("%cOK  " + src, "color:#0a0");
+    img.onerror = () => console.warn("%cFAIL " + src, "color:#f00");
+    img.src = src + "?v=" + Date.now();
+  });
+})();
 
 
 })();
+
 
