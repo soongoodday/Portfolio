@@ -363,7 +363,7 @@ button:focus{
     align-items: center;      /* ⭐ 가로 중앙 */
 
     background: var(--color-white);
-    gap: 10px;
+    gap: 20px;
 
     max-height: none;
     overflow: hidden;
@@ -611,5 +611,53 @@ button:focus{
     transform: scale(0.98);
   }
 }
+
+@media (max-width: 830px){
+
+  /* ✅ CTA 2개를 한 줄로 */
+  .nav-cta-row{
+    display: flex;
+    gap: 12px;
+    width: 90%;
+    border-bottom: none;
+    margin-top: 12px;
+  }
+
+  /* ✅ 버튼 길이 짧게 */
+  .nav-cta-row .nav-link--cta1,
+  .nav-cta-row .nav-link--cta2{
+    width: auto;          /* 기존 100% 무시 */
+    flex: 1;              /* 두 개 반반 */
+    height: 44px;         /* 56 -> 44 */
+    margin-top: 0;        /* 기존 10px 제거 */
+    padding: 0 14px;
+    font-size: 1rem;
+  }
+
+
+
+
+  /* ✅ CTA 2개를 한 줄로 */
+  .nav-cta-row{
+    display: flex;
+    gap: 12px;
+    width: 90%;
+    border-bottom: none;
+    margin-top: 12px;
+  }
+
+  /* ✅ 버튼 길이 짧게 */
+  .nav-cta-row .nav-link--cta1,
+  .nav-cta-row .nav-link--cta2{
+    width: auto;          /* 기존 100% 무시 */
+    flex: 1;              /* 두 개 반반 */
+    height: 44px;         /* 56 -> 44 */
+    margin-top: 0;        /* 기존 10px 제거 */
+    padding: 0 14px;
+    font-size: 1rem;
+  }
+}
+
+
 
 
