@@ -9,11 +9,6 @@ class Navigation {
     // 섹션 id 목록
     this.sections = ['home', 'about', 'skills', 'ai-skills', 'portfolio', 'page-bottom'];
 
-    document.querySelector('.hero_box_scrollButton')?.addEventListener('click', () => {
-    document.getElementById('page-bottom')
-    .scrollIntoView({ behavior: 'smooth' });
-});
-
 
     // 섹션 요소 캐시
     this.sectionEls = this.sections
@@ -30,6 +25,13 @@ class Navigation {
     if (this.mobileMenuBtn) {
       this.mobileMenuBtn.addEventListener('click', () => this.toggleMobileMenu());
     }
+
+    // ✅ 히어로 "맨 아래로 스크롤하기" 버튼도 page-bottom으로 이동
+    const downBtn = document.querySelector('.hero_box_scrollButton');
+    if (downBtn) {
+      downBtn.addEventListener('click', (e) => this.goToSection(e, 'page-bottom'));
+    }
+
 
     // 네비 클릭
     this.navLinks.forEach(link => {
@@ -65,6 +67,7 @@ class Navigation {
 
   /* ===== 부드러운 스크롤 (이것만 사용) ===== */
   smoothScrollTo(targetY, duration = 520) {
+    
     const startY = window.scrollY;
     const diff = targetY - startY;
     const start = performance.now();
@@ -78,38 +81,43 @@ class Navigation {
     requestAnimationFrame(step);
   }
 
+  goToSection(e, targetId) {
+  if (e) e.preventDefault();
+
+  // 1) (폰에서 중요) 메뉴가 열려있으면 먼저 닫기
+  if (this.navMenu?.classList.contains('active')) {
+    this.toggleMobileMenu();
+  }
+
+  // 2) 메뉴가 닫힌 다음에(다음 프레임) 위치 계산해서 이동
+  requestAnimationFrame(() => {
+    const target = document.getElementById(targetId);
+    if (!target) return;
+
+    const headerH = this.header ? this.header.offsetHeight : 0;
+    const y = window.scrollY + target.getBoundingClientRect().top - headerH;
+
+    this.smoothScrollTo(targetId === 'home' ? 0 : y, 520);
+  });
+}
+
   handleNavClick(e) {
   const link = e.currentTarget;
 
-  // ✅ 1) 외부 링크(target=_blank)는 막지 말고, 메뉴만 닫기
+  // 외부 링크는 그냥 열기 + 메뉴만 닫기
   if (link.target === "_blank") {
     if (this.navMenu?.classList.contains('active')) {
       this.toggleMobileMenu();
     }
-    return; // ✅ preventDefault() 하지 않음 → 링크 정상 열림
+    return;
   }
 
-  // ✅ 2) 내부 앵커(#section)만 우리가 스크롤 처리
+  // 내부 앵커는 Navigation이 스크롤을 관리
   e.preventDefault();
-
-  const href = link.getAttribute('href') || '';
-  const targetId = href.replace('#', '');
-
-  const targetElement = document.getElementById(targetId);
-  if (!targetElement) return;
-
-  const headerHeight = this.header ? this.header.offsetHeight : 0;
-  const y =
-    window.scrollY +
-    targetElement.getBoundingClientRect().top -
-    headerHeight;
-
-  this.smoothScrollTo(targetId === 'home' ? 1 : y, 520);
-
-  if (this.navMenu?.classList.contains('active')) {
-    this.toggleMobileMenu();
-  }
+  const targetId = (link.getAttribute('href') || '').replace('#', '');
+  this.goToSection(e, targetId);
 }
+
 
   handleScroll() {
     this.updateActiveSection();
@@ -167,5 +175,45 @@ class Navigation {
 /* ===== 초기화 ===== */
 document.addEventListener('DOMContentLoaded', () => {
   new Navigation();
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const header = document.querySelector(".header");
+  const navMenu = document.getElementById("navMenu");
+  const mobileBtn = document.getElementById("mobileMenuBtn");
+
+  const bottom = document.getElementById("page-bottom");
+  if (!bottom) return;
+
+  // ✅ 메뉴 닫기(너의 토글 방식에 맞춰 최소한만)
+  function closeMenu() {
+    // 흔한 패턴: navMenu에 active, 버튼에 active 붙는 구조
+    navMenu?.classList.remove("active");
+    mobileBtn?.classList.remove("active");
+    document.body.classList.remove("menu-open"); // 혹시 body에 걸어둔 경우 대비
+  }
+
+  function goBottom(e) {
+    if (e) e.preventDefault();
+
+    // 1) 먼저 메뉴 닫고
+    closeMenu();
+
+    // 2) 다음 프레임(=메뉴 닫힌 다음)에 스크롤
+    requestAnimationFrame(() => {
+      const headerH = header ? header.offsetHeight : 0;
+      const y = bottom.getBoundingClientRect().top + window.pageYOffset - headerH;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    });
+  }
+
+  // ✅ 햄버거 메뉴의 "연락" (너 HTML에서 href="#page-bottom")
+  document.querySelectorAll('a[href="#page-bottom"]').forEach(a => {
+    a.addEventListener("click", goBottom);
+  });
+
+  // ✅ 히어로 "맨 아래로 스크롤하기" 버튼도 똑같이 통일
+  const downBtn = document.querySelector(".hero_box_scrollButton");
+  if (downBtn) downBtn.addEventListener("click", goBottom);
 });
 
