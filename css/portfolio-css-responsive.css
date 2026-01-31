@@ -232,7 +232,7 @@ button:focus{
   font-size: var(--font-xl);
   margin-bottom: var(--spacing-xl);
   line-height: 1.8;
-}res
+}
 }
 
 
@@ -554,3 +554,60 @@ button:focus{
   }
 }
 
+/* ✅ 기본(PC/태블릿): 햄버거 메뉴 전용 링크 숨김 */
+.nav-item--mobile-only{ display: none; }
+
+/* ✅ 모바일(햄버거 메뉴 열리는 구간): 보이게 + 버튼처럼 */
+@media (max-width: 830px){
+
+  .nav-item--mobile-only{ 
+    display: block;
+    width: 90%;
+    border-bottom: none; /* 아래 메뉴처럼 줄 생기지 않게 */
+  }
+
+  .nav-menu .nav-link--cta1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 56px;
+    margin-top: 10px;
+    padding: 0 14px;
+    border-radius: 999px;
+
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-weight: 800;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-menu .nav-link--cta2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 56px;
+    margin-top: 10px;
+    padding: 0 14px;
+    border-radius: 999px;
+
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+    font-weight: 800;
+    letter-spacing: 0.02em;
+  }
+
+  /* ✅ 버튼에는 밑줄 애니메이션 제거 */
+  .nav-menu .nav-link--cta1::after,
+  .nav-menu .nav-link--cta2::after{
+    display: none;
+  }
+
+  .nav-menu .nav-link--cta1:active,
+  .nav-menu .nav-link--cta2:active{
+    transform: scale(0.98);
+  }
+}
