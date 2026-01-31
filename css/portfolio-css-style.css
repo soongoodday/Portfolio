@@ -1801,8 +1801,3 @@ html, body{
     --blob-mult: 0.55; /* ⭐ 숫자 낮을수록 더 옅음 (0.4~0.7 추천) */
   }
 }
-
-/* ✅ 헤더에 가려지지 않게 앵커 보정 */
-#page-bottom{
-  scroll-margin-top: 60px; /* 헤더 높이쯤 */
-}
