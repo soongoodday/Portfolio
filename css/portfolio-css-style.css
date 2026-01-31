@@ -235,10 +235,12 @@ body{
 .hero_box_scrollButton{
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   /* border: 2px solid #283F6E; */
   border-radius: 999px;
-  padding: 10px 40px;
+  padding: 12px 40px;
+  transform: translateY(0.5px);
   background: transparent;
   cursor: pointer;
   font-weight: 400;
