@@ -8,7 +8,7 @@
 /* Main */
 
 html{
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth; */
   scroll-padding-top: 110px; /* 너가 이미 쓰는 값 */
 }
 
