@@ -363,7 +363,7 @@ button:focus{
     align-items: center;      /* ⭐ 가로 중앙 */
 
     background: var(--color-white);
-    gap: 20px;
+    gap: 10px;
 
     max-height: none;
     overflow: hidden;
