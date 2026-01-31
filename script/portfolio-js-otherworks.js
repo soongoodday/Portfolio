@@ -436,6 +436,19 @@ closeBtn?.addEventListener("click", (e) => {
   closeModal();
 });
 
+/* ===================================
+   ✅ ESC 키로 모달 닫기
+=================================== */
+document.addEventListener("keydown", (e) => {
+  if (e.key !== "Escape") return;
+
+  // 모달이 열려있을 때만
+  if (!modal.classList.contains("is-open")) return;
+
+  e.preventDefault();
+  closeModal();
+});
+
 // ✅ (디버그) carrot만 성공/실패 확인
 (() => {
   const list = [
