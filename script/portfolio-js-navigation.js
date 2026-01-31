@@ -28,13 +28,6 @@ class Navigation {
     // 네비 클릭
     this.navLinks.forEach(link => {
       // ✅ 외부 링크(작업일기/타임라인)는 기본 이동 막지 않기
-    if (link.target === "_blank") {
-      // 메뉴만 닫아주고 끝
-      this.navMenu?.classList.remove('active');
-      this.mobileMenuBtn?.classList.remove('active');
-      return; // ✅ preventDefault()로 넘어가지 않게 여기서 종료
-    }
-
       link.addEventListener('click', (e) => this.handleNavClick(e));
     });
 
@@ -80,23 +73,37 @@ class Navigation {
   }
 
   handleNavClick(e) {
-    e.preventDefault();
-    const targetId = e.currentTarget.getAttribute('href').replace('#', '');
-    const targetElement = document.getElementById(targetId);
-    if (!targetElement) return;
+  const link = e.currentTarget;
 
-    const headerHeight = this.header ? this.header.offsetHeight : 0;
-    const y =
-      window.scrollY +
-      targetElement.getBoundingClientRect().top -
-      headerHeight;
-
-    this.smoothScrollTo(targetId === 'home' ? 1 : y, 520);
-
+  // ✅ 1) 외부 링크(target=_blank)는 막지 말고, 메뉴만 닫기
+  if (link.target === "_blank") {
     if (this.navMenu?.classList.contains('active')) {
       this.toggleMobileMenu();
     }
+    return; // ✅ preventDefault() 하지 않음 → 링크 정상 열림
   }
+
+  // ✅ 2) 내부 앵커(#section)만 우리가 스크롤 처리
+  e.preventDefault();
+
+  const href = link.getAttribute('href') || '';
+  const targetId = href.replace('#', '');
+
+  const targetElement = document.getElementById(targetId);
+  if (!targetElement) return;
+
+  const headerHeight = this.header ? this.header.offsetHeight : 0;
+  const y =
+    window.scrollY +
+    targetElement.getBoundingClientRect().top -
+    headerHeight;
+
+  this.smoothScrollTo(targetId === 'home' ? 1 : y, 520);
+
+  if (this.navMenu?.classList.contains('active')) {
+    this.toggleMobileMenu();
+  }
+}
 
   handleScroll() {
     this.updateActiveSection();
