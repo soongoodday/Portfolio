@@ -359,7 +359,7 @@ button:focus{
 
     display: flex;
     flex-direction: column;
-    justify-content: center;  /* ⭐ 수직 중앙 */
+    justify-content: start;  /* ⭐ 수직 중앙 */
     align-items: center;      /* ⭐ 가로 중앙 */
 
     background: var(--color-white);
@@ -659,6 +659,12 @@ button:focus{
   }
 }
 
-
-
-
+/* ✅ 모바일 메뉴 최종 덮어쓰기(맨 아래에 두기) */
+@media (max-width: 830px){
+  #navMenu{
+    justify-content: flex-start; /* ✅ 가운데 정렬 해제 */
+    padding-top: 120px;         /* ✅ X 버튼 아래 일정 간격 */
+    padding-bottom: 40px;       /* ✅ 아래 여백도 통일 */
+    gap: 10px;
+  }
+}
