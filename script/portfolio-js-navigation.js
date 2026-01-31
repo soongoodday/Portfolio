@@ -168,3 +168,4 @@ class Navigation {
 document.addEventListener('DOMContentLoaded', () => {
   new Navigation();
 });
+
