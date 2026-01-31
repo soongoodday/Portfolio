@@ -27,6 +27,14 @@ class Navigation {
 
     // 네비 클릭
     this.navLinks.forEach(link => {
+      // ✅ 외부 링크(작업일기/타임라인)는 기본 이동 막지 않기
+    if (link.target === "_blank") {
+      // 메뉴만 닫아주고 끝
+      this.navMenu?.classList.remove('active');
+      this.mobileMenuBtn?.classList.remove('active');
+      return; // ✅ preventDefault()로 넘어가지 않게 여기서 종료
+    }
+
       link.addEventListener('click', (e) => this.handleNavClick(e));
     });
 
