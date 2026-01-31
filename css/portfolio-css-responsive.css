@@ -232,16 +232,16 @@ button:focus{
   font-size: var(--font-xl);
   margin-bottom: var(--spacing-xl);
   line-height: 1.8;
-}
+}res
 }
 
 
 /* =========================
-   3) Mobile (<=768px)
+   3) Mobile (<=830px)
    ✅ 햄버거 버튼 "원래대로" 3줄 + X 변형
    ✅ navMenu.active 드롭다운
 ========================= */
-@media (max-width: 768px){
+@media (max-width: 830px){
 
   .container{
     padding: 0 16px;
@@ -553,3 +553,4 @@ button:focus{
     overflow-y: hidden;
   }
 }
+

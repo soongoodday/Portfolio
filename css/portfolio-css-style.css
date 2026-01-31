@@ -6,6 +6,10 @@
 =================================== */
 
 /* Main */
+/* 1️⃣ 헤더 높이 변수 */
+:root{
+  --header-h: 0; /* 지금 네 헤더 높이 */
+}
 
 html{
   /* scroll-behavior: smooth; */
@@ -59,6 +63,7 @@ body{
   display: grid;
   grid-template-columns: auto 1fr auto; /* [모바일버튼] [메뉴] [버튼] */
   align-items: center;
+  column-gap: 24px; /* ⭐ 좌/중/우 사이 간격을 명시 */
 }
 
 /* 모바일 버튼은 웹에서 숨김(모바일에서 responsive.css가 켬) */
@@ -69,7 +74,9 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 4rem;
+  gap: clamp(18px, 3vw, 48px); /* ⭐ 4rem 고정 대신 유동 */
+  white-space: nowrap;         /* ⭐ 2줄 내려가는 거 방지 */
+  min-width: 0;
 }
 
 /* 링크(밑줄 네비게이션) */
@@ -79,6 +86,7 @@ body{
   font-weight: var(--font-bold);
   color: #999;
   transition: color .25s ease;
+  white-space: nowrap;
 }
 
 .nav-link:hover{ color: var(--color-subcolor2); }
@@ -144,6 +152,7 @@ body{
 =================================== */
 .hero{
   margin-top: 0; /* fixed header 보정 */
+  padding-top: var(--header-h);
 }
 
 .hero__inner{
