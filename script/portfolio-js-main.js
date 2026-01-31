@@ -264,10 +264,6 @@ window.portfolioUtils = utils;
 const btn = document.querySelector(".hero_box_scrollButton");
 const bottom = document.querySelector("#page-bottom");
 
-btn.addEventListener("click", () => {
-  bottom.scrollIntoView({ behavior: "smooth" });
-});
-
 document.addEventListener('DOMContentLoaded', () => {
   const topBtn = document.querySelector('.top-btn');
   if (!topBtn) return;
@@ -288,13 +284,6 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener("DOMContentLoaded", () => {
   const downBtn = document.querySelector(".hero_box_scrollButton");
   const bottom = document.querySelector("#page-bottom");
-
-  if (downBtn && bottom) {
-    downBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      bottom.scrollIntoView({ behavior: "smooth" });
-    });
-  }
 
   const topBtn = document.querySelector(".top-btn");
   if (topBtn) {
@@ -593,3 +582,27 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 })();
+
+document.addEventListener("DOMContentLoaded", () => {
+  const header = document.querySelector(".header");
+  const bottom = document.querySelector("#page-bottom");
+  const downBtn = document.querySelector(".hero_box_scrollButton");
+  const contactLink = document.querySelector('a[href="#page-bottom"]');
+
+  if (!bottom) return;
+
+  function goBottom(e) {
+    if (e) e.preventDefault();
+
+    const headerH = header ? header.offsetHeight : 0;
+    const y = bottom.getBoundingClientRect().top + window.pageYOffset - headerH;
+
+    window.scrollTo({ top: y, behavior: "smooth" });
+  }
+
+  // ✅ "맨 아래로 스크롤하기"
+  if (downBtn) downBtn.addEventListener("click", goBottom);
+
+  // ✅ 햄버거 메뉴 "연락"도 같은 방식으로 (원하면 유지 추천)
+  if (contactLink) contactLink.addEventListener("click", goBottom);
+});
