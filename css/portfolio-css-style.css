@@ -137,7 +137,7 @@ body{
 .btn:hover{ opacity: .92; }
 
 /* 이전 인디케이터(막대형)는 사용 안 함 */
-.nav-indicator{ display: block; }
+.nav-indicator{ display: none; }
 
 /* ===================================
    Hero
