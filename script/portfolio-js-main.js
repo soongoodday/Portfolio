@@ -260,14 +260,6 @@ window.addEventListener('resize', utils.debounce(() => {
 // Export utilities for use in other scripts
 window.portfolioUtils = utils;
 
-// 맨 아래로 스크롤하기
-const btn = document.querySelector(".hero_box_scrollButton");
-const bottom = document.querySelector("#page-bottom");
-
-btn.addEventListener("click", () => {
-  bottom.scrollIntoView({ behavior: "smooth" });
-});
-
 document.addEventListener('DOMContentLoaded', () => {
   const topBtn = document.querySelector('.top-btn');
   if (!topBtn) return;
