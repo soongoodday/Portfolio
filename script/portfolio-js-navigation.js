@@ -25,51 +25,11 @@ class Navigation {
       this.mobileMenuBtn.addEventListener('click', () => this.toggleMobileMenu());
     }
 
-    // ✅ 공용 스크롤 함수 (웹/모바일 공통)
-    const scrollToTarget = (targetEl) => {
-      if (!targetEl) return;
-
-      const scrollEl = document.scrollingElement || document.documentElement;
-      const headerH = this.header ? this.header.offsetHeight : 0;
-
-      let y = targetEl.getBoundingClientRect().top + window.pageYOffset - headerH - 8;
-
-      const maxScroll = scrollEl.scrollHeight - window.innerHeight;
-      y = Math.min(Math.max(0, y), maxScroll);
-
-      window.scrollTo({ top: y, behavior: 'smooth' });
-    };
-
-    // ✅ 메뉴 닫은 뒤 스크롤 (모바일 대응)
-    const closeMenuThenScroll = (targetEl) => {
-      if (this.navMenu?.classList.contains('active')) {
-        this.toggleMobileMenu();
-        setTimeout(() => scrollToTarget(targetEl), 380);
-      } else {
-        scrollToTarget(targetEl);
-      }
-    };
-
-    // ✅ 네비게이션 링크 클릭 처리 (연락 포함)
+    // 네비 클릭
     this.navLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        const href = link.getAttribute('href');
-        if (!href || !href.startsWith('#')) return;
-
-        e.preventDefault();
-        const targetEl = document.querySelector(href);
-        closeMenuThenScroll(targetEl);
-      });
+      // ✅ 외부 링크(작업일기/타임라인)는 기본 이동 막지 않기
+      link.addEventListener('click', (e) => this.handleNavClick(e));
     });
-
-    // ✅ 히어로 "맨 아래로 스크롤" 버튼
-    const bottomBtn = document.querySelector('.hero_box_scrollButton');
-    if (bottomBtn) {
-      bottomBtn.addEventListener('click', () => {
-        const targetEl = document.getElementById('page-bottom');
-        closeMenuThenScroll(targetEl);
-      });
-    }
 
     // 스크롤 rAF
     let ticking = false;

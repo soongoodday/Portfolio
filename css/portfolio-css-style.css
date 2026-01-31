@@ -1804,5 +1804,5 @@ html, body{
 
 /* ✅ 헤더에 가려지지 않게 앵커 보정 */
 #page-bottom{
-  scroll-margin-top: 120px; /* 헤더 높이쯤 */
+  scroll-margin-top: 60px; /* 헤더 높이쯤 */
 }
