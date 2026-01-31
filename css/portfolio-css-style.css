@@ -1800,3 +1800,7 @@ html, body{
     --blob-mult: 0.55; /* ⭐ 숫자 낮을수록 더 옅음 (0.4~0.7 추천) */
   }
 }
+
+#contact{
+  scroll-margin-top: -40px; /* 더 내려가고 싶으면 -60, -80 */
+}
