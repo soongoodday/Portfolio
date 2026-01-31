@@ -102,7 +102,6 @@ this.smoothScrollTo(targetId === 'home' ? 1 : y, 520);
     const headerHeight = this.header ? this.header.offsetHeight : 0;
     const scrollPosition = window.scrollY + headerHeight + 30;
 
-
     // ✅ 섹션 탐색: 캐시된 요소만 사용
     let nextSection = 'home';
     for (const el of this.sectionEls) {
