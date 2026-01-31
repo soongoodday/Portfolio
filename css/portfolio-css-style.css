@@ -6,7 +6,10 @@
 =================================== */
 
 /* Main */
-html { scroll-behavior: smooth; }
+:root { scroll-behavior: smooth; }
+
+html { scroll-padding-top: 110px; }
+/* html { scroll-behavior: smooth; } */
 
 body{
   background-color: var(--color-bg);
