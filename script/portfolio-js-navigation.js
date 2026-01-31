@@ -177,43 +177,5 @@ document.addEventListener('DOMContentLoaded', () => {
   new Navigation();
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  const header = document.querySelector(".header");
-  const navMenu = document.getElementById("navMenu");
-  const mobileBtn = document.getElementById("mobileMenuBtn");
 
-  const bottom = document.getElementById("page-bottom");
-  if (!bottom) return;
-
-  // ✅ 메뉴 닫기(너의 토글 방식에 맞춰 최소한만)
-  function closeMenu() {
-    // 흔한 패턴: navMenu에 active, 버튼에 active 붙는 구조
-    navMenu?.classList.remove("active");
-    mobileBtn?.classList.remove("active");
-    document.body.classList.remove("menu-open"); // 혹시 body에 걸어둔 경우 대비
-  }
-
-  function goBottom(e) {
-    if (e) e.preventDefault();
-
-    // 1) 먼저 메뉴 닫고
-    closeMenu();
-
-    // 2) 다음 프레임(=메뉴 닫힌 다음)에 스크롤
-    requestAnimationFrame(() => {
-      const headerH = header ? header.offsetHeight : 0;
-      const y = bottom.getBoundingClientRect().top + window.pageYOffset - headerH;
-      window.scrollTo({ top: y, behavior: "smooth" });
-    });
-  }
-
-  // ✅ 햄버거 메뉴의 "연락" (너 HTML에서 href="#page-bottom")
-  document.querySelectorAll('a[href="#page-bottom"]').forEach(a => {
-    a.addEventListener("click", goBottom);
-  });
-
-  // ✅ 히어로 "맨 아래로 스크롤하기" 버튼도 똑같이 통일
-  const downBtn = document.querySelector(".hero_box_scrollButton");
-  if (downBtn) downBtn.addEventListener("click", goBottom);
-});
 
