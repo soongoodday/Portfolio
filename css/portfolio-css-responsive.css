@@ -363,7 +363,7 @@ button:focus{
     align-items: center;      /* ⭐ 가로 중앙 */
 
     background: var(--color-white);
-    gap: 36px;
+    gap: 20px;
 
     max-height: none;
     overflow: hidden;
@@ -612,13 +612,4 @@ button:focus{
   }
 }
 
-@media (max-width: 900px){
-  .nav-menu{
-    position: fixed;
-    inset: 0;
-    padding-top: 80px;   /* 헤더 높이 */
-    overflow-y: auto;
-    z-index: 9999;
-  }
-}
 
