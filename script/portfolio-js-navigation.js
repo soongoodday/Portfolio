@@ -80,12 +80,13 @@ class Navigation {
     if (!targetElement) return;
 
     const headerHeight = this.header ? this.header.offsetHeight : 0;
-    let targetPosition = targetElement.offsetTop - headerHeight;
+    
+    // ✅ Safari에서도 안정적인 위치 계산
+const y = window.scrollY + targetElement.getBoundingClientRect().top - headerHeight;
 
-    // ⭐ home은 0 말고 1
-    if (targetId === 'home') targetPosition = 1;
+// ✅ 우리가 만든 "마법 스크롤" 사용!
+this.smoothScrollTo(targetId === 'home' ? 1 : y, 520);
 
-    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
 
     // 모바일 메뉴 닫기
     if (this.navMenu && this.navMenu.classList.contains('active')) {
