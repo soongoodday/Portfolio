@@ -58,6 +58,21 @@ class Navigation {
     this.navMenu?.classList.toggle('active');
   }
 
+  smoothScrollTo(targetY, duration = 520) {
+  const startY = window.scrollY;
+  const diff = targetY - startY;
+  const start = performance.now();
+
+  const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
+
+  const step = (now) => {
+    const p = Math.min(1, (now - start) / duration);
+    window.scrollTo(0, startY + diff * easeOutCubic(p));
+    if (p < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
   handleNavClick(e) {
     e.preventDefault();
     const targetId = e.currentTarget.getAttribute('href').substring(1);
