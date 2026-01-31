@@ -1802,5 +1802,5 @@ html, body{
 }
 
 #contact{
-  scroll-margin-top: -120px; /* 더 내려가고 싶으면 -60, -80 */
+  scroll-margin-top: -100px; /* 더 내려가고 싶으면 -60, -80 */
 }
