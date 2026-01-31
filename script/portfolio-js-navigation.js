@@ -102,16 +102,3 @@ document.addEventListener('DOMContentLoaded', () => {
     new Navigation();
 });
 
-// ✅ 연락 클릭 시 페이지 최하단으로 이동
-const contactLink = document.getElementById("contactLink");
-
-contactLink.addEventListener("click", (e) => {
-  e.preventDefault(); // 기본 링크 동작 막기
-
-  window.scrollTo({
-    top: document.body.scrollHeight,
-    behavior: "smooth"
-  });
-});
-
-
