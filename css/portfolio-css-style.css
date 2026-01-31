@@ -21,6 +21,7 @@ body{
   color: var(--color-subcolor);
   font-family: 'Escoredream';
   padding-top: 80px;
+  padding-bottom: calc(120px + env(safe-area-inset-bottom));
 }
 
 /* Layout */
