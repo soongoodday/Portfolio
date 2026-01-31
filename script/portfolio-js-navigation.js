@@ -29,7 +29,7 @@ class Navigation {
     // ✅ 히어로 "맨 아래로 스크롤하기" 버튼도 page-bottom으로 이동
     const downBtn = document.querySelector('.hero_box_scrollButton');
     if (downBtn) {
-      downBtn.addEventListener('click', (e) => this.goToSection(e, '#contact'));
+      downBtn.addEventListener('click', (e) => this.goToSection(e, 'page-bottom'));
     }
 
 
