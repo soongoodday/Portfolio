@@ -7,7 +7,13 @@ class Navigation {
     this.indicatorBar = document.querySelector('.nav-indicator-bar');
 
     // 섹션 id 목록
-    this.sections = ['home', 'about', 'skills', 'ai-skills', 'portfolio'];
+    this.sections = ['home', 'about', 'skills', 'ai-skills', 'portfolio', 'page-bottom'];
+
+    document.querySelector('.hero_box_scrollButton')?.addEventListener('click', () => {
+    document.getElementById('page-bottom')
+    .scrollIntoView({ behavior: 'smooth' });
+});
+
 
     // 섹션 요소 캐시
     this.sectionEls = this.sections
@@ -162,30 +168,3 @@ class Navigation {
 document.addEventListener('DOMContentLoaded', () => {
   new Navigation();
 });
-
-// ✅ "연락" + "맨 아래로 스크롤하기"를 진짜 최하단으로 이동 (웹/모바일 공통)
-(() => {
-  const goBottom = () => {
-    const doc = document.documentElement;
-    const top = Math.max(doc.scrollHeight, document.body.scrollHeight);
-
-    // ✅ 일부 브라우저에서 한 번에 안 먹는 경우가 있어 2번 보정
-    window.scrollTo({ top, behavior: 'smooth' });
-    requestAnimationFrame(() => {
-      window.scrollTo({ top, behavior: 'smooth' });
-    });
-  };
-
-  // 1) 히어로 버튼
-  const bottomBtn = document.querySelector('.hero_box_scrollButton');
-  if (bottomBtn) bottomBtn.addEventListener('click', goBottom);
-
-  // 2) 네비 '연락' 링크
-  const contactLink = document.querySelector('a[href="#page-bottom"]');
-  if (contactLink) {
-    contactLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      goBottom();
-    });
-  }
-})();
