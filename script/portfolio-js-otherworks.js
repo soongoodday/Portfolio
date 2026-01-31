@@ -449,6 +449,27 @@ document.addEventListener("keydown", (e) => {
   closeModal();
 });
 
+/* ===================================
+   ✅ 방향키로 이미지 이동 (← / →)
+=================================== */
+document.addEventListener("keydown", (e) => {
+  // 모달이 열려있지 않으면 무시
+  if (!modal.classList.contains("is-open")) return;
+
+  // 줌 중일 때는 이미지 이동 막고 싶으면 여기서 return 처리 가능
+  // if (scale > 1) return;
+
+  if (e.key === "ArrowLeft") {
+    e.preventDefault();
+    moveImg("prev");
+  }
+
+  if (e.key === "ArrowRight") {
+    e.preventDefault();
+    moveImg("next");
+  }
+});
+
 // ✅ (디버그) carrot만 성공/실패 확인
 (() => {
   const list = [
