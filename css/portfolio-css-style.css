@@ -1785,13 +1785,3 @@ html, body{
     --blob-mult: 0.55; /* ⭐ 숫자 낮을수록 더 옅음 (0.4~0.7 추천) */
   }
 }
-
-/* ✅ 네비 메뉴 글자 줄바꿈 금지 */
-.nav-menu{
-  flex-wrap: nowrap;
-}
-
-.nav-link{
-  white-space: nowrap;   /* ⭐ 글자 줄바꿈 금지 */
-  word-break: keep-all;  /* ⭐ 한글 단어 쪼개짐 방지 */
-}
