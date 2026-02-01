@@ -431,12 +431,20 @@ button:focus{
   }
 
   /* AI */
-  .ai-bars{ flex-wrap: wrap; gap: var(--spacing-sm); }
+  /* AI */
+.ai-bars{
+  flex-wrap: nowrap;   /* ✅ 줄바꿈 금지 */
+  overflow-x: auto;    /* ✅ 넘치면 가로 스크롤 */
+  gap: var(--spacing-sm);
+  justify-content: flex-start;
+}
   .ai-bar-container{ width: 2.5rem; height: 12rem; }
   .ai-bar-item{ gap: var(--spacing-sm); }
   .ai-desc-item{ flex-direction: column; gap: var(--spacing-xs); }
   .ai-tool{ min-width: auto; font-size: var(--font-lg); }
   .ai-usage, .ai-summary{ font-size: var(--font-base); }
+
+  .ai-bars::-webkit-scrollbar{ display:none; }
 
   /* Portfolio */
   .portfolio-number{
