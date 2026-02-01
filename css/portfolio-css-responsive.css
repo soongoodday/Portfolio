@@ -699,6 +699,13 @@ button:focus{
     top: 18px;
     left: 18px;
     z-index: 2000;
+    transition: opacity .2s ease, transform .2s ease;
+  }
+
+  .mobile-float-btn.is-hidden{
+    opacity: 0;
+    transform: translateY(-12px);
+    pointer-events: none;
   }
 }
 

@@ -177,5 +177,139 @@ document.addEventListener('DOMContentLoaded', () => {
   new Navigation();
 });
 
+(() => {
+  const btn = document.getElementById('mobileMenuBtn');
+  const menu = document.getElementById('navMenu');
+  if (!btn) return;
+
+  const MOBILE_MAX = 830;
+  const SHOW_DELAY = 700; // ⏱ 0.7초
+  let lastY = window.scrollY;
+  let showTimer = null;
+  let ticking = false;
+
+  function isMobile() {
+    return window.innerWidth <= MOBILE_MAX;
+  }
+
+  function showLater() {
+    clearTimeout(showTimer);
+    showTimer = setTimeout(() => {
+      btn.classList.remove('is-hidden');
+    }, SHOW_DELAY);
+  }
+
+  function update() {
+    ticking = false;
+
+    if (!isMobile()) {
+      btn.classList.remove('is-hidden');
+      return;
+    }
+
+    const menuOpen =
+      btn.classList.contains('active') ||
+      menu?.classList.contains('active');
+
+    if (menuOpen) {
+      btn.classList.remove('is-hidden');
+      return;
+    }
+
+    const y = window.scrollY;
+    const delta = y - lastY;
+
+    if (delta > 0) {
+      // ⬇️ 아래로 스크롤 중 → 숨김
+      btn.classList.add('is-hidden');
+      showLater(); // 멈추면 0.7초 뒤 다시 표시
+    } else if (delta < 0) {
+      // ⬆️ 위로 스크롤 → 즉시 표시
+      btn.classList.remove('is-hidden');
+      clearTimeout(showTimer);
+    }
+
+    lastY = y;
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
 
 
+
+
+(() => {
+  const btn = document.getElementById('mobileMenuBtn');
+  const menu = document.getElementById('navMenu');
+  if (!btn) return;
+
+  const MOBILE_MAX = 830;
+  const SHOW_DELAY = 700; // ⏱ 0.7초
+  let lastY = window.scrollY;
+  let showTimer = null;
+  let ticking = false;
+
+  function isMobile() {
+    return window.innerWidth <= MOBILE_MAX;
+  }
+
+  function showLater() {
+    clearTimeout(showTimer);
+    showTimer = setTimeout(() => {
+      btn.classList.remove('is-hidden');
+    }, SHOW_DELAY);
+  }
+
+  function update() {
+    ticking = false;
+
+    if (!isMobile()) {
+      btn.classList.remove('is-hidden');
+      return;
+    }
+
+    const menuOpen =
+      btn.classList.contains('active') ||
+      menu?.classList.contains('active');
+
+    if (menuOpen) {
+      btn.classList.remove('is-hidden');
+      return;
+    }
+
+    const y = window.scrollY;
+    const delta = y - lastY;
+
+    if (delta > 0) {
+      // ⬇️ 아래로 스크롤 중 → 숨김
+      btn.classList.add('is-hidden');
+      showLater(); // 멈추면 0.7초 뒤 다시 표시
+    } else if (delta < 0) {
+      // ⬆️ 위로 스크롤 → 즉시 표시
+      btn.classList.remove('is-hidden');
+      clearTimeout(showTimer);
+    }
+
+    lastY = y;
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
