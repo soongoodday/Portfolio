@@ -253,63 +253,48 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!btn) return;
 
   const MOBILE_MAX = 830;
-  const SHOW_DELAY = 700; // ⏱ 0.7초
-  let lastY = window.scrollY;
-  let showTimer = null;
-  let ticking = false;
+  const SHOW_DELAY = 700; // 0.7초
+  let timer = null;
 
-  function isMobile() {
-    return window.innerWidth <= MOBILE_MAX;
-  }
+  const isMobile = () => window.innerWidth <= MOBILE_MAX;
 
-  function showLater() {
-    clearTimeout(showTimer);
-    showTimer = setTimeout(() => {
-      btn.classList.remove('is-hidden');
+  const menuOpen = () =>
+    btn.classList.contains('active') || menu?.classList.contains('active');
+
+  const hide = () => {
+    if (!isMobile()) return;
+    if (menuOpen()) return;           // 메뉴 열려있으면 숨기지 않음
+    btn.classList.add('is-hidden');
+  };
+
+  const show = () => {
+    btn.classList.remove('is-hidden');
+  };
+
+  const scheduleShow = () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      if (!isMobile()) return show();
+      if (menuOpen()) return show();  // 메뉴 열려있으면 항상 보임
+      show();
     }, SHOW_DELAY);
-  }
+  };
 
-  function update() {
-    ticking = false;
+  // ✅ 스크롤이 “시작/진행”되면 숨기고, 멈추면 0.7초 후 다시 보여주기
+  const onScrollLike = () => {
+    hide();
+    scheduleShow();
+  };
 
-    if (!isMobile()) {
-      btn.classList.remove('is-hidden');
-      return;
-    }
+  window.addEventListener('scroll', onScrollLike, { passive: true });
 
-    const menuOpen =
-      btn.classList.contains('active') ||
-      menu?.classList.contains('active');
+  // iOS에서 관성/터치 스크롤을 더 확실히 잡기
+  document.addEventListener('touchmove', onScrollLike, { passive: true });
+  document.addEventListener('touchend', scheduleShow, { passive: true });
 
-    if (menuOpen) {
-      btn.classList.remove('is-hidden');
-      return;
-    }
+  window.addEventListener('resize', () => {
+    if (!isMobile()) show();
+  });
 
-    const y = window.scrollY;
-    const delta = y - lastY;
-
-    if (delta > 0) {
-      // ⬇️ 아래로 스크롤 중 → 숨김
-      btn.classList.add('is-hidden');
-      showLater(); // 멈추면 0.7초 뒤 다시 표시
-    } else if (delta < 0) {
-      // ⬆️ 위로 스크롤 → 즉시 표시
-      btn.classList.remove('is-hidden');
-      clearTimeout(showTimer);
-    }
-
-    lastY = y;
-  }
-
-  function onScroll() {
-    if (!ticking) {
-      ticking = true;
-      requestAnimationFrame(update);
-    }
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', update);
-  update();
+  show();
 })();
