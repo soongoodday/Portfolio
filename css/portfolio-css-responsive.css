@@ -430,13 +430,13 @@ button:focus{
     gap: var(--spacing-xl);
   }
 
-  /* AI */
+
   /* AI */
 .ai-bars{
   flex-wrap: nowrap;   /* ✅ 줄바꿈 금지 */
   overflow-x: auto;    /* ✅ 넘치면 가로 스크롤 */
   gap: var(--spacing-sm);
-  justify-content: flex-start;
+  justify-content: center;
 }
   .ai-bar-container{ width: 2.5rem; height: 12rem; }
   .ai-bar-item{ gap: var(--spacing-sm); }
