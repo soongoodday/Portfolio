@@ -511,74 +511,162 @@ document.addEventListener("DOMContentLoaded", () => {
   items.forEach(bind);
 })();
 
-(() => {
-  const sliders = document.querySelectorAll("[data-subslider]");
-  if (!sliders.length) return;
 
-  sliders.forEach((wrap) => {
+
+
+
+/* =======================================================
+   ✅ Sub Slider 최종 통합본
+   - 도트 생성 / 활성화
+   - 도트 클릭 이동
+   - 스크롤 시 활성 도트 갱신
+   - 세로 휠 → 가로 이동
+     ✅ 위로 휠 = 다음(앞으로)
+     ❌ 가로 영역 위에서는 페이지 세로 이동 완전 차단
+======================================================= */
+
+(() => {
+  /* =============================
+     1) sub-slider 도트 + 활성화
+  ============================= */
+  const subSliders = document.querySelectorAll("[data-subslider]");
+
+  subSliders.forEach((wrap) => {
     const track = wrap.querySelector(".sub-slider__track");
     const dotsWrap = wrap.querySelector(".sub-slider__dots");
     if (!track || !dotsWrap) return;
 
-    const items = Array.from(track.children);
+    const slides = Array.from(track.children).filter(el => el.nodeType === 1);
+    if (!slides.length) return;
 
-    // dots 만들기
-    dotsWrap.innerHTML = items.map((_, i) =>
-      `<button class="sub-slider__dot" type="button" aria-label="${i+1}"></button>`
-    ).join("");
-    const dots = Array.from(dotsWrap.querySelectorAll(".sub-slider__dot"));
+    // 도트 생성
+    dotsWrap.innerHTML = "";
+    const dots = slides.map((_, i) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "sub-slider__dot";
+      btn.setAttribute("aria-label", `슬라이드 ${i + 1}`);
+      btn.addEventListener("click", () => scrollToIndex(i));
+      dotsWrap.appendChild(btn);
+      return btn;
+    });
 
-    const getStep = () => {
-      const first = items[0];
-      if (!first) return track.clientWidth;
-      const gap = parseFloat(getComputedStyle(track).gap || "0");
-      return first.getBoundingClientRect().width + gap;
+    // 가장 가까운 슬라이드 index 계산
+    const getActiveIndex = () => {
+      const center = track.scrollLeft + track.clientWidth / 2;
+      let best = 0;
+      let bestDist = Infinity;
+
+      slides.forEach((el, i) => {
+        const elCenter = el.offsetLeft + el.clientWidth / 2;
+        const dist = Math.abs(center - elCenter);
+        if (dist < bestDist) {
+          bestDist = dist;
+          best = i;
+        }
+      });
+
+      return best;
     };
 
-    const setActiveDot = () => {
-      const step = getStep();
-      const idx = Math.round(track.scrollLeft / step);
+    const setActiveDot = (idx) => {
       dots.forEach((d, i) => d.classList.toggle("is-active", i === idx));
     };
 
-    // dot 클릭하면 해당 슬라이드로 이동
-    dots.forEach((dot, i) => {
-      dot.addEventListener("click", () => {
-        track.scrollTo({ left: getStep() * i, behavior: "smooth" });
+    const scrollToIndex = (idx) => {
+      const el = slides[idx];
+      if (!el) return;
+      track.scrollTo({
+        left: el.offsetLeft,
+        behavior: "smooth"
+      });
+      setActiveDot(idx);
+    };
+
+    // 스크롤 중 도트 갱신
+    let rafId = null;
+    track.addEventListener("scroll", () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        setActiveDot(getActiveIndex());
       });
     });
 
-    track.addEventListener("scroll", () => {
-      window.requestAnimationFrame(setActiveDot);
-    });
-
-    setActiveDot();
+    // 초기 상태
+    setActiveDot(getActiveIndex());
   });
-})();
 
-/* =========================
-   휠을 가로 스크롤로 변환
-========================= */
-(function(){
-  const selectors = [
+  /* ==========================================
+     2) 휠을 가로 스크롤로 변환 (완전 차단)
+     - capture 단계에서 먼저 잡아서
+       Lenis / window 스크롤도 못 움직이게
+  ========================================== */
+  const wheelSelectors = [
     ".other-works-viewport",
     ".sub-slider__track",
     ".sub-images--scroll3"
   ];
 
-  selectors.forEach(sel => {
-    document.querySelectorAll(sel).forEach(el => {
-      el.addEventListener("wheel", (e) => {
-        // shift+휠은 원래 가로스크롤이니까 그대로 두고,
-        // 일반 휠은 가로로 바꿔줌
-        if(e.shiftKey) return;
+  const getWheelArea = (target) => {
+    if (!(target instanceof Element)) return null;
+    return target.closest(wheelSelectors.join(","));
+  };
 
-        // 세로 스크롤을 가로로 이동
-        if(Math.abs(e.deltaY) > Math.abs(e.deltaX)){
-          e.preventDefault();
-          el.scrollLeft += e.deltaY;
-        }
-      }, { passive: false });
-    });
-  });
+  window.addEventListener(
+    "wheel",
+    (e) => {
+        // ✅ 모달 열려있으면 휠 가로변환/차단 로직 아예 실행 금지
+      if (document.getElementById("owModal")?.classList.contains("is-open")) return;
+      if (e.shiftKey) return;
+
+      const area = getWheelArea(e.target);
+      if (!area) return;
+
+      const maxScrollLeft = area.scrollWidth - area.clientWidth;
+      if (maxScrollLeft <= 5) return;
+
+      // ✅ 위로 휠(deltaY < 0) → 다음(오른쪽)
+      const moveX = -e.deltaY;
+
+      // 🔥 핵심: 가로 영역 위에서는 무조건 세로 스크롤 차단
+      e.preventDefault();
+      e.stopPropagation();
+      if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+
+      const SPEED = 1.3;
+      area.scrollLeft += moveX * SPEED;
+    },
+    { passive: false, capture: true }
+  );
+
+  // /* =============================
+  //    3) 도트 최소 스타일(보험)
+  // ============================= */
+  // if (!document.getElementById("subSliderDotCSS")) {
+  //   const style = document.createElement("style");
+  //   style.id = "subSliderDotCSS";
+  //   style.textContent = `
+  //     .sub-slider__dots{
+  //       display:flex;
+  //       justify-content:center;
+  //       gap:10px;
+  //       margin-top:12px;
+  //     }
+  //     .sub-slider__dot{
+  //       width:8px;
+  //       height:8px;
+  //       border-radius:999px;
+  //       border:1px solid rgba(40,63,110,0.45);
+  //       background:transparent;
+  //       opacity:.65;
+  //       cursor:pointer;
+  //       padding:0;
+  //     }
+  //     .sub-slider__dot.is-active{
+  //       opacity:1;
+  //       background: rgba(40,63,110,0.65);
+  //     }
+  //   `;
+  //   document.head.appendChild(style);
+  // }
 })();

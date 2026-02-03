@@ -5,12 +5,18 @@
    ✅ 썸네일 클릭으로 이미지 전환
    ✅ ESC 닫기 / 좌우키 이미지 이동
 ================================ */
+let savedScrollY = 0;
+
+
+
+
+
 (() => {
   const OTHER_WORKS_SLIDES = [
     {
       thumb: { src: "images/nouvedilie_thumb.png", alt: "누베딜리 상세페이지 썸네일" },
       left: { src: "images/nouvedilie1.png", alt: "누베딜리 상세페이지1" },
-      rights: [{ src: "images/nouvedilie2.png", alt: "누베딜리 상세페이지2" }],
+      rights: [],
       title: "누베딜리 상세 페이지",
       desc: "누베딜리 웹페이지의 제품 썸네일을 클릭하면 나오는 상세 페이지",
       topic: "일상에서 부담없이 캐주얼하게 착용 가능한 반지",
@@ -159,22 +165,22 @@ if (window.innerWidth <= 1024 && window.innerWidth > 768) {
 }
 
 
-  // 2) 확대 상태 변수들
-  let scale = 1;     // 확대 배율
-  let tx = 0;        // x 이동
-  let ty = 0;        // y 이동
+  // // 2) 확대 상태 변수들
+  // let scale = 1;     // 확대 배율
+  // let tx = 0;        // x 이동
+  // let ty = 0;        // y 이동
 
-  const clamp = (n, min, max) => Math.max(min, Math.min(n, max));
+  // const clamp = (n, min, max) => Math.max(min, Math.min(n, max));
 
-  const apply = () => {
-    modalImg.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
-    figureEl?.classList.toggle("is-zoomed", scale > 1);
-  };
+  // const apply = () => {
+  //   modalImg.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
+  //   figureEl?.classList.toggle("is-zoomed", scale > 1);
+  // };
 
-  const resetZoom = () => {
-    scale = 1; tx = 0; ty = 0;
-    apply();
-  };
+  // const resetZoom = () => {
+  //   scale = 1; tx = 0; ty = 0;
+  //   apply();
+  // };
 
   // 3) 돋보기 버튼 = 확대/원복 토글
   zoomBtn.addEventListener("click", () => {
@@ -187,71 +193,71 @@ if (window.innerWidth <= 1024 && window.innerWidth > 768) {
   });
 
   // 4) PC: 마우스 휠 확대/축소
-  figureEl?.addEventListener("wheel", (e) => {
-    e.preventDefault();
-    const delta = e.deltaY > 0 ? -0.12 : 0.12;
-    scale = clamp(scale + delta, 1, 4);
-    if (scale === 1) { tx = 0; ty = 0; }
-    apply();
-  }, { passive: false });
+  // figureEl?.addEventListener("wheel", (e) => {
+  //   e.preventDefault();
+  //   const delta = e.deltaY > 0 ? -0.12 : 0.12;
+  //   scale = clamp(scale + delta, 1, 4);
+  //   if (scale === 1) { tx = 0; ty = 0; }
+  //   apply();
+  // }, { passive: false });
 
   // 5) 공통: 드래그로 이동(확대 상태일 때만)
-  let isDrag = false;
-  let dragStartX = 0;
-  let dragStartY = 0;
+  // let isDrag = false;
+  // let dragStartX = 0;
+  // let dragStartY = 0;
 
-  figureEl?.addEventListener("pointerdown", (e) => {
-    if (scale <= 1) return;
-    isDrag = true;
-    dragStartX = e.clientX - tx;
-    dragStartY = e.clientY - ty;
-    figureEl.setPointerCapture?.(e.pointerId);
-  });
+  // figureEl?.addEventListener("pointerdown", (e) => {
+  //   if (scale <= 1) return;
+  //   isDrag = true;
+  //   dragStartX = e.clientX - tx;
+  //   dragStartY = e.clientY - ty;
+  //   figureEl.setPointerCapture?.(e.pointerId);
+  // });
 
-  figureEl?.addEventListener("pointermove", (e) => {
-    if (!isDrag) return;
-    tx = e.clientX - dragStartX;
-    ty = e.clientY - dragStartY;
-    apply();
-  });
+  // figureEl?.addEventListener("pointermove", (e) => {
+  //   if (!isDrag) return;
+  //   tx = e.clientX - dragStartX;
+  //   ty = e.clientY - dragStartY;
+  //   apply();
+  // });
 
-  figureEl?.addEventListener("pointerup", () => {
-    isDrag = false;
-  });
+  // figureEl?.addEventListener("pointerup", () => {
+  //   isDrag = false;
+  // });
 
-  figureEl?.addEventListener("pointercancel", () => {
-    isDrag = false;
-  });
+  // figureEl?.addEventListener("pointercancel", () => {
+  //   isDrag = false;
+  // });
 
-  // 6) ⭐ 모바일: 두 손가락 핀치 줌
-  // 손가락 두 개의 거리로 확대/축소 계산
-  let pinchStartDist = 0;
-  let pinchStartScale = 1;
+  // // 6) ⭐ 모바일: 두 손가락 핀치 줌
+  // // 손가락 두 개의 거리로 확대/축소 계산
+  // let pinchStartDist = 0;
+  // let pinchStartScale = 1;
 
-  const getDist = (a, b) => {
-    const dx = a.clientX - b.clientX;
-    const dy = a.clientY - b.clientY;
-    return Math.hypot(dx, dy);
-  };
+  // const getDist = (a, b) => {
+  //   const dx = a.clientX - b.clientX;
+  //   const dy = a.clientY - b.clientY;
+  //   return Math.hypot(dx, dy);
+  // };
 
-  figureEl?.addEventListener("touchstart", (e) => {
-    if (e.touches.length === 2) {
-      pinchStartDist = getDist(e.touches[0], e.touches[1]);
-      pinchStartScale = scale;
-    }
-  }, { passive: true });
+  // figureEl?.addEventListener("touchstart", (e) => {
+  //   if (e.touches.length === 2) {
+  //     pinchStartDist = getDist(e.touches[0], e.touches[1]);
+  //     pinchStartScale = scale;
+  //   }
+  // }, { passive: true });
 
-  figureEl?.addEventListener("touchmove", (e) => {
-    if (e.touches.length === 2) {
-      e.preventDefault(); // ⭐ 브라우저 기본 줌 막고 우리가 처리
-      const dist = getDist(e.touches[0], e.touches[1]);
-      const ratio = dist / pinchStartDist;
-      scale = clamp(pinchStartScale * ratio, 1, 4);
+  // figureEl?.addEventListener("touchmove", (e) => {
+  //   if (e.touches.length === 2) {
+  //     e.preventDefault(); // ⭐ 브라우저 기본 줌 막고 우리가 처리
+  //     const dist = getDist(e.touches[0], e.touches[1]);
+  //     const ratio = dist / pinchStartDist;
+  //     scale = clamp(pinchStartScale * ratio, 1, 4);
 
-      if (scale === 1) { tx = 0; ty = 0; }
-      apply();
-    }
-  }, { passive: false });
+  //     if (scale === 1) { tx = 0; ty = 0; }
+  //     apply();
+  //   }
+  // }, { passive: false });
 
   // ✅ 이미지가 바뀌거나 모달 닫힐 때 resetZoom을 호출해야 깔끔해!
   // 아래 2곳에 resetZoom(); 한 줄씩 추가해줘:
@@ -308,21 +314,18 @@ modal.classList.remove("no-thumbs"); // ⭐ 추가(2장 이상이면 복구)
   }).join("");
 };
 
-
 const setModalImage = (idx) => {
   currentImg = Math.max(0, Math.min(idx, currentImages.length - 1));
   const im = currentImages[currentImg];
 
-  // ⭐ 1. 먼저 무조건 초기화
-  resetZoom();
+  // ⭐ 스크롤 위치 초기화
+  const panel = modal.querySelector(".ow-modal__panel");
+  if (panel) panel.scrollTop = 0;
 
-  // ⭐ 2. 이미지가 "완전히 로드된 후" 다시 한 번 초기화
-  modalImg.onload = () => resetZoom();
-
-  modalImg.onerror = () => {
-  console.warn("❌ 이미지 로드 실패:", im.src);
-};
-
+  // ⭐ 모달 스크롤 맨 위로
+  modal.scrollTop = 0;
+  
+  modalImg.onerror = () => console.warn("❌ 이미지 로드 실패:", im.src);
   modalImg.src = im.src;
   modalImg.alt = im.alt || OTHER_WORKS_SLIDES[currentSlide]?.title || "";
 
@@ -337,46 +340,48 @@ modalThumbs?.addEventListener("click", (e) => {
   const idx = Number(t.dataset.img);
   if (!Number.isNaN(idx)) setModalImage(idx);
 });
+const openModal = (slideIndex) => {
+  currentSlide = Math.max(0, Math.min(slideIndex, OTHER_WORKS_SLIDES.length - 1));
+  const s = OTHER_WORKS_SLIDES[currentSlide];
 
-  const openModal = (slideIndex) => {
-    currentSlide = Math.max(0, Math.min(slideIndex, OTHER_WORKS_SLIDES.length - 1));
-    const s = OTHER_WORKS_SLIDES[currentSlide];
+  currentImages = buildImages(currentSlide);
+  currentImg = 0;
+  
+  // openModal 안, setModalImage(0) 직전에 추가:
+  modal.scrollTop = 0;
+  setModalImage(0);
 
-    currentImages = buildImages(currentSlide);
-    currentImg = 0;
+  modalTitle.textContent = s.title || "";
+  modalDesc.textContent = s.desc || "";
+  modalTopic.textContent = s.topic || "";
+  modalAge.textContent = s.age || "";
+  modalLink.href = s.link || "#";
 
-    modalTitle.textContent = s.title || "";
-    modalDesc.textContent = s.desc || "";
-    modalTopic.textContent = s.topic || "";
-    modalAge.textContent = s.age || "";
-    modalLink.href = s.link || "#";
+  modal.classList.add("image-only");
+  modal.classList.add("is-open");
 
-    modal.classList.add("image-only");
-    modal.classList.add("is-open");
+  opening = true;
+  setTimeout(() => { opening = false; }, 0);
 
-    opening = true;
-    setTimeout(() => { opening = false; }, 0);
+  justOpened = true;
+  setTimeout(() => { justOpened = false; }, 150);
 
-    justOpened = true;
-    setTimeout(() => { justOpened = false; }, 150);
+  modal.setAttribute("aria-hidden", "false");
 
-    modal.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
 
-    setModalImage(0);
-    console.log("✅ OPEN", currentSlide);
-  };
 
-  const closeModal = () => {
-    console.trace("❌ CLOSE called by:");
-    modal.classList.remove("is-open");
-    modal.classList.remove("image-only"); // ⭐ 원래 상태로 되돌리기
-    modal.setAttribute("aria-hidden", "true");
 
-    document.body.style.overflow = "";
-    resetZoom();
-    console.log("❌ CLOSE");
-  };
+  
+
+  // ⭐ body 스크롤만 막기 (position 건드리지 않음)
+  setModalImage(0);
+};
+
+const closeModal = () => {
+  modal.classList.remove("is-open");
+  modal.classList.remove("image-only");
+  modal.setAttribute("aria-hidden", "true");
+};
 
   // ⭐ 모달 안 클릭은 전파 막기 (열렸다가 바로 닫히는 현상 방지)
 const panel = modal.querySelector(".ow-modal__panel");
@@ -489,3 +494,111 @@ document.addEventListener("keydown", (e) => {
 
 
 
+
+/* ==========================================
+   OW MODAL FINAL: 배경 고정 + 모달 휠 스크롤
+   - openModal/closeModal 전역 없어도 동작 (MutationObserver)
+   - Lenis/전역 wheel 캡처가 모달 휠 먹는 것 차단
+========================================== */
+(() => {
+  const modal = document.getElementById("owModal");
+  if (!modal) return;
+
+  let savedY = 0;
+  let locked = false;
+  let ignoreWheelUntil = 0; // ✅ 닫힌 직후 휠 튐 방지용
+
+  const lockBg = () => {
+    if (locked) return;
+    locked = true;
+
+    savedY = window.lenis?.scroll ?? window.scrollY ?? window.pageYOffset ?? 0;
+
+
+    // ✅ 배경 완전 고정 (가장 확실)
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${savedY}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+    document.body.classList.add("modal-open");
+
+    // ✅ Lenis 쓰면 stop
+    window.lenis?.stop?.();
+  };
+
+  const unlockBg = () => {
+  if (!locked) return;
+  locked = false;
+
+  document.body.style.position = "";
+  document.body.style.top = "";
+  document.body.style.left = "";
+  document.body.style.right = "";
+  document.body.style.width = "";
+  document.body.classList.remove("modal-open");
+
+  // ✅ 1) 네이티브 스크롤 위치도 같이 맞춰주기 (Lenis가 transform 쓰는 케이스 대비)
+  window.scrollTo(0, savedY);
+
+  // ✅ 2) Lenis 재개 + 같은 위치로 즉시 동기화
+  if (window.lenis?.start) window.lenis.start();
+
+  if (window.lenis?.scrollTo) {
+    window.lenis.scrollTo(savedY, { immediate: true });
+  }
+
+  ignoreWheelUntil = performance.now() + 200;
+};
+
+
+
+
+  const sync = () => {
+    if (modal.classList.contains("is-open")) lockBg();
+    else unlockBg();
+  };
+
+  // ✅ 모달 open/close를 class 변화로 감지
+  const obs = new MutationObserver(sync);
+  obs.observe(modal, { attributes: true, attributeFilter: ["class"] });
+  sync();
+
+  // ✅ 모달 위에서는 전역 wheel 캡처(가로변환 등) 못 건드리게 막기
+  // (중요: preventDefault 안 함 → 모달 자체 스크롤은 정상 동작)
+  const inModal = (target) => target instanceof Element && !!target.closest("#owModal");
+
+  window.addEventListener(
+  "wheel",
+  (e) => {
+    // 모달이 닫힌 직후 아주 잠깐 휠 입력은 무시(위로 굴릴 때 맨위 튐 방지)
+    if (!modal.classList.contains("is-open") && performance.now() < ignoreWheelUntil) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+    }
+  },
+  { capture: true, passive: false }
+);
+
+window.addEventListener(
+  "wheel",
+  (e) => {
+    if (!modal.classList.contains("is-open")) return;
+    if (!inModal(e.target)) return;
+    e.stopImmediatePropagation(); // ✅ 전역 휠 가로변환 코드 못오게 막기
+  },
+  { capture: true, passive: false }
+);
+
+
+  // 모바일 터치 스크롤도 전역 핸들러가 먹는 경우 방지
+  window.addEventListener(
+    "touchmove",
+    (e) => {
+      if (!modal.classList.contains("is-open")) return;
+      if (!inModal(e.target)) return;
+      e.stopImmediatePropagation();
+    },
+    { capture: true, passive: true }
+  );
+})();

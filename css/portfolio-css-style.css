@@ -507,7 +507,7 @@ body{
   font-weight: var(--font-medium);
   line-height: 2;
   color: var(--color-subcolor);
-  margin-top: var(--spacing-lg);
+  margin-top: var(--spacing-2xl);
 }
 
 /* ===================================
@@ -832,7 +832,7 @@ body{
   overflow-x: auto;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth; */
   gap: 24px;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
@@ -939,7 +939,6 @@ body{
 .footer{
   padding: 96px 0 72px;
   border-top: 1px solid #e2e2e2;
-  background: var(--color-bg);
 }
 
 .footer .container{
@@ -1369,7 +1368,7 @@ html, body{
   width: 100%;
   background: #000;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
 }
 
@@ -1447,58 +1446,8 @@ html, body{
   .hero_kr{ font-size: 2.6rem; }
 }
 
-
-/* =========================
-   태블릿 이하: 이미지 전용 풀스크린 모달
-========================= */
-@media (max-width: 1024px){
-
-  .ow-modal.is-open.image-only .ow-modal__panel{
-    left: 0;
-    top: 0;
-    transform: none;
-    width: 100vw;
-    height: 100vh;
-    max-height: 100vh;
-    border-radius: 0;
-    background: transparent;
-    display: block;
-    overflow: hidden;
-  }
-
-  .ow-modal.is-open.image-only .ow-modal__figure{
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-    border-radius: 0;
-    background: #000;
-    overflow: hidden;
-  }
-
-  .ow-modal.is-open.image-only .ow-modal__figure img{
-    width: 100%;
-    height: 100%;
-    max-height: none;
-    object-fit: contain;
-    border-radius: 0;
-  }
-
   /* 불필요한 UI */
   .ow-zoom-btn{ display: none; }
-}
-
-/* ✅ 모바일에서도 하단 썸네일 UI 보이게 */
-.ow-modal__thumbs{
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 12px;
-  display: flex;
-  gap: 10px;
-  padding: 0 12px;
-  justify-content: center;
-  z-index: 20;
-}
 
 .ow-modal__thumb{
   width: 56px;
@@ -1553,7 +1502,7 @@ html, body{
   overflow-y: hidden;
 
   scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth; */
   -webkit-overflow-scrolling: touch;
 
   scrollbar-width: none;
@@ -1590,9 +1539,9 @@ html, body{
   margin: 0;
   background: #000;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
-  overflow: hidden;
+  overflow: auto;
 }
 
 /* 썸네일 크기 */
@@ -1661,9 +1610,11 @@ html, body{
 .ow-modal.image-only .ow-modal__figure{
   position: relative;
   width: 100%;
-  height: 88vh;
+  max-height: 88vh;
   background: #000;
-  overflow: hidden;
+  overflow: auto;
+  align-items: start;
+  padding: 40px 0 ;
 }
 
 /* 메인 이미지 */
@@ -1736,7 +1687,7 @@ html, body{
 }
 
 /* ✅ 큰 빛 번짐 1 */
-.bg-gradient::before{
+.bgCircle1{
   content:"";
   position:absolute;
   width: 900px;
@@ -1744,17 +1695,17 @@ html, body{
   left: -260px;
   top: -240px;
 
-  background: radial-gradient(circle, rgba(59,130,246,0.18), transparent 60%);
+  background: radial-gradient(circle, rgba(59,130,246,1), transparent 60%);
   filter: blur(40px);
 
   /* ⭐ 핵심: JS 변수랑 연결 */
-  opacity: calc(var(--blob-alpha) * var(--blob-mult));
+  opacity: 0.3;
 
-  animation: blob1 12s ease-in-out infinite alternate;
+  /* animation: blob1 12s ease-in-out infinite alternate; */
 }
 
 /* ✅ 큰 빛 번짐 2 */
-.bg-gradient::after{
+.bgCircle2{
   content:"";
   position:absolute;
   width: 900px;
@@ -1762,13 +1713,13 @@ html, body{
   right: -280px;
   bottom: -260px;
 
-  background: radial-gradient(circle, rgba(106,92,255,0.16), transparent 60%);
+  background: radial-gradient(circle, rgba(106,92,255,1), transparent 60%);
   filter: blur(46px);
 
   /* ⭐ 핵심: JS 변수랑 연결 */
-  opacity: calc(var(--blob-alpha) * var(--blob-mult));
+  opacity: 0.3;
 
-  animation: blob2 14s ease-in-out infinite alternate;
+  /* animation: blob2 14s ease-in-out infinite alternate; */
 }
 
 @keyframes blob1{
@@ -1804,3 +1755,372 @@ html, body{
 #contact{
   scroll-margin-top: -100px; /* 더 내려가고 싶으면 -60, -80 */
 }
+
+
+
+
+
+
+
+
+
+.nav-menu {animation: navMenu 1s forwards;opacity: 0;}
+@keyframes navMenu {
+  0% {margin-left: 100px;opacity: 0;}
+  100% {margin-left: 0px; opacity: 1;}
+}
+
+.nav-actions {animation: navActions 1s forwards;opacity: 0;}
+@keyframes navActions {
+  0% {margin-right: 100px;opacity: 0;}
+  100% {margin-right: 0px; opacity: 1;}
+}
+
+.hero_text {animation: hero_text 1s forwards;opacity: 0; animation-delay: 0.7s}
+@keyframes hero_text {
+  0% {margin-left: 100px;opacity: 0;}
+  100% {margin-left: 0px; opacity: 1;}
+}
+
+.hero_box_intro {animation: hero_box_intro 1s forwards;opacity: 0; animation-delay: 1s}
+@keyframes hero_box_intro {
+  0% {margin-left: 100px;opacity: 0;}
+  100% {margin-left: 0px; opacity: 1;}
+}
+
+.hero_wrap {animation: hero_wrap 1s forwards;opacity: 0; animation-delay: 1s}
+@keyframes hero_wrap {
+  0% {margin-top: 50px;opacity: 0;}
+  100% {margin-top: 0px; opacity: 1;}
+}
+
+
+
+
+/* ── 모달 패널: 세로 스크롤 ── */
+.ow-modal__panel {
+  max-height: 100vh;
+  max-height: 100dvh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ── figure: 제한 해제 ── */
+.ow-modal__figure {
+  max-height: none;
+  height: auto;
+  overflow: visible;
+  display: flex;
+  justify-content: center;
+}
+
+/* ── 줌 버튼 숨김 ── */
+.ow-zoom-btn {
+  display: none !important;
+}
+/* 모달 열렸을 때 바탕 스크롤 완전 차단 */
+/* 수정: position: fixed 제거 */
+body.modal-open {
+  overflow: hidden !important;
+  width: 100%;
+}
+
+/* 모달 자체가 스크롤 담당 */
+.ow-modal.is-open {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+}
+
+
+
+/* ── 모달 스크롤바: 얇고 주황 ── */
+.ow-modal.is-open::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ow-modal.is-open::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.ow-modal.is-open::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border-radius: 3px;
+}
+
+.ow-modal.is-open::-webkit-scrollbar-thumb:hover {
+  background: #3b82f6;
+}
+
+/* Firefox */
+.ow-modal.is-open {
+  scrollbar-width: thin;
+  scrollbar-color: #3b82f6 transparent;
+}
+
+
+
+
+
+/* .sub-slider__dots{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:12px;
+}
+.sub-slider__dot{
+  width:8px; height:8px;
+  border-radius:999px;
+  border:1px solid rgba(40,63,110,0.45);
+  background:transparent;
+  opacity:.65;
+  cursor:pointer;
+}
+.sub-slider__dot.is-active{
+  opacity:1;
+  background: rgba(40,63,110,0.65);
+} */
+
+
+
+
+body.modal-open { overflow: hidden; }
+
+
+.ow-modal.is-open{
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+
+
+
+/* ✅ 모달 자체를 화면 정중앙에 고정 */
+.ow-modal.is-open{
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+}
+
+/* ✅ 패널을 수직/수평 중앙 정렬 */
+.ow-modal.is-open .ow-modal__panel{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  width: min(1100px, 92vw);
+  max-height: 88vh;
+
+  overflow-y: auto;                 /* ⭐ 스크롤은 패널만 */
+  -webkit-overflow-scrolling: touch;
+
+  background: #fff;
+  border-radius: 28px;
+}
+
+
+
+
+/* ✅ 1024 이하에서도 모달 패널을 수직 정중앙 고정 */
+@media (max-width: 1024px){
+  .ow-modal.is-open .ow-modal__panel{
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+
+    width: min(760px, 92vw) !important; /* 모바일에서 너무 크면 줄이기 */
+    max-height: 88vh !important;
+
+    overflow-y: auto !important;        /* 스크롤은 패널에서 */
+    -webkit-overflow-scrolling: touch;
+    border-radius: 28px !important;
+  }
+}
+
+
+
+
+/* ===================================
+   ✅ image-only 모달: 중앙 정렬 (important 없이)
+=================================== */
+
+/* 모달 패널: 높이를 기준으로 중앙 유지 */
+.ow-modal.is-open.image-only .ow-modal__panel{
+  height: 88vh;
+  max-height: 88vh;
+  display: flex;
+  align-items: center;     /* 패널 안에서 figure 중앙 */
+  justify-content: center;
+}
+
+/* 이미지 컨테이너 */
+.ow-modal.is-open.image-only .ow-modal__figure{
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  align-items: center;     /* ✅ 세로 중앙 */
+  justify-content: center; /* ✅ 가로 중앙 */
+
+  padding: 0;              /* 기존 padding 덮어쓰기 */
+  overflow: hidden;        /* 기존 auto 제거 */
+}
+
+/* 이미지 */
+.ow-modal.is-open.image-only .ow-modal__figure img{
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+
+
+
+/* ✅ [최종/가로100] 모달 이미지 가로 100% + 비율 유지 */
+#owModal.is-open.image-only .ow-modal__panel{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#owModal.is-open.image-only .ow-modal__figure{
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow-y: auto;     /* 세로 길면 모달 안에서 휠 스크롤 */
+}
+
+#owModal.is-open.image-only .ow-modal__figure img{
+  width: 100%;
+  height: auto;         /* ⭐ 핵심 */
+  max-height: none;     /* 기존 88vh 제한 풀기 */
+  display: block;
+}
+
+
+
+
+/* ================================
+   ✅ OW MODAL 최종(충돌 제거 버전)
+   - 패널: 화면 정중앙
+   - image-only: 이미지 가로 100% + 세로 auto(잘림X)
+   - 길면 패널 안에서 스크롤
+================================ */
+
+/* 배경 스크롤 잠금(유지) */
+body.modal-open{
+  overflow: hidden;
+}
+
+/* 모달 전체 */
+.ow-modal.is-open{
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+}
+
+/* 패널 = 항상 중앙 */
+.ow-modal.is-open .ow-modal__panel{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  width: min(1100px, 92vw);
+  max-height: 88vh;
+
+  overflow-y: auto;               /* ✅ 스크롤은 패널이 담당 */
+  -webkit-overflow-scrolling: touch;
+
+  background: #fff;
+  border-radius: 28px;
+}
+
+/* ===== image-only 모드 ===== */
+#owModal.is-open.image-only .ow-modal__panel{
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+/* figure는 스크롤/잘림 방지 */
+#owModal.is-open.image-only .ow-modal__figure{
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  background: #fff;
+
+  display: block;
+  overflow: visible;              /* ✅ 잘림 방지 */
+}
+
+/* ✅ 핵심: 이미지 가로 100% + 비율 유지(잘림X) */
+#owModal.is-open.image-only .ow-modal__figure img{
+  width: 100%;
+  height: auto;                   /* ✅ 잘림 방지의 핵심 */
+  display: block;
+  object-fit: contain;
+}
+
+
+
+
+/* ✅ image-only: 썸네일을 이미지 아래로(겹침 제거) */
+#owModal.is-open.image-only .ow-modal__panel{
+  display: flex;
+  flex-direction: column;
+}
+
+/* 이미지 영역(figure) */
+#owModal.is-open.image-only .ow-modal__figure{
+  width: 100%;
+}
+
+/* ✅ 썸네일바: absolute 해제 → 아래로 내려감 */
+#owModal.is-open.image-only .ow-modal__thumbs{
+  position: static;        /* 핵심: absolute 제거 */
+  margin-top: 12px;
+  padding: 0 12px 14px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+
+
+
+/* ==========================================
+   OW MODAL FINAL: 모달만 스크롤 / 배경 고정
+========================================== */
+body.modal-open{
+  overflow: hidden;
+}
+
+/* 모달 패널이 스크롤 담당 */
+#owModal.is-open .ow-modal__panel{
+  max-height: 88vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* image-only에서도 패널 스크롤 유지 */
+#owModal.is-open.image-only .ow-modal__panel{
+  max-height: 88vh;
+  overflow-y: auto;
+}
+
+/* 썸네일이 이미지 덮지 않게 아래로 */
+#owModal.is-open.image-only .ow-modal__thumbs{
+  position: static;
+  margin-top: 12px;
+  padding: 0 12px 14px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+

@@ -18,7 +18,10 @@
     <span></span><span></span><span></span>
   </button>
   
-    <div class="bg-gradient"></div>
+    <div class="bg-gradient">
+        <span class="bgCircle1"></span>
+        <span class="bgCircle2"></span>
+    </div>
     <!-- 헤더 네비게이션 -->
     <header class="header">
         <nav class="nav">
@@ -376,15 +379,12 @@
                             <span class="ai-tool">Claude</span>
                             <span class="ai-usage">HTML, CSS 코드 생성 활용</span>
                         </div>
-
-                        <p class="ai-summary">
-                            <span class="font-bold">ChatGPT</span>를 활용해
-                            이미지 생성 / 영문 프롬포트 작성 및<br />
-                            <span class="font-bold">Ideogram & Claude</span>를 활용해 디자인 시안 발전 및 웹페이지 및
-                            포트폴리오 코딩
-                        </p>
                     </div>
+
                 </div>
+                <p class="ai-summary">
+                            <span class="font-bold">ChatGPT & Midjourney</span>를 활용해 이미지 생성과 영문 프롬포트 작성 및 <span class="font-bold">ChatGPT & Ideogram & Claude</span>를 활용해 디자인 시안 발전 및 프로젝트, 웹 포트폴리오 코딩을 진행했습니다.
+                </p>
             </div>
         </section>
 
@@ -409,7 +409,7 @@
                     <!-- Portfolio 1 -->
                     <article class="portfolio-item">
                         <div class="portfolio-header">
-                            <div class="portfolio-number">Portfolio 1</div>
+                            <div class="portfolio-number">Portfolio 1 반응형 디테일 작업 진행 중</div>
                         </div>
                         <div class="portfolio-content">
                             <div class="portfolio-info">
@@ -437,7 +437,7 @@
                                     <div class="detail-item">
                                         <span class="detail-label">작업 기간</span>
                                         <span class="detail-value">2025.12 ~ 2026.02 (완성도
-                                            100%)</span>
+                                            95%)</span>
                                     </div>
                                     <div class="detail-item">
                                         <span class="detail-label">기여도</span>
@@ -522,7 +522,7 @@
                     <!-- Portfolio 2 -->
                     <article class="portfolio-item">
                         <div class="portfolio-header">
-                            <div class="portfolio-number">Portfolio 2</div>
+                            <div class="portfolio-number">Portfolio 2 내용 추가 및 유지 보수 계획</div>
                         </div>
                         <div class="portfolio-content">
                             <div class="portfolio-info">
@@ -1301,6 +1301,13 @@
     <script src="script/portfolio-js-main.js"></script>
     <script src="script/portfolio-js-otherworks.js"></script>
 
+    <!-- gsap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+
+    <!-- 부드러운스크롤 -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1/bundled/lenis.min.js"></script>
+
     <button class="top-btn" type="button" aria-label="맨 위로">↑</button>
     <script>
         (() => {
@@ -1335,6 +1342,225 @@
             update();
         })();
     </script>
+
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const items = document.querySelectorAll('.portfolio-content');
+  if (!items.length) return;
+
+  const startOffset = 80;
+  const extraOffset = 180;
+
+  // ✅ "현재 레이아웃이 1열인지" 체크 (가장 확실)
+  const isOneColumn = (container) => {
+    const cols = getComputedStyle(container).gridTemplateColumns;
+    // gridTemplateColumns가 "xxxpx" 1개면 1열, "xxxpx xxxpx"면 2열
+    return cols.trim().split(/\s+/).length <= 1;
+  };
+
+  const updatePosition = () => {
+    const scrollY = window.scrollY;
+
+    items.forEach(container => {
+      const left = container.querySelector('.portfolio-info');
+      const right = container.querySelector('.portfolio-preview');
+      if (!left || !right) return;
+
+      // ✅ 1열이면: 무조건 고정(움직임 제거)
+      if (isOneColumn(container)) {
+        right.style.transform = 'none';
+        return;
+      }
+
+      // ✅ 2열일 때만: 따라오게
+      const containerRect = container.getBoundingClientRect();
+      const containerTop = scrollY + containerRect.top;
+
+      const leftHeight = left.offsetHeight;
+      const rightHeight = right.offsetHeight;
+
+      const maxMove = leftHeight - rightHeight + extraOffset;
+      let moveY = scrollY + startOffset - containerTop;
+
+      if (moveY < 0) moveY = 0;
+      if (moveY > maxMove) moveY = maxMove;
+
+      right.style.transform = `translateY(${moveY}px)`;
+    });
+  };
+
+  window.addEventListener('scroll', updatePosition, { passive: true });
+  window.addEventListener('resize', updatePosition);
+  updatePosition();
+});
+</script>
+
+
+
+
+<script>
+let lenis;
+
+gsap.registerPlugin(ScrollTrigger);
+
+ScrollTrigger.matchMedia({
+
+  "(min-width: 641px)": function() {
+
+    lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smooth: true
+    });
+
+    // ⭐ ScrollTrigger 연동
+    lenis.on('scroll', ScrollTrigger.update);
+
+    // ⭐ gsap.ticker 하나만 사용 (RAF 루프 제거)
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+    gsap.ticker.lagSmoothing(0);
+
+    // ⭐ cleanup (모바일 전환 시)
+    return function() {
+      gsap.ticker.remove(lenis.raf);
+      lenis.destroy();
+      lenis = null;
+    };
+  }
+});
+</script>
+
+
+
+
+<script>
+
+    
+gsap.timeline({
+  scrollTrigger: {
+    trigger: ".hero",
+    start: "top top",
+    end: "bottom top",
+    scrub: true,
+  }
+})
+.to(".bgCircle1", {
+  x: 1200,
+  top: "45%",
+  scale: 0.1,
+}, 0)
+.to(".bgCircle2", {
+  x: -1200,
+  top: "25%",
+  scale: 0.1,
+}, 0);
+
+    
+gsap.timeline({
+  scrollTrigger: {
+    trigger: ".about-section",
+    start: "top top",
+    end: "bottom top",
+    scrub: true,
+  }
+})
+.to(".bgCircle1", {
+  x: 600,
+  top: "-55%",
+  scale: 1,
+}, 0)
+.to(".bgCircle2", {
+  x: -600,
+  top: "45%",
+  scale: 1,
+}, 0);
+    
+
+gsap.timeline({
+  scrollTrigger: {
+    trigger: ".skills-section",
+    start: "top top",
+    end: "bottom top",
+    scrub: true,
+  }
+})
+.to(".bgCircle1", {
+  x: -1600,
+  top: "-85%",
+  scale: 1,
+}, 0)
+.to(".bgCircle2", {
+  x: 1600,
+  top: "85%",
+  scale: 1,
+}, 0);
+
+gsap.timeline({
+  scrollTrigger: {
+    trigger: ".ai-skills-section",
+    start: "top top",
+    end: "bottom top",
+    scrub: true,
+  }
+})
+.to(".bgCircle1", {
+  x: 600,
+  top: "85%",
+  scale: 1,
+}, 0)
+.to(".bgCircle2", {
+  x: 0,
+  top: "-35%",
+  scale: 1,
+}, 0);
+
+gsap.timeline({
+  scrollTrigger: {
+    trigger: ".portfolio-section",
+    start: "top top",
+    end: "bottom top",
+    scrub: true,
+  }
+})
+.to(".bgCircle1", {
+  x: -1600,
+  top: "25%",
+  scale: 1,
+}, 0)
+.to(".bgCircle2", {
+  x: 2000,
+  top: "-100%",
+  scale: 1,
+}, 0);
+
+
+
+gsap.timeline({
+  scrollTrigger: {
+    trigger: ".other-works-section",
+    start: "top top",
+    end: "bottom top",
+    scrub: true,
+  }
+})
+.to(".bgCircle1", {
+  x: 50,
+  top: "0",
+  scale: 1,
+}, 0)
+.to(".bgCircle2", {
+  x: 70,
+  top: "-50%",
+  scale: 1,
+}, 0);
+</script>
+
+
+
+
+
 </body>
 
 </html>
