@@ -203,6 +203,42 @@ let savedScrollY = 0;
       link: "#",
       thumbFit: "contain"
     },
+    {
+      thumb: { src: "images/iSuite_thumb.png", alt: "iSuite 홍보물 썸네일" },
+      left: { src: "images/iSuite1.png", alt: "iSuite 홍보물" },
+      rights: [ { src: "images/iSuite2.png", alt: "iSuite 홍보물" }],
+      title: "iSuite 홍보물",
+      desc: "",
+      topic: "",
+      age: "",
+      caption: "",
+      link: "#",
+      thumbFit: "contain"
+    },
+    {
+      thumb: { src: "images/smart_thumb.png", alt: "스마트팩토리 툴킷 소개 홍보물 썸네일" },
+      left: { src: "images/smart1.png", alt: "스마트팩토리 툴킷 소개 홍보물" },
+      rights: [ { src: "images/smart2.png", alt: "스마트팩토리 툴킷 소개 홍보물" }],
+      title: "스마트팩토리 툴킷 소개 홍보물",
+      desc: "",
+      topic: "",
+      age: "",
+      caption: "",
+      link: "#",
+      thumbFit: "contain"
+    },
+    {
+      thumb: { src: "images/mud_poster_thumb.png", alt: "보령머드축제 포스터 썸네일" },
+      left: { src: "images/mud_poster.png", alt: "보령머드축제 포스터" },
+      rights: [],
+      title: "보령머드축제 포스터",
+      desc: "",
+      topic: "",
+      age: "",
+      caption: "",
+      link: "#",
+      thumbFit: "contain"
+    },
   ];
 
   const grid = document.getElementById("otherWorksGrid3");
