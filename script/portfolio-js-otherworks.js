@@ -112,6 +112,24 @@ let savedScrollY = 0;
       thumbFit: "contain"
     },
     {
+      thumb: { src: "images/AMC1_thumb.png", alt: "AMC2024 썸네일"},
+      left: { src: "images/AMC1.png", alt: "AMC2024" },
+      rights: [ { src: "images/AMC2.png", alt: "AMC2024" },
+                { src: "images/AMC3.png", alt: "AMC2024" },
+                { src: "images/AMC4.png", alt: "AMC2024" },
+                { src: "images/AMC5.png", alt: "AMC2024" },
+                { src: "images/AMC6.png", alt: "AMC2024" },
+                { src: "images/AMC7.png", alt: "AMC2024" },
+       ],
+      title: "AMC2024",
+      desc: "",
+      topic: "",
+      age: "",
+      caption: "",
+      link: "#",
+      thumbFit: "contain"
+    },
+    {
       left: { src: "images/top.jpg", alt: "티오피월드 행정사사무소 명함" },
       rights: [],
       title: "티오피월드 행정사사무소 명함",
