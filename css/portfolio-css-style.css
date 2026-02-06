@@ -536,6 +536,89 @@ body{
   margin-bottom: var(--spacing-xl);
 }
 
+/* =========================
+   ✅ Portfolio "현재 운영 중" 강조 배지
+========================= */
+.portfolio-number.is-live{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  /* 기존 배경 유지 + 살짝 더 쨍하게 */
+  background: linear-gradient(90deg, var(--color-subcolor2), #3b82f6);
+  box-shadow:
+    0 10px 24px rgba(59,130,246,0.22),
+    0 2px 0 rgba(255,255,255,0.35) inset;
+
+  transform: translateZ(0);
+  animation: liveBadgeFloat 2.4s ease-in-out infinite;
+}
+
+/* 왼쪽에 LIVE 점(깜빡임) */
+.portfolio-number.is-live::before{
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #2efc9d;
+  box-shadow: 0 0 0 0 rgba(46,252,157,0.65);
+  animation: liveDotPulse 1.2s ease-in-out infinite;
+}
+
+/* 은은한 하이라이트가 스윽 지나가는 효과 */
+.portfolio-number.is-live::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255,255,255,0.35) 35%,
+    transparent 70%
+  );
+  transform: translateX(-120%);
+  animation: liveShine 2.6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* hover 시 더 확실하게 */
+.portfolio-item:hover .portfolio-number.is-live{
+  animation-play-state: paused;
+  transform: translateY(-2px);
+  box-shadow:
+    0 14px 30px rgba(59,130,246,0.28),
+    0 2px 0 rgba(255,255,255,0.35) inset;
+}
+
+@keyframes liveBadgeFloat{
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-3px); }
+}
+
+@keyframes liveDotPulse{
+  0%   { box-shadow: 0 0 0 0 rgba(46,252,157,0.65); opacity: 1; }
+  70%  { box-shadow: 0 0 0 10px rgba(46,252,157,0); opacity: 0.9; }
+  100% { box-shadow: 0 0 0 0 rgba(46,252,157,0); opacity: 1; }
+}
+
+@keyframes liveShine{
+  0%   { transform: translateX(-120%); opacity: 0; }
+  20%  { opacity: 1; }
+  55%  { transform: translateX(120%); opacity: 0; }
+  100% { transform: translateX(120%); opacity: 0; }
+}
+
+/* 모션 줄이기 설정 존중 */
+@media (prefers-reduced-motion: reduce){
+  .portfolio-number.is-live,
+  .portfolio-number.is-live::before,
+  .portfolio-number.is-live::after{
+    animation: none !important;
+  }
+}
+
 .portfolio-content{
   display: grid;
   grid-template-columns: 1fr 1fr; /* ✅ 왼쪽 넓게 */
